@@ -1,6 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:test_take5/data/models/requests/destination_arrived_request/destination_arrived_request.dart';
+import 'package:test_take5/data/models/requests/step_one_complete_request/step_one_complete_request.dart';
+import 'package:test_take5/data/models/requests/step_two_start_request/step_two_start_request.dart';
+import 'package:test_take5/data/models/requests/trip_start_request/trip_start_request.dart';
+import 'package:test_take5/data/models/responses/trip_pending_response/trip_pending_response.dart';
+import 'package:test_take5/data/models/responses/trip_start_response/trip_start_response.dart';
 
 import '../../core/constants/app_endpoints.dart';
 import '../../core/utils/services/dio_client.dart';
@@ -9,6 +15,25 @@ import '../models/responses/user_login_response/user_login_response.dart';
 abstract class RemoteDataSource {
   Future<UserLoginResponse> loginUser(
       {required String mobileNo, required String password});
+
+  Future<TripPendingResponse> getPendingTrip(
+      {required String userId});
+
+  Future<TripStrartResponse> startTrip(
+      {required TripStartRequest tripStartRequest});
+
+    Future<void> arriveToDestination(
+      {required DestinationArrivedRequest destinationArrivedRequest});
+
+  Future<void> completeStepOne(
+      {required StepOneCompleteRequest stepOneCompleteRequest});
+
+  Future<void> startStepTwo(
+      {required StepTwoStartRequest stepTwoStartRequest});
+
+  Future<void> completeStepTwo(
+      {required StepOneCompleteRequest stepOneCompleteRequest});
+
 }
 
 // class RemoteDataSourceImpl extends RemoteDataSource {
@@ -38,5 +63,41 @@ class FakeRemoteDataSourceImpl extends RemoteDataSource {
         await rootBundle.loadString('assets/endpoints/login_response.json');
 
     return UserLoginResponse.fromJson(jsonDecode(response));
+  }
+
+  @override
+  Future<void> arriveToDestination({required DestinationArrivedRequest destinationArrivedRequest}) {
+    // TODO: implement arriveToDestination
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> completeStepOne({required StepOneCompleteRequest stepOneCompleteRequest}) {
+    // TODO: implement completeStepOne
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> completeStepTwo({required StepOneCompleteRequest stepOneCompleteRequest}) {
+    // TODO: implement completeStepTwo
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<TripPendingResponse> getPendingTrip({required String userId}) {
+    // TODO: implement getPendingTrip
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> startStepTwo({required StepTwoStartRequest stepTwoStartRequest}) {
+    // TODO: implement startStepTwo
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<TripStrartResponse> startTrip({required TripStartRequest tripStartRequest}) {
+    // TODO: implement startTrip
+    throw UnimplementedError();
   }
 }
