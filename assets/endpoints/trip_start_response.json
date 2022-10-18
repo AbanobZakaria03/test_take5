@@ -1,0 +1,111 @@
+{
+  "message": "Success Process",
+  "data": {
+    "stepOneQuestions": [
+      {
+        "id": 1,
+        "text": "هل السيارة علي أرض مستوية"
+      },
+      {
+        "id": 2,
+        "text": "هل جميع المخارج والمداخل أمنة؟"
+      },
+      {
+        "id": 3,
+        "text": "هل جميع المخارج أمنة؟"
+      }
+    ],
+    "stepTwoQuestions": [
+      {
+        "id": 4,
+        "text": "هل قابلت صاحب الموقع؟"
+      },
+      {
+        "id": 5,
+        "text": "هل جمعت الادوات اللازمة؟"
+      }
+    ],
+    "dangerWithCategoryAPIModels": [
+      {
+        "dangerCategory": "الموقع",
+        "dangerCategoryId": 1,
+        "dangerModels": [
+          {
+            "id": 1,
+            "text": "الاماكن الضيقة"
+          },
+          {
+            "id": 2,
+            "text": "استخدام الالات الحادة"
+          }
+        ]
+      },
+      {
+        "dangerCategory": "الصحة",
+        "dangerCategoryId": 2,
+        "dangerModels": [
+          {
+            "id": 3,
+            "text": "تناول احمال لاسفل"
+          }
+        ]
+      },
+      {
+        "dangerCategory": "اصطدام وانحشار",
+        "dangerCategoryId": 3,
+        "dangerModels": [
+          {
+            "id": 4,
+            "text": "حمل معلق"
+          },
+          {
+            "id": 5,
+            "text": "حائط منخفض"
+          },
+          {
+            "id": 6,
+            "text": "اصطدام"
+          }
+        ]
+      }
+    ],
+    "measureControlWithDangerModels": [
+      {
+        "dangerId": 3,
+        "dangerName": "تناول احمال لاسفل",
+        "surveyStaticDataModels": [
+          {
+            "id": 5,
+            "text": "استخدام مهمات الوقاية الشخصية"
+          },
+          {
+            "id": 6,
+            "text": "التعامل مع الخطر "
+          }
+        ]
+      },
+      {
+        "dangerId": 4,
+        "dangerName": "حمل معلق",
+        "surveyStaticDataModels": [
+          {
+            "id": 7,
+            "text": "التواصل مع المشرف"
+          },
+          {
+            "id": 8,
+            "text": "عزل الخطر"
+          },
+          {
+            "id": 9,
+            "text": "التواصل مع صاحب الموقع"
+          },
+          {
+            "id": 10,
+            "text": "تجنب الخطر"
+          }
+        ]
+      }
+    ]
+  }
+}

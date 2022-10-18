@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/constants/app_constants.dart';
-import '../../data/repositories/user_repository.dart';
+import '../../data/repositories/take5_repository.dart';
 import 'login_states.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
   static LoginCubit get(context) => BlocProvider.of(context);
-  final UserRepository userRepository;
+  final Take5Repository userRepository;
 
   LoginCubit({required this.userRepository}) : super(InitialLoginState());
 

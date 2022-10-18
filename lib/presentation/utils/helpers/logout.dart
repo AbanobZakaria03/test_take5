@@ -13,7 +13,7 @@ void logOut(BuildContext context) {
   PushNotificationService.deleteDeviceToken();
 
   //clear cached data
-  SharedPreferences.getInstance().then((value) => value.remove(CACHED_USER));
+  // SharedPreferences.getInstance().then((value) => value.remove(CACHED_USER));
 
   //Navigate to login screen
   Navigator.of(context).pushNamedAndRemoveUntil(

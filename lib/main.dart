@@ -1,28 +1,52 @@
 import 'dart:async';
-import 'dart:io';
-import 'dart:ui';
 
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
-import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-
+import 'core/bloc_observer.dart';
+import 'core/config/routes/routes.dart';
+import 'core/constants/app_assets.dart';
+import 'core/constants/app_colors.dart';
+import 'injection_container.dart' as di;
 import 'background_service.dart';
 import 'bloc/internet_bloc.dart';
 import 'loaction_service.dart';
+import 'presentation/login/login_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
+  await di.init();
 
   await Hive.initFlutter();
   var box = await Hive.openBox('box');
 
   await BackgroundService.initializeService();
-  runApp(const MyApp());
+
+  BlocOverrides.runZoned(
+        () {
+      runApp(
+        EasyLocalization(
+          path: AppAssets.appTranslations,
+          supportedLocales: const [
+            Locale('en'),
+            Locale('ar'),
+          ],
+          fallbackLocale: const Locale('en'),
+          startLocale: const Locale('ar'),
+          child: const MyApp(),
+        ),
+      );
+    },
+    blocObserver: MyBlocObserver(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -30,19 +54,36 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<InternetBloc>(
-          create: (context) => InternetBloc(),
-        ),
-      ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      ),
+    return ScreenUtilInit(
+      designSize: const Size(375, 832),
+      minTextAdapt: true,
+      useInheritedMediaQuery: true,
+      // splitScreenMode: true,
+      builder: (BuildContext context, Widget? child) {
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider<InternetBloc>(
+              create: (context) => InternetBloc(),
+            ),
+          ],
+          child: MaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: ThemeData(
+                scaffoldBackgroundColor: AppColors.backgroundColor,
+                primarySwatch: Colors.blue,
+                iconTheme: IconThemeData(color: AppColors.mainColor)
+              // textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
+              // useMaterial3: true,
+            ),
+            onGenerateRoute: AppRoutes.onGenerateRoutes,
+            initialRoute: LoginScreen.routeName,
+          ),
+        );
+      },
     );
   }
 }

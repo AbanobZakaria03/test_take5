@@ -20,16 +20,10 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
-  String? get id => throw _privateConstructorUsedError;
-  String? get username => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
-  String? get state => throw _privateConstructorUsedError;
-  String? get zone => throw _privateConstructorUsedError;
-  String? get address => throw _privateConstructorUsedError;
-  String? get mobileno => throw _privateConstructorUsedError;
-  String? get occupation => throw _privateConstructorUsedError;
-  String? get password => throw _privateConstructorUsedError;
-  String? get token => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
+  int get driverId => throw _privateConstructorUsedError;
+  String get driverName => throw _privateConstructorUsedError;
+  int get userUnSeenNotificationCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,83 +33,51 @@ mixin _$User {
 /// @nodoc
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res>;
+      _$UserCopyWithImpl<$Res, User>;
+  @useResult
   $Res call(
-      {String? id,
-      String? username,
-      String? email,
-      String? state,
-      String? zone,
-      String? address,
-      String? mobileno,
-      String? occupation,
-      String? password,
-      String? token});
+      {String userId,
+      int driverId,
+      String driverName,
+      int userUnSeenNotificationCount});
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
+class _$UserCopyWithImpl<$Res, $Val extends User>
+    implements $UserCopyWith<$Res> {
   _$UserCopyWithImpl(this._value, this._then);
 
-  final User _value;
   // ignore: unused_field
-  final $Res Function(User) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? username = freezed,
-    Object? email = freezed,
-    Object? state = freezed,
-    Object? zone = freezed,
-    Object? address = freezed,
-    Object? mobileno = freezed,
-    Object? occupation = freezed,
-    Object? password = freezed,
-    Object? token = freezed,
+    Object? userId = null,
+    Object? driverId = null,
+    Object? driverName = null,
+    Object? userUnSeenNotificationCount = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      state: state == freezed
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as String?,
-      zone: zone == freezed
-          ? _value.zone
-          : zone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      address: address == freezed
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mobileno: mobileno == freezed
-          ? _value.mobileno
-          : mobileno // ignore: cast_nullable_to_non_nullable
-              as String?,
-      occupation: occupation == freezed
-          ? _value.occupation
-          : occupation // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String?,
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      driverId: null == driverId
+          ? _value.driverId
+          : driverId // ignore: cast_nullable_to_non_nullable
+              as int,
+      driverName: null == driverName
+          ? _value.driverName
+          : driverName // ignore: cast_nullable_to_non_nullable
+              as String,
+      userUnSeenNotificationCount: null == userUnSeenNotificationCount
+          ? _value.userUnSeenNotificationCount
+          : userUnSeenNotificationCount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
   }
 }
 
@@ -124,82 +86,45 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
       __$$_UserCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
-      {String? id,
-      String? username,
-      String? email,
-      String? state,
-      String? zone,
-      String? address,
-      String? mobileno,
-      String? occupation,
-      String? password,
-      String? token});
+      {String userId,
+      int driverId,
+      String driverName,
+      int userUnSeenNotificationCount});
 }
 
 /// @nodoc
-class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
+class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     implements _$$_UserCopyWith<$Res> {
   __$$_UserCopyWithImpl(_$_User _value, $Res Function(_$_User) _then)
-      : super(_value, (v) => _then(v as _$_User));
+      : super(_value, _then);
 
-  @override
-  _$_User get _value => super._value as _$_User;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? username = freezed,
-    Object? email = freezed,
-    Object? state = freezed,
-    Object? zone = freezed,
-    Object? address = freezed,
-    Object? mobileno = freezed,
-    Object? occupation = freezed,
-    Object? password = freezed,
-    Object? token = freezed,
+    Object? userId = null,
+    Object? driverId = null,
+    Object? driverName = null,
+    Object? userUnSeenNotificationCount = null,
   }) {
     return _then(_$_User(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      state: state == freezed
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as String?,
-      zone: zone == freezed
-          ? _value.zone
-          : zone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      address: address == freezed
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mobileno: mobileno == freezed
-          ? _value.mobileno
-          : mobileno // ignore: cast_nullable_to_non_nullable
-              as String?,
-      occupation: occupation == freezed
-          ? _value.occupation
-          : occupation // ignore: cast_nullable_to_non_nullable
-              as String?,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String?,
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String?,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      driverId: null == driverId
+          ? _value.driverId
+          : driverId // ignore: cast_nullable_to_non_nullable
+              as int,
+      driverName: null == driverName
+          ? _value.driverName
+          : driverName // ignore: cast_nullable_to_non_nullable
+              as String,
+      userUnSeenNotificationCount: null == userUnSeenNotificationCount
+          ? _value.userUnSeenNotificationCount
+          : userUnSeenNotificationCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -208,43 +133,25 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_User implements _User {
   const _$_User(
-      {this.id,
-      this.username,
-      this.email,
-      this.state,
-      this.zone,
-      this.address,
-      this.mobileno,
-      this.occupation,
-      this.password,
-      this.token});
+      {required this.userId,
+      required this.driverId,
+      required this.driverName,
+      required this.userUnSeenNotificationCount});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
-  final String? id;
+  final String userId;
   @override
-  final String? username;
+  final int driverId;
   @override
-  final String? email;
+  final String driverName;
   @override
-  final String? state;
-  @override
-  final String? zone;
-  @override
-  final String? address;
-  @override
-  final String? mobileno;
-  @override
-  final String? occupation;
-  @override
-  final String? password;
-  @override
-  final String? token;
+  final int userUnSeenNotificationCount;
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, email: $email, state: $state, zone: $zone, address: $address, mobileno: $mobileno, occupation: $occupation, password: $password, token: $token)';
+    return 'User(userId: $userId, driverId: $driverId, driverName: $driverName, userUnSeenNotificationCount: $userUnSeenNotificationCount)';
   }
 
   @override
@@ -252,36 +159,25 @@ class _$_User implements _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_User &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.username, username) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.state, state) &&
-            const DeepCollectionEquality().equals(other.zone, zone) &&
-            const DeepCollectionEquality().equals(other.address, address) &&
-            const DeepCollectionEquality().equals(other.mobileno, mobileno) &&
-            const DeepCollectionEquality()
-                .equals(other.occupation, occupation) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
-            const DeepCollectionEquality().equals(other.token, token));
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.driverId, driverId) ||
+                other.driverId == driverId) &&
+            (identical(other.driverName, driverName) ||
+                other.driverName == driverName) &&
+            (identical(other.userUnSeenNotificationCount,
+                    userUnSeenNotificationCount) ||
+                other.userUnSeenNotificationCount ==
+                    userUnSeenNotificationCount));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(username),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(state),
-      const DeepCollectionEquality().hash(zone),
-      const DeepCollectionEquality().hash(address),
-      const DeepCollectionEquality().hash(mobileno),
-      const DeepCollectionEquality().hash(occupation),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(token));
+      runtimeType, userId, driverId, driverName, userUnSeenNotificationCount);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UserCopyWith<_$_User> get copyWith =>
       __$$_UserCopyWithImpl<_$_User>(this, _$identity);
 
@@ -295,39 +191,21 @@ class _$_User implements _User {
 
 abstract class _User implements User {
   const factory _User(
-      {final String? id,
-      final String? username,
-      final String? email,
-      final String? state,
-      final String? zone,
-      final String? address,
-      final String? mobileno,
-      final String? occupation,
-      final String? password,
-      final String? token}) = _$_User;
+      {required final String userId,
+      required final int driverId,
+      required final String driverName,
+      required final int userUnSeenNotificationCount}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
-  String? get id;
+  String get userId;
   @override
-  String? get username;
+  int get driverId;
   @override
-  String? get email;
+  String get driverName;
   @override
-  String? get state;
-  @override
-  String? get zone;
-  @override
-  String? get address;
-  @override
-  String? get mobileno;
-  @override
-  String? get occupation;
-  @override
-  String? get password;
-  @override
-  String? get token;
+  int get userUnSeenNotificationCount;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
