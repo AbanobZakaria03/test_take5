@@ -1,0 +1,17 @@
+class AppAssets {
+  // add a private constructor to prevent this class being instantiated
+  // e.g. invoke `LocalStorageKey()` accidentally
+  AppAssets._();
+
+  // the properties are static so that we can use them without a class instance
+  // e.g. can be retrieved by `LocalStorageKey.saveUserId`.
+  static const String appLogo = 'assets/images/dictionary_logo.png';
+  static const String youtubeLogo = 'assets/images/youtube_logo.png';
+  static const String appTranslations = 'assets/translations';
+  static const String wavingHand = 'assets/images/waving-hand 1.png';
+  static const String signUp = 'assets/images/sign-up.png';
+  static const String questionBackground = 'assets/images/question_background.png';
+
+  //icons
+  static const String singInIcon = 'assets/icons/sign-in-icon.png';
+}
