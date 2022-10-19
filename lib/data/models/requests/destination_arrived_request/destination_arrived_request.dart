@@ -12,7 +12,6 @@ class DestinationArrivedRequest with _$DestinationArrivedRequest{
     required int tripId,
     required int jobsiteId,
     required DateTime destinationArrivedDate,
-
   }) = _DestinationArrivedRequest;
 
   factory DestinationArrivedRequest.fromJson(Map<String, dynamic> json) => _$DestinationArrivedRequestFromJson(json);

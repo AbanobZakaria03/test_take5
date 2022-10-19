@@ -22,7 +22,7 @@ abstract class RemoteDataSource {
   Future<TripStrartResponse> startTrip(
       {required TripStartRequest tripStartRequest});
 
-    Future<void> arriveToDestination(
+    Future<void> arrivedToDestination(
       {required DestinationArrivedRequest destinationArrivedRequest});
 
   Future<void> completeStepOne(
@@ -66,38 +66,48 @@ class FakeRemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<void> arriveToDestination({required DestinationArrivedRequest destinationArrivedRequest}) {
+  Future<void> arrivedToDestination({required DestinationArrivedRequest destinationArrivedRequest})async {
     // TODO: implement arriveToDestination
-    throw UnimplementedError();
+    //throw UnimplementedError();
+    return ;
   }
 
   @override
-  Future<void> completeStepOne({required StepOneCompleteRequest stepOneCompleteRequest}) {
+  Future<void> completeStepOne({required StepOneCompleteRequest stepOneCompleteRequest})async {
     // TODO: implement completeStepOne
-    throw UnimplementedError();
+    //throw UnimplementedError();
+    return ;
   }
 
   @override
-  Future<void> completeStepTwo({required StepOneCompleteRequest stepOneCompleteRequest}) {
+  Future<void> completeStepTwo({required StepOneCompleteRequest stepOneCompleteRequest}) async{
     // TODO: implement completeStepTwo
-    throw UnimplementedError();
+    //throw UnimplementedError();
+    return ;
   }
 
   @override
-  Future<TripPendingResponse> getPendingTrip({required String userId}) {
+  Future<TripPendingResponse> getPendingTrip({required String userId}) async{
     // TODO: implement getPendingTrip
-    throw UnimplementedError();
+   // throw UnimplementedError();
+    String response =
+        await rootBundle.loadString('assets/endpoints/trip_response.json');
+    return TripPendingResponse.fromJson(jsonDecode(response));
   }
 
   @override
-  Future<void> startStepTwo({required StepTwoStartRequest stepTwoStartRequest}) {
+  Future<void> startStepTwo({required StepTwoStartRequest stepTwoStartRequest}) async{
     // TODO: implement startStepTwo
-    throw UnimplementedError();
+    //throw UnimplementedError();
+    return ;
   }
 
   @override
-  Future<TripStrartResponse> startTrip({required TripStartRequest tripStartRequest}) {
+  Future<TripStrartResponse> startTrip({required TripStartRequest tripStartRequest})async {
     // TODO: implement startTrip
-    throw UnimplementedError();
+    //throw UnimplementedError();
+    String response =
+        await rootBundle.loadString('assets/endpoints/trip_start_response.json');
+    return TripStrartResponse.fromJson(jsonDecode(response));
   }
 }
