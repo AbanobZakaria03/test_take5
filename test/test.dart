@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_take5/data/datasources/remote_data_source.dart';
+import 'package:test_take5/data/models/requests/destination_arrived_request/destination_arrived_request.dart';
 import 'package:test_take5/data/models/requests/trip_start_request/trip_start_request.dart';
+import 'package:test_take5/data/repositories/take5_repository.dart';
 import 'package:test_take5/injection_container.dart' as di;
 import 'package:test_take5/injection_container.dart';
 
@@ -39,6 +41,39 @@ Future<void> main() async {
       RemoteDataSource remoteDataSource = sl<RemoteDataSource>();
       //act
       final result = await remoteDataSource.getPendingTrip(userId: '123');
+      //assert
+      print(result);
+    },
+  );
+  test(
+    'test startTrip repository API',//name
+        () async {
+      //arrange
+          Take5Repository take5repository=sl<Take5Repository>();
+      //act
+      final result = await take5repository.startTrip(tripStartRequest: TripStartRequest(userId: '123', tripId: 1, jobsiteId: 1, startingDate: DateTime.now()));
+      //assert
+      print(result);
+    },
+  );
+  test(
+    'test getPendingTrip repository API',//name
+        () async {
+      //arrange
+      Take5Repository take5repository=sl<Take5Repository>();
+      //act
+      final result = await take5repository.getPendingTrip(userId: '123');
+      //assert
+      print(result);
+    },
+  );
+  test(
+    'test arrivedToDestination repository API',//name
+        () async {
+      //arrange
+      Take5Repository take5repository=sl<Take5Repository>();
+      //act
+      final result = await take5repository.arrivedToDestination(destinationArrivedRequest: DestinationArrivedRequest(userId: '123', tripId:1, jobsiteId: 1, destinationArrivedDate: DateTime.now()));
       //assert
       print(result);
     },
