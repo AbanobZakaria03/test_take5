@@ -19,7 +19,7 @@ class Data with _$Data {
   const factory Data({
    required List<SurveyStaticDataModel> stepOneQuestions,
    required List<SurveyStaticDataModel> stepTwoQuestions,
-   required List<DangerWithCategoryApiModel> dangerWithCategoryApiModels,
+   required List<DangerWithCategoryModel> dangerWithCategoryModels,
    required List<MeasureControlWithDangerModel> measureControlWithDangerModels,
   }) = _Data;
 
@@ -37,14 +37,14 @@ class SurveyStaticDataModel with _$SurveyStaticDataModel {
 }
 
 @freezed
-class DangerWithCategoryApiModel with _$DangerWithCategoryApiModel {
-  const factory DangerWithCategoryApiModel({
+class DangerWithCategoryModel with _$DangerWithCategoryModel {
+  const factory DangerWithCategoryModel({
    required String dangerCategory,
    required int dangerCategoryId,
    required List<SurveyStaticDataModel> dangerModels,
-  }) = _DangerWithCategoryApiModel;
+  }) = _DangerWithCategoryModel;
 
-  factory DangerWithCategoryApiModel.fromJson(Map<String, dynamic> json) => _$DangerWithCategoryApiModelFromJson(json);
+  factory DangerWithCategoryModel.fromJson(Map<String, dynamic> json) => _$DangerWithCategoryModelFromJson(json);
 }
 
 @freezed

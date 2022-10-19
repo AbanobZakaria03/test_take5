@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../../presentation/login/login_screen.dart';
-
+import '../../../presentation/screens/login/login_screen.dart';
+import '../../../presentation/screens/step_one/step_one.dart';
 
 class AppRoutes {
   static Route onGenerateRoutes(RouteSettings settings) {
     switch (settings.name) {
       case LoginScreen.routeName:
         return _materialRoute(const LoginScreen(), LoginScreen.routeName);
+      case StepOneScreen.routeName:
+        return _materialRoute(const StepOneScreen(), StepOneScreen.routeName);
 
       default:
         // If there is no such named route in the switch statement, e.g. /third

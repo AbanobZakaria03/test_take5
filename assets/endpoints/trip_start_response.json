@@ -25,7 +25,7 @@
         "text": "هل جمعت الادوات اللازمة؟"
       }
     ],
-    "dangerWithCategoryAPIModels": [
+    "dangerWithCategoryModels": [
       {
         "dangerCategory": "الموقع",
         "dangerCategoryId": 1,
@@ -73,7 +73,7 @@
       {
         "dangerId": 3,
         "dangerName": "تناول احمال لاسفل",
-        "surveyStaticDataModels": [
+        "dangerControlModels": [
           {
             "id": 5,
             "text": "استخدام مهمات الوقاية الشخصية"
@@ -87,7 +87,7 @@
       {
         "dangerId": 4,
         "dangerName": "حمل معلق",
-        "surveyStaticDataModels": [
+        "dangerControlModels": [
           {
             "id": 7,
             "text": "التواصل مع المشرف"

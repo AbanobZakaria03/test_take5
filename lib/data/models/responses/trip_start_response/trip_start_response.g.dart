@@ -17,7 +17,7 @@ Map<String, dynamic> _$$_TripStrartResponseToJson(
         _$_TripStrartResponse instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'data': instance.data,
+      'data': instance.data.toJson(),
     };
 
 _$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
@@ -27,11 +27,11 @@ _$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
       stepTwoQuestions: (json['stepTwoQuestions'] as List<dynamic>)
           .map((e) => SurveyStaticDataModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      dangerWithCategoryApiModels: (json['dangerWithCategoryApiModels']
-              as List<dynamic>)
-          .map((e) =>
-              DangerWithCategoryApiModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      dangerWithCategoryModels:
+          (json['dangerWithCategoryModels'] as List<dynamic>)
+              .map((e) =>
+                  DangerWithCategoryModel.fromJson(e as Map<String, dynamic>))
+              .toList(),
       measureControlWithDangerModels: (json['measureControlWithDangerModels']
               as List<dynamic>)
           .map((e) =>
@@ -40,10 +40,15 @@ _$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
     );
 
 Map<String, dynamic> _$$_DataToJson(_$_Data instance) => <String, dynamic>{
-      'stepOneQuestions': instance.stepOneQuestions,
-      'stepTwoQuestions': instance.stepTwoQuestions,
-      'dangerWithCategoryApiModels': instance.dangerWithCategoryApiModels,
-      'measureControlWithDangerModels': instance.measureControlWithDangerModels,
+      'stepOneQuestions':
+          instance.stepOneQuestions.map((e) => e.toJson()).toList(),
+      'stepTwoQuestions':
+          instance.stepTwoQuestions.map((e) => e.toJson()).toList(),
+      'dangerWithCategoryModels':
+          instance.dangerWithCategoryModels.map((e) => e.toJson()).toList(),
+      'measureControlWithDangerModels': instance.measureControlWithDangerModels
+          .map((e) => e.toJson())
+          .toList(),
     };
 
 _$_SurveyStaticDataModel _$$_SurveyStaticDataModelFromJson(
@@ -60,9 +65,9 @@ Map<String, dynamic> _$$_SurveyStaticDataModelToJson(
       'text': instance.text,
     };
 
-_$_DangerWithCategoryApiModel _$$_DangerWithCategoryApiModelFromJson(
+_$_DangerWithCategoryModel _$$_DangerWithCategoryModelFromJson(
         Map<String, dynamic> json) =>
-    _$_DangerWithCategoryApiModel(
+    _$_DangerWithCategoryModel(
       dangerCategory: json['dangerCategory'] as String,
       dangerCategoryId: json['dangerCategoryId'] as int,
       dangerModels: (json['dangerModels'] as List<dynamic>)
@@ -70,12 +75,12 @@ _$_DangerWithCategoryApiModel _$$_DangerWithCategoryApiModelFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$_DangerWithCategoryApiModelToJson(
-        _$_DangerWithCategoryApiModel instance) =>
+Map<String, dynamic> _$$_DangerWithCategoryModelToJson(
+        _$_DangerWithCategoryModel instance) =>
     <String, dynamic>{
       'dangerCategory': instance.dangerCategory,
       'dangerCategoryId': instance.dangerCategoryId,
-      'dangerModels': instance.dangerModels,
+      'dangerModels': instance.dangerModels.map((e) => e.toJson()).toList(),
     };
 
 _$_MeasureControlWithDangerModel _$$_MeasureControlWithDangerModelFromJson(
@@ -93,5 +98,6 @@ Map<String, dynamic> _$$_MeasureControlWithDangerModelToJson(
     <String, dynamic>{
       'dangerId': instance.dangerId,
       'dangerName': instance.dangerName,
-      'dangerControlModels': instance.dangerControlModels,
+      'dangerControlModels':
+          instance.dangerControlModels.map((e) => e.toJson()).toList(),
     };

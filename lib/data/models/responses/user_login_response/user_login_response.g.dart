@@ -16,5 +16,5 @@ Map<String, dynamic> _$$_UserLoginResponseToJson(
         _$_UserLoginResponse instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'data': instance.data,
+      'data': instance.data.toJson(),
     };

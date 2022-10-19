@@ -5,15 +5,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/constants/app_assets.dart';
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_strings.dart';
-import '../../injection_container.dart';
-import '../../logic/login_cubit/login_cubit.dart';
-import '../../logic/login_cubit/login_states.dart';
-import '../utils/dialogs/loading_dialog.dart';
-import '../utils/dialogs/message_dialog.dart';
-import '../widgets/my_text_form_field.dart';
+import '../../../core/constants/app_assets.dart';
+import '../../../core/constants/app_colors.dart';
+import '../../../core/constants/app_strings.dart';
+import '../../../injection_container.dart';
+import '../../../logic/login_cubit/login_cubit.dart';
+import '../../../logic/login_cubit/login_states.dart';
+import '../../utils/dialogs/loading_dialog.dart';
+import '../../utils/dialogs/message_dialog.dart';
+import '../../widgets/my_text_form_field.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = 'LoginScreen';

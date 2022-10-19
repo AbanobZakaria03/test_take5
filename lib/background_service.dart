@@ -42,7 +42,7 @@ class BackgroundService{
         onStart: onStart,
 
         // auto start service
-        autoStart: true,
+        autoStart: false,
         isForegroundMode: true,
 
         notificationChannelId: notificationChannelId,
@@ -63,7 +63,7 @@ class BackgroundService{
       ),
     );
 
-    service.startService();
+    // service.startService();
   }
 
   static Future<void> onStart(ServiceInstance service) async {

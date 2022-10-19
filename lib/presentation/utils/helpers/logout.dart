@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/firebase/push_notification_service.dart';
-import '../../../data/datasources/local_data_source.dart';
-import '../../login/login_screen.dart';
+import '../../screens/login/login_screen.dart';
+
 
 void logOut(BuildContext context) {
   //clear global cubits state

@@ -17,5 +17,5 @@ Map<String, dynamic> _$$_TripPendingResponseToJson(
         _$_TripPendingResponse instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'data': instance.data,
+      'data': instance.data.toJson(),
     };

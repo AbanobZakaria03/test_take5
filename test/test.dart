@@ -32,4 +32,15 @@ Future<void> main() async {
       print(result);
     },
   );
+  test(
+    'test getPendingTrip API',//name
+        () async {
+      //arrange
+      RemoteDataSource remoteDataSource = sl<RemoteDataSource>();
+      //act
+      final result = await remoteDataSource.getPendingTrip(userId: '123');
+      //assert
+      print(result);
+    },
+  );
 }

@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:test_take5/presentation/screens/login/login_screen.dart';
 
 import 'core/bloc_observer.dart';
 import 'core/config/routes/routes.dart';
@@ -17,7 +18,7 @@ import 'injection_container.dart' as di;
 import 'background_service.dart';
 import 'bloc/internet_bloc.dart';
 import 'loaction_service.dart';
-import 'presentation/login/login_screen.dart';
+import 'presentation/screens/step_one/step_one.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -80,7 +81,8 @@ class MyApp extends StatelessWidget {
               // useMaterial3: true,
             ),
             onGenerateRoute: AppRoutes.onGenerateRoutes,
-            initialRoute: LoginScreen.routeName,
+            // initialRoute: LoginScreen.routeName,
+            initialRoute: StepOneScreen.routeName,
           ),
         );
       },
