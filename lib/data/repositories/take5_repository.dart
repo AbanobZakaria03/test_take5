@@ -14,12 +14,24 @@ import '../datasources/remote_data_source.dart';
 abstract class Take5Repository {
   Future<Either<Failure, UserLoginResponse>> loginUser(
       {required String mobileNo, required String password});
-  Future<Either<Failure, void>> arrivedToDestination({required DestinationArrivedRequest destinationArrivedRequest});
-  Future<Either<Failure, void>>completeStepOne({required StepOneCompleteRequest stepOneCompleteRequest});
-  Future<Either<Failure, void>>completeStepTwo({required StepOneCompleteRequest stepOneCompleteRequest});
-  Future<Either<Failure, TripPendingResponse>> getPendingTrip({required String userId});
-  Future<Either<Failure, void>>startStepTwo({required StepTwoStartRequest stepTwoStartRequest}) ;
-  Future<Either<Failure, TripStrartResponse>>startTrip({required TripStartRequest tripStartRequest});
+
+  Future<Either<Failure, Unit>> arrivedToDestination(
+      {required DestinationArrivedRequest destinationArrivedRequest});
+
+  Future<Either<Failure, Unit>> completeStepOne(
+      {required StepOneCompleteRequest stepOneCompleteRequest});
+
+  Future<Either<Failure, Unit>> completeStepTwo(
+      {required StepOneCompleteRequest stepOneCompleteRequest});
+
+  Future<Either<Failure, TripPendingResponse>> getPendingTrip(
+      {required String userId});
+
+  Future<Either<Failure, Unit>> startStepTwo(
+      {required StepTwoStartRequest stepTwoStartRequest});
+
+  Future<Either<Failure, TripStrartResponse>> startTrip(
+      {required TripStartRequest tripStartRequest});
 }
 
 class Take5RepositoryImpl extends Take5Repository {
@@ -44,55 +56,69 @@ class Take5RepositoryImpl extends Take5Repository {
       return Left(ServerFailure(e.message));
     }
   }
+
   @override
-  Future<Either<Failure, void>>arrivedToDestination({required DestinationArrivedRequest destinationArrivedRequest}) async {
+  Future<Either<Failure, Unit>> arrivedToDestination(
+      {required DestinationArrivedRequest destinationArrivedRequest}) async {
     try {
-      // ask abanoub about null
-      return Right(null);
+      // ask abanoub about unit
+      return Right(unit);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     }
   }
+
   @override
-  Future<Either<Failure, void>>completeStepOne({required StepOneCompleteRequest stepOneCompleteRequest}) async {
+  Future<Either<Failure, Unit>> completeStepOne(
+      {required StepOneCompleteRequest stepOneCompleteRequest}) async {
     try {
-      // ask abanoub about null
-      return Right(null);
+      // ask abanoub about unit
+      return Right(unit);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     }
   }
+
   @override
-  Future<Either<Failure, void>>completeStepTwo({required StepOneCompleteRequest stepOneCompleteRequest}) async {
+  Future<Either<Failure, Unit>> completeStepTwo(
+      {required StepOneCompleteRequest stepOneCompleteRequest}) async {
     try {
-      // ask abanoub about null
-      return Right(null);
+      // ask abanoub about unit
+      return const Right(unit);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     }
   }
+
   @override
-  Future<Either<Failure, TripPendingResponse>> getPendingTrip({required String userId})async {
+  Future<Either<Failure, TripPendingResponse>> getPendingTrip(
+      {required String userId}) async {
     try {
-      TripPendingResponse result = await remoteDataSource.getPendingTrip(userId: '123');
+      TripPendingResponse result =
+          await remoteDataSource.getPendingTrip(userId: '123');
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     }
   }
+
   @override
-  Future<Either<Failure, void>>startStepTwo({required StepTwoStartRequest stepTwoStartRequest})async {
+  Future<Either<Failure, Unit>> startStepTwo(
+      {required StepTwoStartRequest stepTwoStartRequest}) async {
     try {
-      // ask abanoub about null
-      return Right(null);
+      // ask abanoub about unit
+      return Right(unit);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     }
   }
+
   @override
-  Future<Either<Failure, TripStrartResponse>>startTrip({required TripStartRequest tripStartRequest})async {
+  Future<Either<Failure, TripStrartResponse>> startTrip(
+      {required TripStartRequest tripStartRequest}) async {
     try {
-      TripStrartResponse result = await remoteDataSource.startTrip(tripStartRequest: TripStartRequest(userId: '123', tripId: 1, jobsiteId: 1, startingDate:DateTime.now()));
+      TripStrartResponse result =
+          await remoteDataSource.startTrip(tripStartRequest: tripStartRequest);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));

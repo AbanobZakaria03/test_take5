@@ -13,6 +13,12 @@ class _StepOneScreenState extends State<StepOneScreen> {
 
   bool q1 = true;
   bool q2 = true;
+  Map<String, bool> questionAnswer = {};
+
+  void answerQuestion({required String questionId,required bool value}){
+    questionAnswer[questionId]=value;
+    print(questionAnswer);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +27,11 @@ class _StepOneScreenState extends State<StepOneScreen> {
       body: Column(
         children: [
           const Text('Which Operating System are your currently using?'),
-          Radio(value: true, groupValue: q1,onChanged: (value){setState(() {
-            if(value!=null) q1=value;
+          Radio(value: true, groupValue: questionAnswer['1'],onChanged: (value){setState(() {
+            if(value!=null) answerQuestion(questionId: '1', value: value);
           });}),
-          Radio(value: false, groupValue: q1,onChanged: (value){setState(() {
-            if(value!=null) q1=value;
+          Radio(value: false, groupValue: questionAnswer['1'],onChanged: (value){setState(() {
+            if(value!=null) answerQuestion(questionId: '1', value: value);
           });}),
 
           SizedBox(height: 8),
