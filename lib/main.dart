@@ -8,15 +8,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:test_take5/data/datasources/local_data_source.dart';
 import 'package:test_take5/presentation/screens/login/login_screen.dart';
 
 import 'core/bloc_observer.dart';
 import 'core/config/routes/routes.dart';
 import 'core/constants/app_assets.dart';
 import 'core/constants/app_colors.dart';
+import 'data/models/responses/user_login_response/user_login_response.dart';
+import 'data/models/user/user.dart';
 import 'injection_container.dart' as di;
 import 'background_service.dart';
 import 'bloc/internet_bloc.dart';
+import 'injection_container.dart';
 import 'loaction_service.dart';
 import 'presentation/screens/step_one/step_one.dart';
 
@@ -26,8 +30,7 @@ Future<void> main() async {
 
   await di.init();
 
-  await Hive.initFlutter();
-  var box = await Hive.openBox('box');
+
 
   await BackgroundService.initializeService();
 
@@ -48,6 +51,7 @@ Future<void> main() async {
     },
     blocObserver: MyBlocObserver(),
   );
+
 }
 
 class MyApp extends StatelessWidget {
@@ -108,6 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var loc = LocationService();
     p = await loc.getCurrentLocation();
     print(p);
+
     Position pp = Position.fromMap(
         {'latitude': 27.1790981, 'longitude': 31.0220375});
     d=loc.getDistance(p!, pp);
@@ -164,6 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text('${d?.toInt()} m'??''),
                 ElevatedButton(
                     onPressed: () async {
+
                       final service = FlutterBackgroundService();
                       var isRunning = await service.isRunning();
                       if (isRunning) {

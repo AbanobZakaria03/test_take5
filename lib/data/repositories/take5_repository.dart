@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../core/errors/exceptions.dart';
+import '../datasources/local_data_source.dart';
 import '../models/requests/destination_arrived_request/destination_arrived_request.dart';
 import '../models/requests/step_one_complete_request/step_one_complete_request.dart';
 import '../models/requests/step_two_start_request/step_two_start_request.dart';
@@ -35,14 +36,14 @@ abstract class Take5Repository {
 }
 
 class Take5RepositoryImpl extends Take5Repository {
-  // final LocalDataSource localDataSource;
+   final LocalDataSource localDataSource;
 
   // final NetworkInfo networkInfo;
   final RemoteDataSource remoteDataSource;
 
   Take5RepositoryImpl({
     required this.remoteDataSource,
-    // required this.localDataSource,
+     required this.localDataSource,
   });
 
   @override
@@ -95,7 +96,7 @@ class Take5RepositoryImpl extends Take5Repository {
       {required String userId}) async {
     try {
       TripPendingResponse result =
-          await remoteDataSource.getPendingTrip(userId: '123');
+          await remoteDataSource.getPendingTrip(userId:userId);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));

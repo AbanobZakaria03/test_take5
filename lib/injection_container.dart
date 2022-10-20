@@ -13,7 +13,6 @@ import 'core/utils/services/local_storage_service.dart';
 import 'core/utils/services/dio_client.dart';
 import 'data/datasources/remote_data_source.dart';
 import 'data/datasources/local_data_source.dart';
-
 final sl = GetIt.instance;
 
 Future<void> init() async {
@@ -24,7 +23,7 @@ Future<void> init() async {
 //! Repositories
   sl.registerLazySingleton<Take5Repository>(() => Take5RepositoryImpl(
         remoteDataSource: sl(),
-        // localDataSource: sl(),
+        localDataSource: sl(),
       ));
 
 //! Datasources
@@ -34,8 +33,8 @@ Future<void> init() async {
   // sl.registerLazySingleton<RemoteDataSource>(
   //     () => RemoteDataSourceImpl(client: sl()));
 
-  // sl.registerLazySingleton<LocalDataSource>(
-  //     () => LocalDataSourceImpl(localStorageService: sl()));
+  sl.registerLazySingleton<LocalDataSource>(
+      () => LocalDataSourceImpl());
 
 //! Core
   sl.registerLazySingleton(() => DioClient(sl()));
