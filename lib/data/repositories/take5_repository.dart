@@ -31,7 +31,7 @@ abstract class Take5Repository {
   Future<Either<Failure, Unit>> startStepTwo(
       {required StepTwoStartRequest stepTwoStartRequest});
 
-  Future<Either<Failure, TripStrartResponse>> startTrip(
+  Future<Either<Failure, TripStartResponse>> startTrip(
       {required TripStartRequest tripStartRequest});
 }
 
@@ -115,10 +115,10 @@ class Take5RepositoryImpl extends Take5Repository {
   }
 
   @override
-  Future<Either<Failure, TripStrartResponse>> startTrip(
+  Future<Either<Failure, TripStartResponse>> startTrip(
       {required TripStartRequest tripStartRequest}) async {
     try {
-      TripStrartResponse result =
+      TripStartResponse result =
           await remoteDataSource.startTrip(tripStartRequest: tripStartRequest);
       return Right(result);
     } on ServerException catch (e) {

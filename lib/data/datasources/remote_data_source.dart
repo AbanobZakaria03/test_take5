@@ -19,7 +19,7 @@ abstract class RemoteDataSource {
   Future<TripPendingResponse> getPendingTrip(
       {required String userId});
 
-  Future<TripStrartResponse> startTrip(
+  Future<TripStartResponse> startTrip(
       {required TripStartRequest tripStartRequest});
 
     Future<void> arrivedToDestination(
@@ -103,11 +103,11 @@ class FakeRemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<TripStrartResponse> startTrip({required TripStartRequest tripStartRequest})async {
+  Future<TripStartResponse> startTrip({required TripStartRequest tripStartRequest})async {
     // TODO: implement startTrip
     //throw UnimplementedError();
     String response =
         await rootBundle.loadString('assets/endpoints/trip_start_response.json');
-    return TripStrartResponse.fromJson(jsonDecode(response));
+    return TripStartResponse.fromJson(jsonDecode(response));
   }
 }

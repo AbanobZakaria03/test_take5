@@ -5,55 +5,54 @@ part 'trip_start_response.freezed.dart';
 part 'trip_start_response.g.dart';
 
 @freezed
-class TripStrartResponse with _$TripStrartResponse {
-  const factory TripStrartResponse({
+class TripStartResponse with _$TripStartResponse {
+  const factory TripStartResponse({
     required String message,
-    required Data data,
-  }) = _TripStrartResponse;
+    required TakeFiveSurvey data,
+  }) = _TripStartResponse;
 
-  factory TripStrartResponse.fromJson(Map<String, dynamic> json) => _$TripStrartResponseFromJson(json);
+  factory TripStartResponse.fromJson(Map<String, dynamic> json) => _$TripStartResponseFromJson(json);
 }
 
 @freezed
-class Data with _$Data {
-  const factory Data({
+class TakeFiveSurvey with _$TakeFiveSurvey {
+  const factory TakeFiveSurvey({
    required List<SurveyStaticDataModel> stepOneQuestions,
    required List<SurveyStaticDataModel> stepTwoQuestions,
-   required List<DangerWithCategoryModel> dangerWithCategoryModels,
-   required List<MeasureControlWithDangerModel> measureControlWithDangerModels,
-  }) = _Data;
+   required List<DangerControlsWithCategoryModel> dangerControlsWithCategoryModels,
+  }) = _TakeFiveSurvey;
 
-  factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
+  factory TakeFiveSurvey.fromJson(Map<String, dynamic> json) => _$TakeFiveSurveyFromJson(json);
+}
+
+@freezed
+class DangerControlsWithCategoryModel with _$DangerControlsWithCategoryModel {
+  const factory DangerControlsWithCategoryModel({
+   required String dangerCategory,
+   required int dangerCategoryId,
+   required List<DangerModel> dangerModels,
+  }) = _DangerControlsWithCategoryModel;
+
+  factory DangerControlsWithCategoryModel.fromJson(Map<String, dynamic> json) => _$DangerControlsWithCategoryModelFromJson(json);
+}
+
+@freezed
+class DangerModel with _$DangerModel {
+  const factory DangerModel({
+   required int id,
+   required String text,
+   required List<SurveyStaticDataModel> controls,
+  }) = _DangerModel;
+
+  factory DangerModel.fromJson(Map<String, dynamic> json) => _$DangerModelFromJson(json);
 }
 
 @freezed
 class SurveyStaticDataModel with _$SurveyStaticDataModel {
   const factory SurveyStaticDataModel({
-   required int id,
-   required String text,
+    required int id,
+    required String text,
   }) = _SurveyStaticDataModel;
 
   factory SurveyStaticDataModel.fromJson(Map<String, dynamic> json) => _$SurveyStaticDataModelFromJson(json);
-}
-
-@freezed
-class DangerWithCategoryModel with _$DangerWithCategoryModel {
-  const factory DangerWithCategoryModel({
-   required String dangerCategory,
-   required int dangerCategoryId,
-   required List<SurveyStaticDataModel> dangerModels,
-  }) = _DangerWithCategoryModel;
-
-  factory DangerWithCategoryModel.fromJson(Map<String, dynamic> json) => _$DangerWithCategoryModelFromJson(json);
-}
-
-@freezed
-class MeasureControlWithDangerModel with _$MeasureControlWithDangerModel {
-  const factory MeasureControlWithDangerModel({
-   required int dangerId,
-   required String dangerName,
-   required List<SurveyStaticDataModel> dangerControlModels,
-  }) = _MeasureControlWithDangerModel;
-
-  factory MeasureControlWithDangerModel.fromJson(Map<String, dynamic> json) => _$MeasureControlWithDangerModelFromJson(json);
 }

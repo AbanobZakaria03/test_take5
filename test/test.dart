@@ -26,17 +26,17 @@ Future<void> main() async {
   //     print(result);
   //   },
   // );
-  // test(
-  //   'test startTrip API',//name
-  //       () async {
-  //     //arrange
-  //     RemoteDataSource remoteDataSource = sl<RemoteDataSource>();
-  //     //act
-  //     final result = await remoteDataSource.startTrip(tripStartRequest: TripStartRequest(userId: '123456', tripId:1, jobsiteId: 1, startingDate: DateTime.now()));
-  //     //assert
-  //     print(result);
-  //   },
-  // );
+  test(
+    'test startTrip API',//name
+        () async {
+      //arrange
+      RemoteDataSource remoteDataSource = sl<RemoteDataSource>();
+      //act
+      final result = await remoteDataSource.startTrip(tripStartRequest: TripStartRequest(userId: '123456', tripId:1, jobsiteId: 1, startingDate: DateTime.now()));
+      //assert
+      print(result);
+    },
+  );
   // test(
   //   'test getPendingTrip API',//name
   //       () async {
