@@ -1,6 +1,4 @@
 import 'dart:async';
-
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
@@ -8,19 +6,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:test_take5/data/datasources/local_data_source.dart';
-import 'package:test_take5/presentation/screens/login/login_screen.dart';
-
 import 'core/bloc_observer.dart';
 import 'core/config/routes/routes.dart';
 import 'core/constants/app_assets.dart';
 import 'core/constants/app_colors.dart';
-import 'data/models/responses/user_login_response/user_login_response.dart';
 import 'data/models/user/user.dart';
 import 'injection_container.dart' as di;
 import 'background_service.dart';
 import 'bloc/internet_bloc.dart';
-import 'injection_container.dart';
 import 'loaction_service.dart';
 import 'presentation/screens/step_one/step_one.dart';
 
@@ -29,8 +22,9 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
 
   await di.init();
-
-
+  await Hive.initFlutter();
+  Hive.registerAdapter(UserAdapter());
+  await Hive.openBox<User>('user');
 
   await BackgroundService.initializeService();
 

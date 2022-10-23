@@ -81,15 +81,15 @@ Future<void> main() async {
   //     print(result);
   //   },
   // );
-  test(
-    'test cachedUser Hive local data source API',//name
-        () async {
-      //arrange
-      LocalDataSource localDataSource=sl<LocalDataSource>();
-      //act
-      await localDataSource.cacheUser(UserLoginResponse(message: 'asd', data: User(userId: '123', driverId: 1, driverName: 'asmaa', userUnSeenNotificationCount: 1)));
-      //assert
-
-    },
-  );
+  // test(
+  //   'test cachedUser Hive local data source API',//name
+  //       () async {
+  //     //arrange
+  //     LocalDataSource localDataSource=sl<LocalDataSource>();
+  //     //act
+  //     await localDataSource.cacheUser(User());
+  //     //assert
+  //
+  //   },
+  // );
 }

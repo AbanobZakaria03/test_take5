@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../data/models/responses/trip_start_response/trip_start_response.dart';
+import 'package:hive/hive.dart';
+import 'package:test_take5/data/models/user/user.dart';
+import '../../../data/datasources/local_data_source.dart';
+import '../../../injection_container.dart';
 import '../../../logic/step_one_cubit/step_one_cubit.dart';
 import '../../widgets/danger.dart';
 
@@ -27,7 +29,14 @@ class _StepOneScreenState extends State<StepOneScreen> {
   }
 
   void addTripDanger() {}
+  @override
+  void dispose()
+  {
+    //Hive.close();// close all boxes
+    Hive.box('user').close();//close special vox
+    super.dispose();
 
+  }
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -38,10 +47,12 @@ class _StepOneScreenState extends State<StepOneScreen> {
         builder: (context, state) {
           return Scaffold(
             floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                setState(() {
-                  c++;
-                });
+              onPressed: () async{
+                LocalDataSource localDataSource=sl<LocalDataSource>();
+                //act
+                await localDataSource.cacheUser(User(userId: '1', driverId: 1, driverName:'asmaa', userUnSeenNotificationCount: 1));
+                localDataSource.getCachedUser();
+                //StepOneCubit.get(context).addDanger(Danger(ind:StepOneCubit.get(context).dangerWidgets.length));
               },
             ),
             appBar: AppBar(),
@@ -72,8 +83,8 @@ class _StepOneScreenState extends State<StepOneScreen> {
                 //   itemBuilder: (BuildContext context, int index) {},
                 //   itemCount:,
                 // ),
-
-                ...List.generate(c, (index) => const Danger(),)
+              //...List.generate(1, (index) => const Danger(),),
+                ...List.generate(StepOneCubit.get(context).dangerWidgets.length, (index) => Danger(ind:index),)
               ],
             ),
           );

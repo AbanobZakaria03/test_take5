@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:test_take5/logic/step_one_cubit/step_one_cubit.dart';
 
 import '../../data/models/responses/trip_start_response/trip_start_response.dart';
 import '../../data/data.dart';
 
 class Danger extends StatefulWidget {
-  const Danger({Key? key}) : super(key: key);
+  final int ind;
+  const Danger({Key? key, required this.ind}) : super(key: key);
 
   @override
   _DangerState createState() => _DangerState();
@@ -30,6 +32,9 @@ class _DangerState extends State<Danger> {
               onChanged: (d) {
                 setState(() {
                   selectedDangerWithCategoryModel=d;
+                  StepOneCubit.get(context).addDanger( Danger(ind:StepOneCubit.get(context).dangerWidgets.length));
+               //   StepOneCubit.get(context).changeSelectedDanger(widget.ind,selectedDangerWithCategoryModel );
+                print(StepOneCubit.get(context).selected);
                 });
               }),
         ),
@@ -48,7 +53,11 @@ class _DangerState extends State<Danger> {
                 });
               }),
         ),
-        IconButton(icon: Icon(Icons.delete_forever),onPressed: (){},)
+        IconButton(icon: Icon(Icons.delete_forever),onPressed: (){
+         StepOneCubit.get(context).deleteDanger(widget.ind);
+         print( StepOneCubit.get(context).dangerWidgets);
+         // print(StepOneCubit.get(context).dangerWidgets.length);
+        },)
       ],
     );
   }

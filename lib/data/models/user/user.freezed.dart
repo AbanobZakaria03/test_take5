@@ -20,9 +20,13 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
+  @HiveField(0)
   String get userId => throw _privateConstructorUsedError;
+  @HiveField(1)
   int get driverId => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get driverName => throw _privateConstructorUsedError;
+  @HiveField(3)
   int get userUnSeenNotificationCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,10 +40,10 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {String userId,
-      int driverId,
-      String driverName,
-      int userUnSeenNotificationCount});
+      {@HiveField(0) String userId,
+      @HiveField(1) int driverId,
+      @HiveField(2) String driverName,
+      @HiveField(3) int userUnSeenNotificationCount});
 }
 
 /// @nodoc
@@ -88,10 +92,10 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String userId,
-      int driverId,
-      String driverName,
-      int userUnSeenNotificationCount});
+      {@HiveField(0) String userId,
+      @HiveField(1) int driverId,
+      @HiveField(2) String driverName,
+      @HiveField(3) int userUnSeenNotificationCount});
 }
 
 /// @nodoc
@@ -133,20 +137,24 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 @JsonSerializable()
 class _$_User implements _User {
   const _$_User(
-      {required this.userId,
-      required this.driverId,
-      required this.driverName,
-      required this.userUnSeenNotificationCount});
+      {@HiveField(0) required this.userId,
+      @HiveField(1) required this.driverId,
+      @HiveField(2) required this.driverName,
+      @HiveField(3) required this.userUnSeenNotificationCount});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
+  @HiveField(0)
   final String userId;
   @override
+  @HiveField(1)
   final int driverId;
   @override
+  @HiveField(2)
   final String driverName;
   @override
+  @HiveField(3)
   final int userUnSeenNotificationCount;
 
   @override
@@ -191,20 +199,24 @@ class _$_User implements _User {
 
 abstract class _User implements User {
   const factory _User(
-      {required final String userId,
-      required final int driverId,
-      required final String driverName,
-      required final int userUnSeenNotificationCount}) = _$_User;
+      {@HiveField(0) required final String userId,
+      @HiveField(1) required final int driverId,
+      @HiveField(2) required final String driverName,
+      @HiveField(3) required final int userUnSeenNotificationCount}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
+  @HiveField(0)
   String get userId;
   @override
+  @HiveField(1)
   int get driverId;
   @override
+  @HiveField(2)
   String get driverName;
   @override
+  @HiveField(3)
   int get userUnSeenNotificationCount;
   @override
   @JsonKey(ignore: true)

@@ -52,6 +52,7 @@ class Take5RepositoryImpl extends Take5Repository {
     try {
       UserLoginResponse result = await remoteDataSource.loginUser(
           mobileNo: mobileNo, password: password);
+
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
