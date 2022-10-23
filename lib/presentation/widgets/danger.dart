@@ -60,7 +60,7 @@ class _DangerState extends State<Danger> {
                       .map((e) => MultiSelectItem(e, e.text))
                       .toList(),
               listType: MultiSelectListType.CHIP,
-              initialValue: [],
+              initialValue: cubit.selectedControls,
               onConfirm: cubit.onSelectControls,
             ),
             ElevatedButton(
