@@ -2,16 +2,19 @@ import 'dart:convert';
 
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:test_take5/data/datasources/boxes.dart';
 import '../../core/utils/services/local_storage_service.dart';
 import '../models/responses/user_login_response/user_login_response.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
+import '../models/user/user.dart';
+
 
 abstract class LocalDataSource {
-  Future<void> cacheUser(UserLoginResponse user);
+  Future<void> cacheUser(User user);
 
-  //Future<UserLoginResponse> getCachedUser();
+  User? getCachedUser();
 }
 
 const CACHED_USER = 'CACHED_USER';
@@ -21,18 +24,19 @@ class LocalDataSourceImpl implements LocalDataSource{
   //final LocalStorageService localStorageService;
   //LocalDataSourceImpl({required this.localStorageService});
   @override
-  Future<void> cacheUser(UserLoginResponse user) async {
-    final directory=await path_provider.getApplicationDocumentsDirectory();
-    Hive.init(directory.path);
-    var take5Box =await Hive.openBox('Take5Box');//name of box
-    final u=Hive.box('Take5Box');
-    u.add(user);
-    print(u.getAt(0));
+  Future<void> cacheUser(User user) async {
+    final box=Boxes.getUser();
+    box.add(user);
+   // box.add(user);
+   print(box.getAt(0));
+   //print('***');
   }
 
-  // @override
-  // Future<UserLoginResponse> getCachedUser() async {
-  //   UserLoginResponse user;
-  //   user=
-  // }
+  @override
+  User? getCachedUser()
+  {
+    final box=Boxes.getUser();
+    print(box.getAt(0));
+    return box.get('user');
+  }
 }
