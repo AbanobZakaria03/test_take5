@@ -26,9 +26,9 @@ class LocalDataSourceImpl implements LocalDataSource{
   @override
   Future<void> cacheUser(User user) async {
     final box=Boxes.getUser();
-    box.add(user);
+    box.put('user',user);
    // box.add(user);
-   print(box.getAt(0));
+   // print(box.getAt(0));
    //print('***');
   }
 
@@ -36,7 +36,7 @@ class LocalDataSourceImpl implements LocalDataSource{
   User? getCachedUser()
   {
     final box=Boxes.getUser();
-    print(box.getAt(0));
+    print(box.get('user'));
     return box.get('user');
   }
 }

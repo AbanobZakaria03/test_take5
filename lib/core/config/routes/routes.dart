@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 
+import '../../../presentation/screens/home/home.dart';
 import '../../../presentation/screens/login/login_screen.dart';
 import '../../../presentation/screens/step_one/step_one.dart';
+import '../../../presentation/screens/trip/trip.dart';
 
 class AppRoutes {
   static Route onGenerateRoutes(RouteSettings settings) {
     switch (settings.name) {
+
       case LoginScreen.routeName:
         return _materialRoute(const LoginScreen(), LoginScreen.routeName);
+
+      case HomeScreen.routeName:
+        return _materialRoute(const HomeScreen(), HomeScreen.routeName);
+
+      case TripScreen.routeName:
+        return _materialRoute(const TripScreen(), TripScreen.routeName);
+
       case StepOneScreen.routeName:
         return _materialRoute(const StepOneScreen(), StepOneScreen.routeName);
 

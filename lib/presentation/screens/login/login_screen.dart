@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test_take5/presentation/screens/home/home.dart';
 
 import '../../../core/constants/app_assets.dart';
 import '../../../core/constants/app_colors.dart';
@@ -54,8 +55,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 isSucceeded: true,
                 message: 'تم تسجيل الدخول بنجاح',
                 onPressedOk: () {
-                  // Navigator.pushNamedAndRemoveUntil(
-                  //     context, MainScreen.routeName, (route) => false);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, HomeScreen.routeName, (route) => false);
                 });
           }
         },
@@ -97,27 +98,15 @@ class _LoginScreenState extends State<LoginScreen> {
                               SizedBox(
                                 height: 100.h,
                               ),
-                              Row(
-                                children: [
-                                  Text(
-                                    AppStrings.login.tr(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Color(0xff5f5f5f),
-                                      fontSize: 30.sp,
-                                      fontFamily: "Cairo",
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 11.w,
-                                  ),
-                                  Image.asset(
-                                    AppAssets.wavingHand,
-                                    height: 40.h,
-                                    width: 40.h,
-                                  )
-                                ],
+                              Text(
+                                AppStrings.login.tr(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xff5f5f5f),
+                                  fontSize: 30.sp,
+                                  fontFamily: "Cairo",
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                               Text(
                                 "مرحباً بك فى اسـأل سيميكس",
@@ -138,7 +127,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                       controller: _cubit.phoneNumberController,
                                       label: "phone number".tr(),
                                       errorText: _cubit.errorMessage ==
-                                          'رقم الهاتف غير مسجل'?_cubit.errorMessage:null,
+                                              'رقم الهاتف غير مسجل'
+                                          ? _cubit.errorMessage
+                                          : null,
                                       prefixIcon: Icons.phone,
                                       inputFormatters: [
                                         FilteringTextInputFormatter.allow(
@@ -161,7 +152,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                       controller: _cubit.passwordController,
                                       label: "password".tr(),
                                       errorText: _cubit.errorMessage ==
-                                          'خطأ فى كلمة المرور'?_cubit.errorMessage:null,
+                                              'خطأ فى كلمة المرور'
+                                          ? _cubit.errorMessage
+                                          : null,
                                       obscureText: !_cubit.isTextVisible,
                                       suffixOnPressed: () =>
                                           _cubit.changeTextVisibility(
@@ -183,105 +176,29 @@ class _LoginScreenState extends State<LoginScreen> {
                                       height: 52.h,
                                       width: 334.w,
                                       child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        50.r)),
-                                          ),
-                                          onPressed: () {
-                                            if (_formKey.currentState!
-                                                .validate()) {
-                                              _cubit.loginUser();
-                                            }
-                                          },
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                "login".tr(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 22.sp,
-                                                  fontFamily: "Cairo",
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 6.w,
-                                              ),
-                                              Image.asset(
-                                                AppAssets.singInIcon,
-                                                width: 25.w,
-                                                height: 25.h,
-                                              )
-                                            ],
-                                          )),
-                                    ),
-                                    SizedBox(
-                                      height: 30.h,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 9.w),
-                                              child: Divider(
-                                                height: 1.h,
-                                                color: Color(0xFFBEBEBE),
-                                              )),
+                                        style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(50.r)),
                                         ),
-                                        Text(
-                                          "or".tr(),
+                                        onPressed: () {
+                                          // if (_formKey.currentState!
+                                          //     .validate()) {
+                                          //   _cubit.loginUser();
+                                          // }
+                                          _cubit.loginUser();
+                                        },
+                                        child: Text(
+                                          "login".tr(),
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                            color: Color(0xff868686),
-                                            fontSize: 16.sp,
+                                            color: Colors.white,
+                                            fontSize: 22.sp,
+                                            fontFamily: "Cairo",
+                                            fontWeight: FontWeight.w700,
                                           ),
                                         ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 9.w),
-                                            child: Divider(
-                                              height: 1.h,
-                                              color: Color(0xFFBEBEBE),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 20.h,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "Are you have an account ?".tr(),
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontSize: 16.sp,
-                                          ),
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            // Navigator.pushReplacementNamed(
-                                            //     context,
-                                            //     RegisterScreen.routeName);
-                                          },
-                                          child: Text(
-                                            "register now".tr(),
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontSize: 16.sp,
-                                                color: Color(0xFFFF1515),
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
                                   ],
                                 ),

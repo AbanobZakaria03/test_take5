@@ -9,9 +9,9 @@ import 'login_states.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
   static LoginCubit get(context) => BlocProvider.of(context);
-  final Take5Repository userRepository;
+  final Take5Repository take5Repository;
 
-  LoginCubit({required this.userRepository}) : super(InitialLoginState());
+  LoginCubit({required this.take5Repository}) : super(InitialLoginState());
 
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -28,18 +28,16 @@ class LoginCubit extends Cubit<LoginStates> {
   String errorMessage='';
   Future<void>loginUser()async{
     emit(LoginUserLoading());
-    final result = await userRepository.loginUser(
+    final result = await take5Repository.loginUser(
       mobileNo: phoneNumberController.text,
       password: passwordController.text
     );
     result.fold((failure) {
-     // flag=false;
       errorMessage=failure.message;
       print(errorMessage);
       emit(LoginUserFail(failure.message));
     }, (userResponse) {
-      //AppConstants.userResponse=userResponse;
-     // flag=true;
+      AppConstants.user=userResponse.data;
       emit(LoginUserSuccess());
     });
   }
