@@ -20,12 +20,11 @@ import 'presentation/screens/step_one/step_one.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-
   await di.init();
   await Hive.initFlutter();
   Hive.registerAdapter(UserAdapter());
   await Hive.openBox<User>('user');
-
+  await Hive.openBox('takeFiveSurvey');
   await BackgroundService.initializeService();
 
   BlocOverrides.runZoned(

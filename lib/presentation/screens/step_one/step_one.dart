@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../data/datasources/local_data_source.dart';
+import '../../../data/models/requests/destination_arrived_request/destination_arrived_request.dart';
 import '../../../data/models/responses/trip_start_response/trip_start_response.dart';
+import '../../../data/models/trip/trip.dart';
+import '../../../injection_container.dart';
 import '../../../logic/step_one_cubit/step_one_cubit.dart';
 import '../../widgets/danger.dart';
 
@@ -107,8 +111,11 @@ class _StepOneScreenState extends State<StepOneScreen> {
                             ,)
                             ),
                             DataCell(IconButton(
-                              onPressed: (){
-                                cubit.removeDanger(e);
+                              onPressed: ()async{
+                               // cubit.removeDanger(e);
+                                LocalDataSource localDataSource=sl<LocalDataSource>();
+                               // await localDataSource.cacheDestinationArrivedRequest(DestinationArrivedRequest(userId: '123', tripId:1, jobsiteId: 1, destinationArrivedDate: DateTime.now()));
+                                print(localDataSource.getCachedStepOneCompleteRequest ());
                               },
                               icon: Icon(Icons.delete_forever),
                             )),

@@ -44,7 +44,6 @@ class StepOneCubit extends Cubit<StepOneState> {
 
 
 
-
   void addDanger() {
     if(selectedControls==null){
       return;
