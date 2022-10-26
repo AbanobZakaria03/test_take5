@@ -29,6 +29,7 @@ Future<void> main() async {
   await Hive.openBox<User>('user');
   await Hive.openBox('route');
 
+  await Hive.openBox('takeFiveSurvey');
   await BackgroundService.initializeService();
 
   BlocOverrides.runZoned(
