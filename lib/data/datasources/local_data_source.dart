@@ -7,6 +7,9 @@ import 'package:test_take5/data/datasources/boxes.dart';
 import '../../core/utils/services/local_storage_service.dart';
 import '../models/requests/destination_arrived_request/destination_arrived_request.dart';
 import '../models/requests/step_one_complete_request/step_one_complete_request.dart';
+import '../models/requests/step_two_complete_request/step_two_complete_request.dart';
+import '../models/requests/step_two_start_request/step_two_start_request.dart';
+import '../models/requests/trip_start_request/trip_start_request.dart';
 import '../models/responses/trip_start_response/trip_start_response.dart';
 import '../models/responses/user_login_response/user_login_response.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -29,6 +32,12 @@ abstract class LocalDataSource {
   DestinationArrivedRequest? getCachedDestinationArrivedRequest();
   Future<void> cacheStepOneCompleteRequest(StepOneCompleteRequest stepOneCompleteRequest);
   StepOneCompleteRequest? getCachedStepOneCompleteRequest();
+  Future<void> cacheStepTwoCompleteRequest(StepTwoCompleteRequest stepTwoCompleteRequest);
+  StepTwoCompleteRequest? getCachedStepTwoCompleteRequest();
+  Future<void> cacheStepTwoStartRequest(StepTwoStartRequest stepTwoStartRequest);
+  StepTwoStartRequest? getCachedStepTwoStartRequest();
+  Future<void> cacheTripStartRequest(TripStartRequest tripStartRequest);
+  TripStartRequest? getCachedTripStartRequest();
 }
 
 const CACHED_USER = 'CACHED_USER';
@@ -45,7 +54,6 @@ class LocalDataSourceImpl implements LocalDataSource{
    print(box.getAt(0));
    //print('***');
   }
-
   @override
   User? getCachedUser()
   {
@@ -131,6 +139,68 @@ class LocalDataSourceImpl implements LocalDataSource{
       return StepOneCompleteRequest
           .fromJson(box.get('stepOneCompleteRequest'));
 
+    }
+  }
+  @override
+  Future<void> cacheStepTwoCompleteRequest(StepTwoCompleteRequest stepTwoCompleteRequest)async
+  {
+    final box=Boxes.getTakeFiveBox();
+    box.put('stepTwoCompleteRequest',  stepTwoCompleteRequest.toJson());
+    print(box.get('stepTwoCompleteRequest'));
+  }
+  @override
+  StepTwoCompleteRequest ? getCachedStepTwoCompleteRequest ()
+  {
+    final box=Boxes.getTakeFiveBox();
+    if(box.get('stepTwoCompleteRequest')==null)
+    {
+      return null;
+    }
+    else {
+      return StepTwoCompleteRequest
+          .fromJson(box.get('stepTwoCompleteRequest'));
+
+    }
+  }
+  @override
+  Future<void> cacheStepTwoStartRequest(StepTwoStartRequest stepTwoStartRequest)async
+  {
+    final box=Boxes.getTakeFiveBox();
+    box.put('stepTwoStartRequest',stepTwoStartRequest.toJson());
+    print(box.get('stepTwoStartRequest'));
+  }
+  @override
+  StepTwoStartRequest? getCachedStepTwoStartRequest()
+  {
+    final box=Boxes.getTakeFiveBox();
+    if(box.get('stepTwoStartRequest')==null)
+    {
+      return null;
+    }
+    else {
+      return StepTwoStartRequest
+          .fromJson(box.get('stepTwoStartRequest'));
+
+    }
+  }
+  @override
+  Future<void> cacheTripStartRequest(TripStartRequest tripStartRequest)async
+  {
+    final box=Boxes.getTakeFiveBox();
+    box.put('tripStartRequest',tripStartRequest.toJson());
+    print(box.get('tripStartRequest'));
+  }
+  @override
+  TripStartRequest? getCachedTripStartRequest()
+  {
+    final box=Boxes.getTakeFiveBox();
+    if(box.get('tripStartRequest')==null)
+    {
+      return null;
+    }
+    else {
+      return TripStartRequest
+          .fromJson(box.get('tripStartRequest'));
     }
   }
 }
