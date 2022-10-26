@@ -33,6 +33,9 @@ abstract class Take5Repository {
 
   Future<Either<Failure, TripStartResponse>> startTrip(
       {required TripStartRequest tripStartRequest});
+
+  Either<Failure, TakeFiveSurvey?> getCachedTakeFiveSurvey();
+
 }
 
 class Take5RepositoryImpl extends Take5Repository {
@@ -121,10 +124,20 @@ class Take5RepositoryImpl extends Take5Repository {
     try {
       TripStartResponse result =
           await remoteDataSource.startTrip(tripStartRequest: tripStartRequest);
+      localDataSource.cacheTakeFiveSurvey(result.data);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     }
+  }
+
+  @override
+  Either<Failure, TakeFiveSurvey?> getCachedTakeFiveSurvey() {
+
+      TakeFiveSurvey? result = localDataSource.getCachedTakeFiveSurvey();
+      return Right(result);
+
+
   }
 //Future<Either<Failure, TripStrartResponse>>startTrip({required TripStartRequest tripStartRequest})
 // @override

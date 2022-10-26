@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:test_take5/data/datasources/local_data_source.dart';
 
 import '../../../injection_container.dart';
 import '../../../loaction_service.dart';
@@ -70,6 +71,13 @@ class _TripScreenState extends State<TripScreen> {
                       },
                       child: Text('take5'),
                     ),
+                  ElevatedButton(
+                    onPressed: () {
+                      LocalDataSource localDataSource = sl<LocalDataSource>();
+                     print( localDataSource.getCachedTakeFiveSurvey()?.stepTwoQuestions.length);
+                    },
+                    child: Text('printSurvey'),
+                  ),
                 ],
               ),
             ),

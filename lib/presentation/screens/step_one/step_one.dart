@@ -65,9 +65,10 @@ class _StepOneScreenState extends State<StepOneScreen> {
                         });
                       }),
                   SizedBox(height: 8),
-
-                  TrueFalseQuestion(questionText: 'تنظيف المكان عند الحاجه'),
-                  // ...cubit.dangerWidgets
+                  //
+                  // TrueFalseQuestion(questionText: 'تنظيف المكان عند الحاجه'),
+                  // TrueFalseQuestion(questionText: 'تنظيف المكان عند الحاجه'),
+                  // // ...cubit.dangerWidgets
 
                  Danger(),
 

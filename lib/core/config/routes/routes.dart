@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../presentation/screens/home/home.dart';
 import '../../../presentation/screens/login/login_screen.dart';
 import '../../../presentation/screens/step_one/step_one.dart';
+import '../../../presentation/screens/step_two/step_two.dart';
 import '../../../presentation/screens/trip/trip.dart';
 
 class AppRoutes {
@@ -20,6 +21,9 @@ class AppRoutes {
 
       case StepOneScreen.routeName:
         return _materialRoute(const StepOneScreen(), StepOneScreen.routeName);
+
+      case StepTwoScreen.routeName:
+        return _materialRoute(const StepTwoScreen(), StepTwoScreen.routeName);
 
       default:
         // If there is no such named route in the switch statement, e.g. /third

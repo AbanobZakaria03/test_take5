@@ -66,13 +66,13 @@ class LocalDataSourceImpl implements LocalDataSource{
   Future<void> cacheTakeFiveSurvey(TakeFiveSurvey takeFiveSurvey) async {
     final box=Boxes.getTakeFiveBox();
     box.put('takeFiveSurvey', takeFiveSurvey.toJson());
-    print(box.get('takeFiveSurvey'));
+    print(TakeFiveSurvey.fromJson(box.get('takeFiveSurvey')));
   }
   @override
   TakeFiveSurvey? getCachedTakeFiveSurvey()
   {
     final box=Boxes.getTakeFiveBox();
-    if(box.get('stepOneCompleteRequest')==null)
+    if(box.get('takeFiveSurvey')==null)
     {
       return null;
     }

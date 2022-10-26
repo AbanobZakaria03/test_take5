@@ -4,6 +4,7 @@ import 'package:test_take5/data/datasources/local_data_source.dart';
 import 'package:test_take5/data/datasources/remote_data_source.dart';
 import 'package:test_take5/data/models/requests/destination_arrived_request/destination_arrived_request.dart';
 import 'package:test_take5/data/models/requests/trip_start_request/trip_start_request.dart';
+import 'package:test_take5/data/models/responses/trip_start_response/trip_start_response.dart';
 import 'package:test_take5/data/models/responses/user_login_response/user_login_response.dart';
 import 'package:test_take5/data/models/user/user.dart';
 import 'package:test_take5/data/repositories/take5_repository.dart';
@@ -32,9 +33,11 @@ Future<void> main() async {
       //arrange
       RemoteDataSource remoteDataSource = sl<RemoteDataSource>();
       //act
-      final result = await remoteDataSource.startTrip(tripStartRequest: TripStartRequest(userId: '123456', tripId:1, jobsiteId: 1, startingDate: DateTime.now()));
+      TripStartResponse result = await remoteDataSource.startTrip(tripStartRequest: TripStartRequest(userId: '123456', tripId:1, jobsiteId: 1, startingDate: DateTime.now()));
+      var takeFiveSurvey = result.data;
       //assert
       print(result);
+      print(TakeFiveSurvey.fromJson(takeFiveSurvey.toJson()));
     },
   );
   // test(
