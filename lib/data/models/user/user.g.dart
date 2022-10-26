@@ -53,7 +53,7 @@ class UserAdapter extends TypeAdapter<User> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
+_$_User _$$_UserFromJson(Map json) => _$_User(
       userId: json['userId'] as String,
       driverId: json['driverId'] as int,
       driverName: json['driverName'] as String,

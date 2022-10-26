@@ -25,9 +25,13 @@ class StepTwoCubit extends Cubit<StepTwoState> {
     emit(StepTwoGetQuestionsLoading());
     final result = take5Repository.getCachedTakeFiveSurvey();
     result.fold((failure) {
-      print('ff');
       emit(StepTwoGetQuestionsFail(failure.message));
     }, (takeFiveSurvey) {
+      if (takeFiveSurvey != null) {
+        for (var question in takeFiveSurvey.stepTwoQuestions) {
+          step2Answers.add(Answer(id: question.id, question: question.text));
+        }
+      }
       print(takeFiveSurvey?.stepTwoQuestions.length);
       print(step2Answers.length);
       emit(StepTwoGetQuestionsSuccess());

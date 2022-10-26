@@ -5,7 +5,6 @@ import '../../../data/datasources/local_data_source.dart';
 import '../../../data/models/requests/destination_arrived_request/destination_arrived_request.dart';
 import '../../../data/models/responses/trip_start_response/trip_start_response.dart';
 import '../../../data/models/trip/trip.dart';
-import '../../../data/repositories/take5_repository.dart';
 import '../../../injection_container.dart';
 import '../../../logic/step_one_cubit/step_one_cubit.dart';
 import '../../../logic/step_two_cubit/step_two_cubit.dart';
@@ -34,26 +33,33 @@ class _StepTwoScreenState extends State<StepTwoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(),
-        body:5>6
-            ? Center(
-          child: CircularProgressIndicator(),
-        )
-            : Column(
-          children: [
-
-            // ElevatedButton(onPressed: cubit.submitQuestions, child: Text('print')),
-            ElevatedButton(
-              onPressed: () {
-                // Take5Repository repo = sl<Take5Repository>();
-                // repo.getCachedTakeFiveSurvey().fold((l) => null, (r) => print(r!.stepTwoQuestions.length));
-              },
-              child: Text('printSurvey'),
-            ),
-
-          ],
-        )
+    return BlocProvider(
+      create: (context) => sl<StepTwoCubit>()..getStepTwoQuestions(),
+      child: BlocConsumer<StepTwoCubit, StepTwoState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          var cubit = StepTwoCubit.get(context);
+          return Scaffold(
+              appBar: AppBar(),
+              body: state is StepTwoGetQuestionsLoading
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                            itemBuilder: (context, index) => TrueFalseQuestion(
+                              questionAnswer: cubit.step2Answers[index],
+                            ),
+                          itemCount: cubit.step2Answers.length,
+                          ),
+                      ),
+                      ElevatedButton(onPressed: cubit.submitQuestions, child: Text('print')),
+                    ],
+                  ));
+        },
+      ),
     );
   }
 }

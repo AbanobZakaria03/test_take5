@@ -6,8 +6,7 @@ part of 'step_two_start_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_StepTwoStartRequest _$$_StepTwoStartRequestFromJson(
-        Map<String, dynamic> json) =>
+_$_StepTwoStartRequest _$$_StepTwoStartRequestFromJson(Map json) =>
     _$_StepTwoStartRequest(
       userId: json['userId'] as String,
       tripId: json['tripId'] as int,

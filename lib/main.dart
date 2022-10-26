@@ -90,8 +90,8 @@ class MyApp extends StatelessWidget {
             // initialRoute: LoginScreen.routeName,
             // initialRoute: StepOneScreen.routeName,
             // initialRoute: HomeScreen.routeName,
-            // initialRoute: StepTwoScreen.routeName,
-            initialRoute: TripScreen.routeName,
+            initialRoute: StepTwoScreen.routeName,
+            // initialRoute: TripScreen.routeName,
           ),
         );
       },

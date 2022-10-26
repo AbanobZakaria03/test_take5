@@ -6,8 +6,7 @@ part of 'destination_arrived_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_DestinationArrivedRequest _$$_DestinationArrivedRequestFromJson(
-        Map<String, dynamic> json) =>
+_$_DestinationArrivedRequest _$$_DestinationArrivedRequestFromJson(Map json) =>
     _$_DestinationArrivedRequest(
       userId: json['userId'] as String,
       tripId: json['tripId'] as int,

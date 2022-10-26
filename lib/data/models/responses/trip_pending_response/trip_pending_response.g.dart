@@ -6,11 +6,10 @@ part of 'trip_pending_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TripPendingResponse _$$_TripPendingResponseFromJson(
-        Map<String, dynamic> json) =>
+_$_TripPendingResponse _$$_TripPendingResponseFromJson(Map json) =>
     _$_TripPendingResponse(
       message: json['message'] as String,
-      data: Trip.fromJson(json['data'] as Map<String, dynamic>),
+      data: Trip.fromJson(Map<String, dynamic>.from(json['data'] as Map)),
     );
 
 Map<String, dynamic> _$$_TripPendingResponseToJson(

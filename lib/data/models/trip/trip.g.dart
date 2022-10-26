@@ -6,7 +6,7 @@ part of 'trip.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Trip _$$_TripFromJson(Map<String, dynamic> json) => _$_Trip(
+_$_Trip _$$_TripFromJson(Map json) => _$_Trip(
       tripNumber: json['tripNumber'] as int,
       jobsiteName: json['jobsiteName'] as String,
       jobsiteNumber: json['jobsiteNumber'] as int,

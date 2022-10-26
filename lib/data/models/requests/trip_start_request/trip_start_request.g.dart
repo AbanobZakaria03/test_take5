@@ -6,7 +6,7 @@ part of 'trip_start_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TripStartRequest _$$_TripStartRequestFromJson(Map<String, dynamic> json) =>
+_$_TripStartRequest _$$_TripStartRequestFromJson(Map json) =>
     _$_TripStartRequest(
       userId: json['userId'] as String,
       tripId: json['tripId'] as int,

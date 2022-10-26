@@ -50,7 +50,7 @@ class AnswerAdapter extends TypeAdapter<Answer> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Answer _$$_AnswerFromJson(Map<String, dynamic> json) => _$_Answer(
+_$_Answer _$$_AnswerFromJson(Map json) => _$_Answer(
       id: json['id'] as int,
       question: json['question'] as String,
       answer: json['answer'] as bool?,

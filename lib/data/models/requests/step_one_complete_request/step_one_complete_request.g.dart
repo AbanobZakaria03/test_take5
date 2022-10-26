@@ -6,16 +6,14 @@ part of 'step_one_complete_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_StepOneCompleteRequest _$$_StepOneCompleteRequestFromJson(
-        Map<String, dynamic> json) =>
+_$_StepOneCompleteRequest _$$_StepOneCompleteRequestFromJson(Map json) =>
     _$_StepOneCompleteRequest(
       userId: json['userId'] as String,
       tripId: json['tripId'] as int,
       questionAnswer: Map<String, bool>.from(json['questionAnswer'] as Map),
-      tripDangerMeasureControls:
-          (json['tripDangerMeasureControls'] as Map<String, dynamic>).map(
-        (k, e) =>
-            MapEntry(k, (e as List<dynamic>).map((e) => e as int).toList()),
+      tripDangerMeasureControls: (json['tripDangerMeasureControls'] as Map).map(
+        (k, e) => MapEntry(
+            k as String, (e as List<dynamic>).map((e) => e as int).toList()),
       ),
       createdDate: DateTime.parse(json['createdDate'] as String),
     );
