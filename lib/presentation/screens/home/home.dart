@@ -54,8 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             body: Column(
               children: [
-                if(state!=HomeGetPendingTripLoading())
-                  TripCard(trip: cubit.trip),
+                if(state!=HomeGetPendingTripLoading()&&cubit.trip!=null)
+                  TripCard(trip: cubit.trip!),
                 Center(
                   child: ElevatedButton(
                     onPressed: () => cubit.startTrip(),

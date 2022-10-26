@@ -8,6 +8,7 @@ import '../../../data/models/trip/trip.dart';
 import '../../../injection_container.dart';
 import '../../../logic/step_one_cubit/step_one_cubit.dart';
 import '../../widgets/danger.dart';
+import '../../widgets/true_false_question.dart';
 
 class StepOneScreen extends StatefulWidget {
   static const routeName = 'StepOneScreen';
@@ -65,6 +66,7 @@ class _StepOneScreenState extends State<StepOneScreen> {
                       }),
                   SizedBox(height: 8),
 
+                  TrueFalseQuestion(questionText: 'تنظيف المكان عند الحاجه'),
                   // ...cubit.dangerWidgets
 
                  Danger(),

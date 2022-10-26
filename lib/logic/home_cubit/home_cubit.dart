@@ -15,7 +15,7 @@ class HomeCubit extends Cubit<HomeStates> {
 
   HomeCubit({required this.take5Repository}) : super(InitialHomeState());
 
-  late Trip trip;
+   Trip? trip;
   Future<void> getPendingTrip() async {
     emit(HomeGetPendingTripLoading());
     final result =
