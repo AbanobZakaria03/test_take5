@@ -133,11 +133,12 @@ class Take5RepositoryImpl extends Take5Repository {
 
   @override
   Either<Failure, TakeFiveSurvey?> getCachedTakeFiveSurvey() {
-
+    try {
       TakeFiveSurvey? result = localDataSource.getCachedTakeFiveSurvey();
       return Right(result);
-
-
+  } on ServerException catch (e) {
+   return Left(ServerFailure(e.message));
+   }
   }
 //Future<Either<Failure, TripStrartResponse>>startTrip({required TripStartRequest tripStartRequest})
 // @override

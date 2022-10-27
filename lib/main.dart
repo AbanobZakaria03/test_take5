@@ -87,10 +87,10 @@ class MyApp extends StatelessWidget {
             ),
             onGenerateRoute: AppRoutes.onGenerateRoutes,
             // initialRoute: getLastRoute(),
-            // initialRoute: LoginScreen.routeName,
-            // initialRoute: StepOneScreen.routeName,
+             //initialRoute: LoginScreen.routeName,
+             initialRoute: StepOneScreen.routeName,
             // initialRoute: HomeScreen.routeName,
-            initialRoute: StepTwoScreen.routeName,
+           //initialRoute: StepTwoScreen.routeName,
             // initialRoute: TripScreen.routeName,
           ),
         );

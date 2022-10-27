@@ -58,7 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   TripCard(trip: cubit.trip!),
                 Center(
                   child: ElevatedButton(
-                    onPressed: () => cubit.startTrip(),
+                    onPressed: () {
+                      cubit.startTrip();
+                      Navigator.pushNamed(context, TripScreen.routeName);
+                    },
                     child: const Text('start'),
                   ),
                 ),

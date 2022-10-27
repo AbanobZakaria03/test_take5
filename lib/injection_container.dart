@@ -14,6 +14,7 @@ import 'core/utils/services/local_storage_service.dart';
 import 'core/utils/services/dio_client.dart';
 import 'data/datasources/remote_data_source.dart';
 import 'data/datasources/local_data_source.dart';
+import 'logic/step_one_cubit/step_one_cubit.dart';
 import 'logic/step_two_cubit/step_two_cubit.dart';
 import 'logic/trip_cubit/trip_cubit.dart';
 final sl = GetIt.instance;
@@ -25,6 +26,7 @@ Future<void> init() async {
   sl.registerFactory(() => HomeCubit(take5Repository: sl()));
   sl.registerFactory(() => TripCubit(take5Repository: sl()));
   sl.registerFactory(() => StepTwoCubit(take5Repository: sl()));
+  sl.registerFactory(() => StepOneCubit(take5Repository: sl()));
 
 //! Repositories
   sl.registerLazySingleton<Take5Repository>(() => Take5RepositoryImpl(

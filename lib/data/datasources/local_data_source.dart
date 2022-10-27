@@ -110,7 +110,9 @@ class LocalDataSourceImpl implements LocalDataSource {
     if (box.get('stepOneCompleteRequest') == null) {
       return null;
     } else {
-      return Trip.fromJson(box.get('trip'));
+      Map<String, dynamic> json =
+      Map<String, dynamic>.from(box.get('trip'));
+      return Trip.fromJson(json);
     }
   }
 
@@ -128,8 +130,9 @@ class LocalDataSourceImpl implements LocalDataSource {
     if (box.get('destinationArrivedRequest') == null) {
       return null;
     } else {
-      return DestinationArrivedRequest.fromJson(
-          box.get('destinationArrivedRequest'));
+      Map<String, dynamic> json =
+      Map<String, dynamic>.from(box.get('destinationArrivedRequest'));
+      return DestinationArrivedRequest.fromJson(json);
     }
   }
 
@@ -147,7 +150,9 @@ class LocalDataSourceImpl implements LocalDataSource {
     if (box.get('stepOneCompleteRequest') == null) {
       return null;
     } else {
-      return StepOneCompleteRequest.fromJson(box.get('stepOneCompleteRequest'));
+      Map<String, dynamic> json =
+      Map<String, dynamic>.from(box.get('stepOneCompleteRequest'));
+      return StepOneCompleteRequest.fromJson(json);
     }
   }
 
@@ -165,7 +170,9 @@ class LocalDataSourceImpl implements LocalDataSource {
     if (box.get('stepTwoCompleteRequest') == null) {
       return null;
     } else {
-      return StepTwoCompleteRequest.fromJson(box.get('stepTwoCompleteRequest'));
+      Map<String, dynamic> json =
+      Map<String, dynamic>.from(box.get('stepTwoCompleteRequest'));
+      return StepTwoCompleteRequest.fromJson(json);
     }
   }
 
@@ -183,7 +190,9 @@ class LocalDataSourceImpl implements LocalDataSource {
     if (box.get('stepTwoStartRequest') == null) {
       return null;
     } else {
-      return StepTwoStartRequest.fromJson(box.get('stepTwoStartRequest'));
+      Map<String, dynamic> json =
+      Map<String, dynamic>.from(box.get('stepTwoCompleteRequest'));
+      return StepTwoStartRequest.fromJson(json);
     }
   }
 
@@ -200,7 +209,9 @@ class LocalDataSourceImpl implements LocalDataSource {
     if (box.get('tripStartRequest') == null) {
       return null;
     } else {
-      return TripStartRequest.fromJson(box.get('tripStartRequest'));
+      Map<String, dynamic> json =
+      Map<String, dynamic>.from(box.get('tripStartRequest'));
+      return TripStartRequest.fromJson(json);
     }
   }
 }

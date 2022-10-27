@@ -4,15 +4,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../data/data.dart';
+import '../../data/models/answer/answer.dart';
 import '../../data/models/responses/trip_start_response/trip_start_response.dart';
+import '../../data/repositories/take5_repository.dart';
 import '../../presentation/widgets/danger.dart';
 
 part 'step_one_state.dart';
 
 class StepOneCubit extends Cubit<StepOneState> {
+  final Take5Repository take5Repository;
   static StepOneCubit get(context) => BlocProvider.of(context);
 
-  StepOneCubit() : super(StepOneInitial());
+  StepOneCubit({required this.take5Repository}) : super(StepOneInitial());
 
 
   List<DangerControlsWithCategoryModel> dangerControlsWithCategory = List.castFrom(dangerControlsWithCategoryModels);
@@ -42,8 +45,6 @@ class StepOneCubit extends Cubit<StepOneState> {
     emit(StepOneAddDanger());
   }
 
-
-
   void addDanger() {
     if(selectedControls==null){
       return;
@@ -65,5 +66,23 @@ class StepOneCubit extends Cubit<StepOneState> {
 
   void printSelectedDangers(){
   }
+  List<Answer> step1Answers = [];
 
+  getStepOneQuestions() {
+    print('test');
+    emit(StepOneGetQuestionsLoading());
+    final result = take5Repository.getCachedTakeFiveSurvey();
+    result.fold((failure) {
+      emit(StepOneGetQuestionsFail(failure.message));
+    }, (takeFiveSurvey) {
+      if (takeFiveSurvey != null) {
+        for (var question in takeFiveSurvey.stepOneQuestions) {
+          step1Answers.add(Answer(id: question.id, question: question.text));
+        }
+      }
+      print(takeFiveSurvey?.stepOneQuestions.length);
+      print(step1Answers.length);
+      emit(StepOneGetQuestionsSuccess());
+    });
+  }
 }

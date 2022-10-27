@@ -35,7 +35,7 @@ class _StepOneScreenState extends State<StepOneScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => StepOneCubit(),
+      create: (context) =>sl<StepOneCubit>()..getStepOneQuestions(),
       child: BlocConsumer<StepOneCubit, StepOneState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -113,7 +113,8 @@ class _StepOneScreenState extends State<StepOneScreen> {
                               e.controls.map((e) => Text(e.text)).toList()
                             ,)
                             ),
-                            DataCell(IconButton(
+                            DataCell(
+                                IconButton(
                               onPressed: ()async{
                                // cubit.removeDanger(e);
                                 LocalDataSource localDataSource=sl<LocalDataSource>();
