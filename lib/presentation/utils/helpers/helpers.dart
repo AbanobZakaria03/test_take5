@@ -5,6 +5,7 @@ import 'package:test_take5/core/constants/app_constants.dart';
 
 import '../../../core/firebase/push_notification_service.dart';
 import '../../../data/datasources/boxes.dart';
+import '../../screens/home/home.dart';
 import '../../screens/login/login_screen.dart';
 
 void logOut(BuildContext context) {
@@ -38,6 +39,11 @@ String getLastRoute() {
   String? lastRoute = routeBox.get('LAST_ROUTE');
   if (lastRoute == null) {
     return LoginScreen.routeName;
+  } else if(
+  lastRoute != HomeScreen.routeName
+  ){
+    // var takeFiveBox = Boxes.getTakeFiveBox();
+    // AppConstants.trip = takeFiveBox.get('trip');
   }
   print(lastRoute);
   return lastRoute;

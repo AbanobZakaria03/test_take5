@@ -7,6 +7,7 @@ import '../../../data/models/responses/trip_start_response/trip_start_response.d
 import '../../../data/models/trip/trip.dart';
 import '../../../injection_container.dart';
 import '../../../logic/step_one_cubit/step_one_cubit.dart';
+import '../../utils/helpers/helpers.dart';
 import '../../widgets/danger.dart';
 import '../../widgets/true_false_question.dart';
 
@@ -20,6 +21,8 @@ class StepOneScreen extends StatefulWidget {
 }
 
 class _StepOneScreenState extends State<StepOneScreen> {
+
+
   Map<String, bool> questionAnswer = {};
   Map<String, List<int>> tripDangerMeasureControls = {};
 
@@ -31,6 +34,12 @@ class _StepOneScreenState extends State<StepOneScreen> {
   }
 
   void addTripDanger() {}
+
+  @override
+  void initState() {
+    saveLastRoute(StepOneScreen.routeName);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,10 +112,7 @@ class _StepOneScreenState extends State<StepOneScreen> {
                             DataCell(
                                 IconButton(
                               onPressed: ()async{
-                               // cubit.removeDanger(e);
-                                LocalDataSource localDataSource=sl<LocalDataSource>();
-                               // await localDataSource.cacheDestinationArrivedRequest(DestinationArrivedRequest(userId: '123', tripId:1, jobsiteId: 1, destinationArrivedDate: DateTime.now()));
-                                print(localDataSource.getCachedStepOneCompleteRequest ());
+                               cubit.removeDanger(e);
                               },
                               icon: Icon(Icons.delete_forever),
                             )),

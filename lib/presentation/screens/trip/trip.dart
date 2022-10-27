@@ -7,6 +7,7 @@ import '../../../injection_container.dart';
 import '../../../loaction_service.dart';
 import '../../../logic/trip_cubit/trip_cubit.dart';
 import '../../../logic/trip_cubit/trip_states.dart';
+import '../../utils/helpers/helpers.dart';
 import '../step_one/step_one.dart';
 
 class TripScreen extends StatefulWidget {
@@ -44,9 +45,11 @@ class _TripScreenState extends State<TripScreen> {
 
   @override
   void initState() {
+    saveLastRoute(TripScreen.routeName);
     start();
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {

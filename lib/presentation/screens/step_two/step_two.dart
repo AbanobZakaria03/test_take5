@@ -8,6 +8,7 @@ import '../../../data/models/trip/trip.dart';
 import '../../../injection_container.dart';
 import '../../../logic/step_one_cubit/step_one_cubit.dart';
 import '../../../logic/step_two_cubit/step_two_cubit.dart';
+import '../../utils/helpers/helpers.dart';
 import '../../widgets/danger.dart';
 import '../../widgets/true_false_question.dart';
 
@@ -29,6 +30,13 @@ class _StepTwoScreenState extends State<StepTwoScreen> {
   void answerQuestion({required String questionId, required bool value}) {
     questionAnswer[questionId] = value;
     print(questionAnswer);
+  }
+
+
+  @override
+  void initState() {
+    saveLastRoute(StepTwoScreen.routeName);
+    super.initState();
   }
 
   @override

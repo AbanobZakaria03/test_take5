@@ -23,9 +23,8 @@ StepOneCompleteRequest _$StepOneCompleteRequestFromJson(
 mixin _$StepOneCompleteRequest {
   String get userId => throw _privateConstructorUsedError;
   int get tripId => throw _privateConstructorUsedError;
-  Map<String, bool> get questionAnswer => throw _privateConstructorUsedError;
-  Map<String, List<int>> get tripDangerMeasureControls =>
-      throw _privateConstructorUsedError;
+  List<Answer> get answers => throw _privateConstructorUsedError;
+  List<DangerModel> get dangers => throw _privateConstructorUsedError;
   DateTime get createdDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,8 +42,8 @@ abstract class $StepOneCompleteRequestCopyWith<$Res> {
   $Res call(
       {String userId,
       int tripId,
-      Map<String, bool> questionAnswer,
-      Map<String, List<int>> tripDangerMeasureControls,
+      List<Answer> answers,
+      List<DangerModel> dangers,
       DateTime createdDate});
 }
 
@@ -64,8 +63,8 @@ class _$StepOneCompleteRequestCopyWithImpl<$Res,
   $Res call({
     Object? userId = null,
     Object? tripId = null,
-    Object? questionAnswer = null,
-    Object? tripDangerMeasureControls = null,
+    Object? answers = null,
+    Object? dangers = null,
     Object? createdDate = null,
   }) {
     return _then(_value.copyWith(
@@ -77,14 +76,14 @@ class _$StepOneCompleteRequestCopyWithImpl<$Res,
           ? _value.tripId
           : tripId // ignore: cast_nullable_to_non_nullable
               as int,
-      questionAnswer: null == questionAnswer
-          ? _value.questionAnswer
-          : questionAnswer // ignore: cast_nullable_to_non_nullable
-              as Map<String, bool>,
-      tripDangerMeasureControls: null == tripDangerMeasureControls
-          ? _value.tripDangerMeasureControls
-          : tripDangerMeasureControls // ignore: cast_nullable_to_non_nullable
-              as Map<String, List<int>>,
+      answers: null == answers
+          ? _value.answers
+          : answers // ignore: cast_nullable_to_non_nullable
+              as List<Answer>,
+      dangers: null == dangers
+          ? _value.dangers
+          : dangers // ignore: cast_nullable_to_non_nullable
+              as List<DangerModel>,
       createdDate: null == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -104,8 +103,8 @@ abstract class _$$_StepOneCompleteRequestCopyWith<$Res>
   $Res call(
       {String userId,
       int tripId,
-      Map<String, bool> questionAnswer,
-      Map<String, List<int>> tripDangerMeasureControls,
+      List<Answer> answers,
+      List<DangerModel> dangers,
       DateTime createdDate});
 }
 
@@ -123,8 +122,8 @@ class __$$_StepOneCompleteRequestCopyWithImpl<$Res>
   $Res call({
     Object? userId = null,
     Object? tripId = null,
-    Object? questionAnswer = null,
-    Object? tripDangerMeasureControls = null,
+    Object? answers = null,
+    Object? dangers = null,
     Object? createdDate = null,
   }) {
     return _then(_$_StepOneCompleteRequest(
@@ -136,14 +135,14 @@ class __$$_StepOneCompleteRequestCopyWithImpl<$Res>
           ? _value.tripId
           : tripId // ignore: cast_nullable_to_non_nullable
               as int,
-      questionAnswer: null == questionAnswer
-          ? _value._questionAnswer
-          : questionAnswer // ignore: cast_nullable_to_non_nullable
-              as Map<String, bool>,
-      tripDangerMeasureControls: null == tripDangerMeasureControls
-          ? _value._tripDangerMeasureControls
-          : tripDangerMeasureControls // ignore: cast_nullable_to_non_nullable
-              as Map<String, List<int>>,
+      answers: null == answers
+          ? _value._answers
+          : answers // ignore: cast_nullable_to_non_nullable
+              as List<Answer>,
+      dangers: null == dangers
+          ? _value._dangers
+          : dangers // ignore: cast_nullable_to_non_nullable
+              as List<DangerModel>,
       createdDate: null == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -158,11 +157,11 @@ class _$_StepOneCompleteRequest implements _StepOneCompleteRequest {
   const _$_StepOneCompleteRequest(
       {required this.userId,
       required this.tripId,
-      required final Map<String, bool> questionAnswer,
-      required final Map<String, List<int>> tripDangerMeasureControls,
+      required final List<Answer> answers,
+      required final List<DangerModel> dangers,
       required this.createdDate})
-      : _questionAnswer = questionAnswer,
-        _tripDangerMeasureControls = tripDangerMeasureControls;
+      : _answers = answers,
+        _dangers = dangers;
 
   factory _$_StepOneCompleteRequest.fromJson(Map<String, dynamic> json) =>
       _$$_StepOneCompleteRequestFromJson(json);
@@ -171,18 +170,18 @@ class _$_StepOneCompleteRequest implements _StepOneCompleteRequest {
   final String userId;
   @override
   final int tripId;
-  final Map<String, bool> _questionAnswer;
+  final List<Answer> _answers;
   @override
-  Map<String, bool> get questionAnswer {
+  List<Answer> get answers {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_questionAnswer);
+    return EqualUnmodifiableListView(_answers);
   }
 
-  final Map<String, List<int>> _tripDangerMeasureControls;
+  final List<DangerModel> _dangers;
   @override
-  Map<String, List<int>> get tripDangerMeasureControls {
+  List<DangerModel> get dangers {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_tripDangerMeasureControls);
+    return EqualUnmodifiableListView(_dangers);
   }
 
   @override
@@ -190,7 +189,7 @@ class _$_StepOneCompleteRequest implements _StepOneCompleteRequest {
 
   @override
   String toString() {
-    return 'StepOneCompleteRequest(userId: $userId, tripId: $tripId, questionAnswer: $questionAnswer, tripDangerMeasureControls: $tripDangerMeasureControls, createdDate: $createdDate)';
+    return 'StepOneCompleteRequest(userId: $userId, tripId: $tripId, answers: $answers, dangers: $dangers, createdDate: $createdDate)';
   }
 
   @override
@@ -200,10 +199,8 @@ class _$_StepOneCompleteRequest implements _StepOneCompleteRequest {
             other is _$_StepOneCompleteRequest &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.tripId, tripId) || other.tripId == tripId) &&
-            const DeepCollectionEquality()
-                .equals(other._questionAnswer, _questionAnswer) &&
-            const DeepCollectionEquality().equals(
-                other._tripDangerMeasureControls, _tripDangerMeasureControls) &&
+            const DeepCollectionEquality().equals(other._answers, _answers) &&
+            const DeepCollectionEquality().equals(other._dangers, _dangers) &&
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate));
   }
@@ -214,8 +211,8 @@ class _$_StepOneCompleteRequest implements _StepOneCompleteRequest {
       runtimeType,
       userId,
       tripId,
-      const DeepCollectionEquality().hash(_questionAnswer),
-      const DeepCollectionEquality().hash(_tripDangerMeasureControls),
+      const DeepCollectionEquality().hash(_answers),
+      const DeepCollectionEquality().hash(_dangers),
       createdDate);
 
   @JsonKey(ignore: true)
@@ -237,8 +234,8 @@ abstract class _StepOneCompleteRequest implements StepOneCompleteRequest {
   const factory _StepOneCompleteRequest(
       {required final String userId,
       required final int tripId,
-      required final Map<String, bool> questionAnswer,
-      required final Map<String, List<int>> tripDangerMeasureControls,
+      required final List<Answer> answers,
+      required final List<DangerModel> dangers,
       required final DateTime createdDate}) = _$_StepOneCompleteRequest;
 
   factory _StepOneCompleteRequest.fromJson(Map<String, dynamic> json) =
@@ -249,9 +246,9 @@ abstract class _StepOneCompleteRequest implements StepOneCompleteRequest {
   @override
   int get tripId;
   @override
-  Map<String, bool> get questionAnswer;
+  List<Answer> get answers;
   @override
-  Map<String, List<int>> get tripDangerMeasureControls;
+  List<DangerModel> get dangers;
   @override
   DateTime get createdDate;
   @override

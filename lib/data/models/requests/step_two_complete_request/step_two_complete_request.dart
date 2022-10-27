@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../answer/answer.dart';
+
 part 'step_two_complete_request.freezed.dart';
 part 'step_two_complete_request.g.dart';
 
@@ -9,7 +11,7 @@ class StepTwoCompleteRequest with _$StepTwoCompleteRequest {
   const factory StepTwoCompleteRequest({
    required String userId,
    required int tripId,
-   required Map<String, bool> questionAnswer,
+   required List<Answer> answers,
    required DateTime createdDate,
   }) = _StepTwoCompleteRequest;
 

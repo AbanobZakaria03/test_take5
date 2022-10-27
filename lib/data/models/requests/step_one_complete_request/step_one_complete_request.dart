@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_take5/data/models/answer/answer.dart';
 
-import '../../../../presentation/widgets/danger.dart';
+import '../../responses/trip_start_response/trip_start_response.dart';
 
 part 'step_one_complete_request.freezed.dart';
 part 'step_one_complete_request.g.dart';
@@ -12,8 +12,8 @@ class StepOneCompleteRequest with _$StepOneCompleteRequest {
   const factory StepOneCompleteRequest({
    required String userId,
    required int tripId,
-   required List<Answer> questionAnswer,
-   required List<Danger> tripDangerMeasureControls,
+   required List<Answer> answers,
+   required List<DangerModel> dangers,
    required DateTime createdDate,
   }) = _StepOneCompleteRequest;
 

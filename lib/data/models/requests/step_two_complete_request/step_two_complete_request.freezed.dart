@@ -23,7 +23,7 @@ StepTwoCompleteRequest _$StepTwoCompleteRequestFromJson(
 mixin _$StepTwoCompleteRequest {
   String get userId => throw _privateConstructorUsedError;
   int get tripId => throw _privateConstructorUsedError;
-  Map<String, bool> get questionAnswer => throw _privateConstructorUsedError;
+  List<Answer> get answers => throw _privateConstructorUsedError;
   DateTime get createdDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,10 +39,7 @@ abstract class $StepTwoCompleteRequestCopyWith<$Res> {
       _$StepTwoCompleteRequestCopyWithImpl<$Res, StepTwoCompleteRequest>;
   @useResult
   $Res call(
-      {String userId,
-      int tripId,
-      Map<String, bool> questionAnswer,
-      DateTime createdDate});
+      {String userId, int tripId, List<Answer> answers, DateTime createdDate});
 }
 
 /// @nodoc
@@ -61,7 +58,7 @@ class _$StepTwoCompleteRequestCopyWithImpl<$Res,
   $Res call({
     Object? userId = null,
     Object? tripId = null,
-    Object? questionAnswer = null,
+    Object? answers = null,
     Object? createdDate = null,
   }) {
     return _then(_value.copyWith(
@@ -73,10 +70,10 @@ class _$StepTwoCompleteRequestCopyWithImpl<$Res,
           ? _value.tripId
           : tripId // ignore: cast_nullable_to_non_nullable
               as int,
-      questionAnswer: null == questionAnswer
-          ? _value.questionAnswer
-          : questionAnswer // ignore: cast_nullable_to_non_nullable
-              as Map<String, bool>,
+      answers: null == answers
+          ? _value.answers
+          : answers // ignore: cast_nullable_to_non_nullable
+              as List<Answer>,
       createdDate: null == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -94,10 +91,7 @@ abstract class _$$_StepTwoCompleteRequestCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String userId,
-      int tripId,
-      Map<String, bool> questionAnswer,
-      DateTime createdDate});
+      {String userId, int tripId, List<Answer> answers, DateTime createdDate});
 }
 
 /// @nodoc
@@ -114,7 +108,7 @@ class __$$_StepTwoCompleteRequestCopyWithImpl<$Res>
   $Res call({
     Object? userId = null,
     Object? tripId = null,
-    Object? questionAnswer = null,
+    Object? answers = null,
     Object? createdDate = null,
   }) {
     return _then(_$_StepTwoCompleteRequest(
@@ -126,10 +120,10 @@ class __$$_StepTwoCompleteRequestCopyWithImpl<$Res>
           ? _value.tripId
           : tripId // ignore: cast_nullable_to_non_nullable
               as int,
-      questionAnswer: null == questionAnswer
-          ? _value._questionAnswer
-          : questionAnswer // ignore: cast_nullable_to_non_nullable
-              as Map<String, bool>,
+      answers: null == answers
+          ? _value._answers
+          : answers // ignore: cast_nullable_to_non_nullable
+              as List<Answer>,
       createdDate: null == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -144,9 +138,9 @@ class _$_StepTwoCompleteRequest implements _StepTwoCompleteRequest {
   const _$_StepTwoCompleteRequest(
       {required this.userId,
       required this.tripId,
-      required final Map<String, bool> questionAnswer,
+      required final List<Answer> answers,
       required this.createdDate})
-      : _questionAnswer = questionAnswer;
+      : _answers = answers;
 
   factory _$_StepTwoCompleteRequest.fromJson(Map<String, dynamic> json) =>
       _$$_StepTwoCompleteRequestFromJson(json);
@@ -155,11 +149,11 @@ class _$_StepTwoCompleteRequest implements _StepTwoCompleteRequest {
   final String userId;
   @override
   final int tripId;
-  final Map<String, bool> _questionAnswer;
+  final List<Answer> _answers;
   @override
-  Map<String, bool> get questionAnswer {
+  List<Answer> get answers {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_questionAnswer);
+    return EqualUnmodifiableListView(_answers);
   }
 
   @override
@@ -167,7 +161,7 @@ class _$_StepTwoCompleteRequest implements _StepTwoCompleteRequest {
 
   @override
   String toString() {
-    return 'StepTwoCompleteRequest(userId: $userId, tripId: $tripId, questionAnswer: $questionAnswer, createdDate: $createdDate)';
+    return 'StepTwoCompleteRequest(userId: $userId, tripId: $tripId, answers: $answers, createdDate: $createdDate)';
   }
 
   @override
@@ -177,8 +171,7 @@ class _$_StepTwoCompleteRequest implements _StepTwoCompleteRequest {
             other is _$_StepTwoCompleteRequest &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.tripId, tripId) || other.tripId == tripId) &&
-            const DeepCollectionEquality()
-                .equals(other._questionAnswer, _questionAnswer) &&
+            const DeepCollectionEquality().equals(other._answers, _answers) &&
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate));
   }
@@ -186,7 +179,7 @@ class _$_StepTwoCompleteRequest implements _StepTwoCompleteRequest {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, userId, tripId,
-      const DeepCollectionEquality().hash(_questionAnswer), createdDate);
+      const DeepCollectionEquality().hash(_answers), createdDate);
 
   @JsonKey(ignore: true)
   @override
@@ -207,7 +200,7 @@ abstract class _StepTwoCompleteRequest implements StepTwoCompleteRequest {
   const factory _StepTwoCompleteRequest(
       {required final String userId,
       required final int tripId,
-      required final Map<String, bool> questionAnswer,
+      required final List<Answer> answers,
       required final DateTime createdDate}) = _$_StepTwoCompleteRequest;
 
   factory _StepTwoCompleteRequest.fromJson(Map<String, dynamic> json) =
@@ -218,7 +211,7 @@ abstract class _StepTwoCompleteRequest implements StepTwoCompleteRequest {
   @override
   int get tripId;
   @override
-  Map<String, bool> get questionAnswer;
+  List<Answer> get answers;
   @override
   DateTime get createdDate;
   @override

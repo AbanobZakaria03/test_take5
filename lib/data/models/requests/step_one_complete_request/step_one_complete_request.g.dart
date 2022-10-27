@@ -10,11 +10,12 @@ _$_StepOneCompleteRequest _$$_StepOneCompleteRequestFromJson(Map json) =>
     _$_StepOneCompleteRequest(
       userId: json['userId'] as String,
       tripId: json['tripId'] as int,
-      questionAnswer: Map<String, bool>.from(json['questionAnswer'] as Map),
-      tripDangerMeasureControls: (json['tripDangerMeasureControls'] as Map).map(
-        (k, e) => MapEntry(
-            k as String, (e as List<dynamic>).map((e) => e as int).toList()),
-      ),
+      answers: (json['answers'] as List<dynamic>)
+          .map((e) => Answer.fromJson(Map<String, dynamic>.from(e as Map)))
+          .toList(),
+      dangers: (json['dangers'] as List<dynamic>)
+          .map((e) => DangerModel.fromJson(Map<String, dynamic>.from(e as Map)))
+          .toList(),
       createdDate: DateTime.parse(json['createdDate'] as String),
     );
 
@@ -23,7 +24,7 @@ Map<String, dynamic> _$$_StepOneCompleteRequestToJson(
     <String, dynamic>{
       'userId': instance.userId,
       'tripId': instance.tripId,
-      'questionAnswer': instance.questionAnswer,
-      'tripDangerMeasureControls': instance.tripDangerMeasureControls,
+      'answers': instance.answers.map((e) => e.toJson()).toList(),
+      'dangers': instance.dangers.map((e) => e.toJson()).toList(),
       'createdDate': instance.createdDate.toIso8601String(),
     };

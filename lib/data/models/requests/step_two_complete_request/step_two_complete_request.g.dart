@@ -10,7 +10,9 @@ _$_StepTwoCompleteRequest _$$_StepTwoCompleteRequestFromJson(Map json) =>
     _$_StepTwoCompleteRequest(
       userId: json['userId'] as String,
       tripId: json['tripId'] as int,
-      questionAnswer: Map<String, bool>.from(json['questionAnswer'] as Map),
+      answers: (json['answers'] as List<dynamic>)
+          .map((e) => Answer.fromJson(Map<String, dynamic>.from(e as Map)))
+          .toList(),
       createdDate: DateTime.parse(json['createdDate'] as String),
     );
 
@@ -19,6 +21,6 @@ Map<String, dynamic> _$$_StepTwoCompleteRequestToJson(
     <String, dynamic>{
       'userId': instance.userId,
       'tripId': instance.tripId,
-      'questionAnswer': instance.questionAnswer,
+      'answers': instance.answers.map((e) => e.toJson()).toList(),
       'createdDate': instance.createdDate.toIso8601String(),
     };
