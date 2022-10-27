@@ -45,31 +45,17 @@ class _StepOneScreenState extends State<StepOneScreen> {
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  const Text('Which Operating System are your currently using?'),
-                  Radio(
-                      value: true,
-                      groupValue: questionAnswer['1'],
-                      onChanged: (value) {
-                        setState(() {
-                          if (value != null)
-                            answerQuestion(questionId: '1', value: value);
-                        });
-                      }),
-                  Radio(
-                      value: false,
-                      groupValue: questionAnswer['1'],
-                      onChanged: (value) {
-                        setState(() {
-                          if (value != null)
-                            answerQuestion(questionId: '1', value: value);
-                        });
-                      }),
-                  SizedBox(height: 8),
-                  //
-                  // TrueFalseQuestion(questionText: 'تنظيف المكان عند الحاجه'),
-                  // TrueFalseQuestion(questionText: 'تنظيف المكان عند الحاجه'),
-                  // // ...cubit.dangerWidgets
-
+                  state is StepOneGetQuestionsLoading
+                      ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                      :ListView.builder(
+                         shrinkWrap: true,
+                          itemBuilder: (context, index) => TrueFalseQuestion(
+                            questionAnswer: cubit.step1Answers[index],
+                          ),
+                          itemCount: cubit.step1Answers.length,
+                        ),
                  Danger(),
 
           // ListView.builder(
@@ -109,7 +95,8 @@ class _StepOneScreenState extends State<StepOneScreen> {
                           cells: <DataCell>[
                             DataCell(Text('${e.id}')),
                             DataCell(Text('${e.text}')),
-                            DataCell(Column(children:
+                            DataCell(
+                                Column(children:
                               e.controls.map((e) => Text(e.text)).toList()
                             ,)
                             ),
@@ -131,6 +118,7 @@ class _StepOneScreenState extends State<StepOneScreen> {
                 ),
               ),
                   // ...List.generate(c, (index) => const Danger(),)
+                  ElevatedButton(onPressed: cubit.submitAnswers, child: Text('print')),
                 ],
               ),
             ),

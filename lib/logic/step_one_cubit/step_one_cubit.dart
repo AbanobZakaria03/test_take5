@@ -18,15 +18,14 @@ class StepOneCubit extends Cubit<StepOneState> {
   StepOneCubit({required this.take5Repository}) : super(StepOneInitial());
 
 
-  List<DangerControlsWithCategoryModel> dangerControlsWithCategory = List.castFrom(dangerControlsWithCategoryModels);
-
+  List<DangerControlsWithCategoryModel> dangerControlsWithCategory = [];
   DangerControlsWithCategoryModel? selectedCategory;
   DangerModel? selectedDanger;
   List<SurveyStaticDataModel>? selectedControls;
 
   //view table
   List<DangerModel> dangers=[];
-
+  List<Answer> step1Answers = [];
 
   void onChangeSelectedCategory(DangerControlsWithCategoryModel? newCategory) {
     selectedDanger=null;
@@ -49,7 +48,6 @@ class StepOneCubit extends Cubit<StepOneState> {
     if(selectedControls==null){
       return;
     }
-
     DangerModel dangerModel = DangerModel(id: selectedDanger!.id, text: selectedDanger!.text, controls: selectedControls!);
     dangers.add(dangerModel);
 
@@ -66,8 +64,6 @@ class StepOneCubit extends Cubit<StepOneState> {
 
   void printSelectedDangers(){
   }
-  List<Answer> step1Answers = [];
-
   getStepOneQuestions() {
     print('test');
     emit(StepOneGetQuestionsLoading());
@@ -76,13 +72,17 @@ class StepOneCubit extends Cubit<StepOneState> {
       emit(StepOneGetQuestionsFail(failure.message));
     }, (takeFiveSurvey) {
       if (takeFiveSurvey != null) {
+        dangerControlsWithCategory=takeFiveSurvey.dangerControlsWithCategoryModels;
         for (var question in takeFiveSurvey.stepOneQuestions) {
           step1Answers.add(Answer(id: question.id, question: question.text));
         }
       }
-      print(takeFiveSurvey?.stepOneQuestions.length);
-      print(step1Answers.length);
       emit(StepOneGetQuestionsSuccess());
     });
+  }
+  submitAnswers()
+  {
+    print(step1Answers);
+    print(dangers);
   }
 }

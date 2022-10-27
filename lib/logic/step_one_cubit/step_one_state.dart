@@ -16,3 +16,10 @@ class StepOneGetQuestionsFail extends StepOneState{
   final String message;
   StepOneGetQuestionsFail(this.message);
 }
+class StepOneGetDangerControlsWithCategoryModelsLoading extends StepOneState {}
+class StepOneGetDangerControlsWithCategoryModelsSuccess extends StepOneState {}
+
+class StepOneGetDangerControlsWithCategoryModelsFail extends StepOneState{
+  final String message;
+  StepOneGetDangerControlsWithCategoryModelsFail(this.message);
+}

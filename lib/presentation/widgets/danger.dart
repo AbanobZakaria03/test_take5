@@ -68,6 +68,7 @@ class _DangerState extends State<Danger> {
                   cubit.selectedControls!=null?
                   () {
                 cubit.addDanger();
+
               }:null, child:  Icon(Icons.add),
             ),
           ],
