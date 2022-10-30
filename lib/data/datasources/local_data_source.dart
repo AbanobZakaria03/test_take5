@@ -103,11 +103,10 @@ class LocalDataSourceImpl implements LocalDataSource {
     box.put('trip', trip.toJson());
     print(box.get('trip'));
   }
-
   @override
   Trip? getCachedTrip() {
     final box = Boxes.getTakeFiveBox();
-    if (box.get('stepOneCompleteRequest') == null) {
+    if (box.get('trip') == null) {
       return null;
     } else {
       Map<String, dynamic> json =

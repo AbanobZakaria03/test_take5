@@ -13,14 +13,17 @@ class TrueFalseQuestion extends StatelessWidget {
     return FormBuilderRadioGroup (
       name: 'question',
       decoration:
-      InputDecoration(labelText: questionAnswer.question),
+      InputDecoration(labelText: questionAnswer.question,
+        labelStyle:const TextStyle(
+          color: Colors.black
+        )
+      ),
       onChanged: (value){
         questionAnswer.answer=value;
       },
-      validator: FormBuilderValidators.required(),
+      validator:FormBuilderValidators.required(errorText: "لم يتم الاجابه على هذا السؤال "),
       // orientation: OptionsOrientation.vertical,
-      options:
-      [true,false]
+      options: [true,false]
           .map((ans) => FormBuilderFieldOption(
         value: ans,
         child: Text(ans?'نعم':'لا'),

@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../data/datasources/local_data_source.dart';
 import '../../../data/models/requests/destination_arrived_request/destination_arrived_request.dart';
@@ -49,13 +51,17 @@ class _StepOneScreenState extends State<StepOneScreen> {
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = StepOneCubit.get(context);
+          final _formKey = GlobalKey<FormBuilderState>();
           return Scaffold(
             appBar: AppBar(),
             body: SingleChildScrollView(
-              child: Column(
+              child:FormBuilder(
+            key: _formKey,
+            autovalidateMode: AutovalidateMode.always,
+            child: Column(
                 children: [
                   state is StepOneGetQuestionsLoading
-                      ? Center(
+                      ? const Center(
                     child: CircularProgressIndicator(),
                   )
                       :ListView.builder(
@@ -124,10 +130,16 @@ class _StepOneScreenState extends State<StepOneScreen> {
                 ),
               ),
                   // ...List.generate(c, (index) => const Danger(),)
-                  ElevatedButton(onPressed: cubit.submitAnswers, child: Text('print')),
+                  ElevatedButton(
+                      onPressed: (){
+                        if(_formKey.currentState?.validate()==true)
+                          {
+                            cubit.submitAnswers();
+                          }
+                      }, child: Text('print')),
                 ],
               ),
-            ),
+            ),)
           );
         },
       ),

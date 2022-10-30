@@ -5,6 +5,8 @@ import 'package:test_take5/core/constants/app_constants.dart';
 
 import '../../../core/firebase/push_notification_service.dart';
 import '../../../data/datasources/boxes.dart';
+import '../../../data/datasources/local_data_source.dart';
+import '../../../data/models/trip/trip.dart';
 import '../../screens/home/home.dart';
 import '../../screens/login/login_screen.dart';
 
@@ -42,8 +44,9 @@ String getLastRoute() {
   } else if(
   lastRoute != HomeScreen.routeName
   ){
-    // var takeFiveBox = Boxes.getTakeFiveBox();
-    // AppConstants.trip = takeFiveBox.get('trip');
+     var takeFiveBox = Boxes.getTakeFiveBox();
+     AppConstants.trip=Trip.fromJson(Map<String, dynamic>.from(takeFiveBox.get('trip')));
+     print(AppConstants.trip);
   }
   print(lastRoute);
   return lastRoute;

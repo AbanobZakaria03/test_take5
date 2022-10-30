@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 
+import '../../core/constants/app_constants.dart';
 import '../../core/errors/exceptions.dart';
+import '../datasources/boxes.dart';
 import '../datasources/local_data_source.dart';
 import '../models/requests/destination_arrived_request/destination_arrived_request.dart';
 import '../models/requests/step_one_complete_request/step_one_complete_request.dart';
@@ -101,6 +103,7 @@ class Take5RepositoryImpl extends Take5Repository {
     try {
       TripPendingResponse result =
           await remoteDataSource.getPendingTrip(userId:userId);
+      localDataSource.cacheTrip(result.data);//missed
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
@@ -111,7 +114,6 @@ class Take5RepositoryImpl extends Take5Repository {
   Future<Either<Failure, Unit>> startStepTwo(
       {required StepTwoStartRequest stepTwoStartRequest}) async {
     try {
-      // ask abanoub about unit
       return Right(unit);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
@@ -121,8 +123,9 @@ class Take5RepositoryImpl extends Take5Repository {
   @override
   Future<Either<Failure, TripStartResponse>> startTrip(
       {required TripStartRequest tripStartRequest}) async {
-    try {
-      TripStartResponse result =
+    try
+    {
+      TripStartResponse result=
           await remoteDataSource.startTrip(tripStartRequest: tripStartRequest);
       localDataSource.cacheTakeFiveSurvey(result.data);
       return Right(result);
