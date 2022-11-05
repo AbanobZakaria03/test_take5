@@ -1,6 +1,9 @@
 abstract class TripStates {}
 
 class InitialTripState extends TripStates {}
+class StartTripLoadingTripState extends TripStates {}
+class StartTripSuccessTripState extends TripStates {}
+class StartTripFailTripState extends TripStates {}
 
 //
 //

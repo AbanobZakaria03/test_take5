@@ -2,9 +2,11 @@ import 'package:bloc/bloc.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:test_take5/data/models/requests/trip_start_request/trip_start_request.dart';
 
 import '../../core/constants/app_constants.dart';
+import '../../core/services/loaction_service.dart';
 import '../../data/repositories/take5_repository.dart';
 import 'trip_states.dart';
 
@@ -13,5 +15,29 @@ class TripCubit extends Cubit<TripStates> {
   final Take5Repository take5Repository;
 
   TripCubit({required this.take5Repository}) : super(InitialTripState());
+  Position? p;
+  double? d;
+  var sub;
+  start() async {
+    emit(StartTripLoadingTripState());
+    var loc = LocationService();
+    p = await loc.getCurrentLocation();
+    Position pp =
+    Position.fromMap({'latitude': 27.1790981, 'longitude': 31.0220375});
+    d = loc.getDistance(p!, pp);
+    emit(StartTripSuccessTripState());
+    sub=loc.subscribeEvent((p) {
+      this.p = p;
+      Position pp =
+      Position.fromMap({'latitude': 27.1790981, 'longitude': 31.0220375});
+      d = loc.getDistance(p, pp);
+      emit(StartTripSuccessTripState());
+    }, 100);
+  }
 
+  @override
+  Future<void> close() async{
+    await sub?.cancel();
+    return super.close();
+  }
 }

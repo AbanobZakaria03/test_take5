@@ -13,9 +13,9 @@ import 'core/constants/app_assets.dart';
 import 'core/constants/app_colors.dart';
 import 'data/models/user/user.dart';
 import 'injection_container.dart' as di;
-import 'background_service.dart';
+import 'core/services/background_service.dart';
 import 'bloc/internet_bloc.dart';
-import 'loaction_service.dart';
+import 'core/services/loaction_service.dart';
 import 'presentation/screens/home/home.dart';
 import 'presentation/screens/login/login_screen.dart';
 import 'presentation/screens/step_one/step_one.dart';
@@ -88,9 +88,9 @@ class MyApp extends StatelessWidget {
             ),
             onGenerateRoute: AppRoutes.onGenerateRoutes,
             //initialRoute: getLastRoute(),
-             //initialRoute: LoginScreen.routeName,
-             initialRoute: StepOneScreen.routeName,
-            // initialRoute: HomeScreen.routeName,
+             initialRoute: LoginScreen.routeName,
+             //initialRoute: StepOneScreen.routeName,
+             //initialRoute: HomeScreen.routeName,
            //initialRoute: StepTwoScreen.routeName,
             // initialRoute: TripScreen.routeName,
           ),
@@ -175,7 +175,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text('${d?.toInt()} m'??''),
                 ElevatedButton(
                     onPressed: () async {
-
                       final service = FlutterBackgroundService();
                       var isRunning = await service.isRunning();
                       if (isRunning) {
