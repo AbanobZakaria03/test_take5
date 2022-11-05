@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -51,3 +52,16 @@ String getLastRoute() {
   print(lastRoute);
   return lastRoute;
 }
+
+// Future<bool> checkDeviceConnectivity() async {
+//   var connectivityResult = await Connectivity().checkConnectivity();
+//   if (connectivityResult == ConnectivityResult.mobile ||
+//       connectivityResult == ConnectivityResult.wifi) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+// checkNetworkAvailability(){
+//
+// }

@@ -8,6 +8,7 @@ import '../../data/models/answer/answer.dart';
 import '../../data/models/responses/trip_start_response/trip_start_response.dart';
 import '../../data/repositories/take5_repository.dart';
 import '../../presentation/widgets/danger.dart';
+import '../internet/internet_bloc.dart';
 
 part 'step_one_state.dart';
 

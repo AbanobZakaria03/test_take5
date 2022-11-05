@@ -18,26 +18,25 @@ class LoginCubit extends Cubit<LoginStates> {
 
   bool isTextVisible = false;
 
-
 // hide or visible password text
   void changeTextVisibility(bool value) {
     isTextVisible = value;
     emit(ChangePasswordVisibilityState());
   }
 
-  String errorMessage='';
-  Future<void>loginUser()async{
+  String errorMessage = '';
+
+  Future<void> loginUser() async {
     emit(LoginUserLoading());
     final result = await take5Repository.loginUser(
-      mobileNo: phoneNumberController.text,
-      password: passwordController.text
-    );
+        mobileNo: phoneNumberController.text,
+        password: passwordController.text);
     result.fold((failure) {
-      errorMessage=failure.message;
+      errorMessage = failure.message;
       print(errorMessage);
       emit(LoginUserFail(failure.message));
     }, (userResponse) {
-      AppConstants.user=userResponse.data;
+      AppConstants.user = userResponse.data;
       emit(LoginUserSuccess());
     });
   }

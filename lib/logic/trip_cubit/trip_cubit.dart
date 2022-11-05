@@ -6,7 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:test_take5/data/models/requests/trip_start_request/trip_start_request.dart';
 
 import '../../core/constants/app_constants.dart';
-import '../../core/services/loaction_service.dart';
+import '../../core/utils/services/loaction_service.dart';
 import '../../data/repositories/take5_repository.dart';
 import 'trip_states.dart';
 

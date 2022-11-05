@@ -8,6 +8,8 @@ abstract class InternetState {
 class InternetInitial extends InternetState {
 }
 
+class InternetCheckLoading extends InternetState {}
+
 class ConnectedState extends InternetState {
   final String message;
 
@@ -18,4 +20,11 @@ class NotConnectedState extends InternetState {
   final String message;
 
   NotConnectedState({required this.message});
+}
+
+class IsConnectedState extends InternetState {
+  final bool isDeviceConnected;
+  final bool isNetworkAvailable;
+
+  IsConnectedState(this.isDeviceConnected, this.isNetworkAvailable);
 }

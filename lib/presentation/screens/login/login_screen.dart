@@ -32,8 +32,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController passwordController = TextEditingController();
 
-
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

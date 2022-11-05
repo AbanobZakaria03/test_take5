@@ -13,6 +13,8 @@ import '../models/responses/trip_start_response/trip_start_response.dart';
 import '../models/responses/user_login_response/user_login_response.dart';
 import '../../core/errors/failures.dart';
 import '../datasources/remote_data_source.dart';
+import '../../core/network/device_connectivity.dart';
+import '../../core/network/network_availability.dart';
 
 abstract class Take5Repository {
   Future<Either<Failure, UserLoginResponse>> loginUser(
@@ -37,24 +39,33 @@ abstract class Take5Repository {
       {required TripStartRequest tripStartRequest});
 
   Either<Failure, TakeFiveSurvey?> getCachedTakeFiveSurvey();
-
 }
 
 class Take5RepositoryImpl extends Take5Repository {
-   final LocalDataSource localDataSource;
-
-  // final NetworkInfo networkInfo;
+  final LocalDataSource localDataSource;
   final RemoteDataSource remoteDataSource;
+  final DeviceConnectivity deviceConnectivity;
+  final NetworkAvailability networkAvailability;
 
   Take5RepositoryImpl({
     required this.remoteDataSource,
-     required this.localDataSource,
+    required this.localDataSource,
+    required this.deviceConnectivity,
+    required this.networkAvailability,
   });
 
   @override
   Future<Either<Failure, UserLoginResponse>> loginUser(
       {required String mobileNo, required String password}) async {
+    if (!await deviceConnectivity.isConnected) {
+      return const Left(DeviceConnectivityFailure());
+    }
+    if (!await networkAvailability.isAvailable) {
+      return const Left(NetworkAvailabilityFailure());
+    }
     try {
+      print(await networkAvailability.isAvailable);
+      print(await deviceConnectivity.isConnected);
       UserLoginResponse result = await remoteDataSource.loginUser(
           mobileNo: mobileNo, password: password);
       localDataSource.cacheUser(result.data);
@@ -102,8 +113,8 @@ class Take5RepositoryImpl extends Take5Repository {
       {required String userId}) async {
     try {
       TripPendingResponse result =
-          await remoteDataSource.getPendingTrip(userId:userId);
-      localDataSource.cacheTrip(result.data);//missed
+          await remoteDataSource.getPendingTrip(userId: userId);
+      localDataSource.cacheTrip(result.data); //missed
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
@@ -123,9 +134,8 @@ class Take5RepositoryImpl extends Take5Repository {
   @override
   Future<Either<Failure, TripStartResponse>> startTrip(
       {required TripStartRequest tripStartRequest}) async {
-    try
-    {
-      TripStartResponse result=
+    try {
+      TripStartResponse result =
           await remoteDataSource.startTrip(tripStartRequest: tripStartRequest);
       localDataSource.cacheTakeFiveSurvey(result.data);
       return Right(result);
@@ -139,9 +149,9 @@ class Take5RepositoryImpl extends Take5Repository {
     try {
       TakeFiveSurvey? result = localDataSource.getCachedTakeFiveSurvey();
       return Right(result);
-  } on ServerException catch (e) {
-   return Left(ServerFailure(e.message));
-   }
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    }
   }
 //Future<Either<Failure, TripStrartResponse>>startTrip({required TripStartRequest tripStartRequest})
 // @override

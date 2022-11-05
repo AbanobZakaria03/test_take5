@@ -39,6 +39,7 @@ dependencies:
   geolocator: ^9.0.2
   flutter_bloc: ^8.1.1
   internet_connection_checker: ^1.0.0+1
+  connectivity_plus: ^3.0.2
   flutter_background_service: ^2.4.3
   flutter_local_notifications: ^12.0.2
   hive: ^2.2.3
@@ -58,6 +59,8 @@ dependencies:
   multi_select_flutter: ^4.1.2
   flutter_form_builder: ^7.7.0
   form_builder_validators: ^8.3.0
+  signalr_core: ^1.1.1
+
 
 
 

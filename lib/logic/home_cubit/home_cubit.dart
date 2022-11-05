@@ -45,4 +45,6 @@ class HomeCubit extends Cubit<HomeStates> {
       emit(HomeStartTripSuccess());
     });
   }
+
+
 }

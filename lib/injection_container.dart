@@ -1,14 +1,17 @@
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_take5/core/network/device_connectivity.dart';
 
+import 'core/utils/services/signal_r_helper.dart';
 import 'data/repositories/take5_repository.dart';
 import 'logic/home_cubit/home_cubit.dart';
 import 'logic/login_cubit/login_cubit.dart';
-import 'core/network/network_info.dart';
+import 'core/network/network_availability.dart';
 import 'core/utils/services/attachments_service.dart';
 import 'core/utils/services/local_storage_service.dart';
 import 'core/utils/services/dio_client.dart';
@@ -32,6 +35,8 @@ Future<void> init() async {
   sl.registerLazySingleton<Take5Repository>(() => Take5RepositoryImpl(
         remoteDataSource: sl(),
         localDataSource: sl(),
+        deviceConnectivity: sl(),
+        networkAvailability: sl(),
       ));
 
 //! Datasources
@@ -47,13 +52,16 @@ Future<void> init() async {
 //! Core
   sl.registerLazySingleton(() => DioClient(sl()));
   sl.registerLazySingleton(() => LocalStorageService(sl()));
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+  sl.registerLazySingleton<NetworkAvailability>(() => NetworkAvailabilityImpl(sl()));
+  sl.registerLazySingleton<DeviceConnectivity>(() => DeviceConnectivityImpl(sl()));
   sl.registerLazySingleton(() => AttachmentsService(sl()));
+  sl.registerFactory(() => SignalRHelper('http://localhost:5000/chatHub'));
 
 //! External
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => Dio());
   sl.registerLazySingleton(() => InternetConnectionChecker());
+  sl.registerLazySingleton(() => Connectivity());
   sl.registerLazySingleton(() => ImagePicker());
 }
