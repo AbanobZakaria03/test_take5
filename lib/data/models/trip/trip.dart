@@ -17,6 +17,8 @@ class Trip with _$Trip {
    required String tripStatus,
    required String take5Status,
    required bool isTripConverted,
+   required double Longitude,
+    required double Latituide,
    required DateTime tripDate,
   }) = _Trip;
 

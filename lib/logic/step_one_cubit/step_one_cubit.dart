@@ -22,7 +22,7 @@ class StepOneCubit extends Cubit<StepOneState> {
   List<DangerControlsWithCategoryModel> dangerControlsWithCategory = [];
   DangerControlsWithCategoryModel? selectedCategory;
   DangerModel? selectedDanger;
-  List<SurveyStaticDataModel>? selectedControls;
+  List<MeasureControlApi>? selectedControls;
 
   //view table
   List<DangerModel> dangers=[];
@@ -39,7 +39,7 @@ class StepOneCubit extends Cubit<StepOneState> {
     selectedDanger=newDanger;
     emit(StepOneAddDanger());
   }
-  void onSelectControls(List<SurveyStaticDataModel> controls) {
+  void onSelectControls(List<MeasureControlApi> controls) {
     selectedControls=controls;
     print(controls);
     emit(StepOneAddDanger());
@@ -49,7 +49,7 @@ class StepOneCubit extends Cubit<StepOneState> {
     if(selectedControls==null){
       return;
     }
-    DangerModel dangerModel = DangerModel(id: selectedDanger!.id, text: selectedDanger!.text, controls: selectedControls!);
+    DangerModel dangerModel = DangerModel(dangerId: selectedDanger!.dangerId, dangerName: selectedDanger!.dangerName, controls: selectedControls!);
     dangers.add(dangerModel);
 
     selectedCategory=null;
@@ -75,7 +75,7 @@ class StepOneCubit extends Cubit<StepOneState> {
       if (takeFiveSurvey != null) {
         dangerControlsWithCategory=takeFiveSurvey.dangerControlsWithCategoryModels;
         for (var question in takeFiveSurvey.stepOneQuestions) {
-          step1Answers.add(Answer(id: question.id, question: question.text));
+          step1Answers.add(Answer(id: question.id, question: question.question));
         }
       }
       emit(StepOneGetQuestionsSuccess());

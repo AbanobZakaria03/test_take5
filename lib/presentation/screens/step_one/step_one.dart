@@ -2,11 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-
-import '../../../data/datasources/local_data_source.dart';
-import '../../../data/models/requests/destination_arrived_request/destination_arrived_request.dart';
-import '../../../data/models/responses/trip_start_response/trip_start_response.dart';
-import '../../../data/models/trip/trip.dart';
 import '../../../injection_container.dart';
 import '../../../logic/internet/internet_bloc.dart';
 import '../../../logic/step_one_cubit/step_one_cubit.dart';
@@ -109,11 +104,11 @@ class _StepOneScreenState extends State<StepOneScreen> {
                                 ...cubit.dangers
                                     .map((e) => DataRow(
                                           cells: <DataCell>[
-                                            DataCell(Text('${e.id}')),
-                                            DataCell(Text('${e.text}')),
+                                            DataCell(Text('${e.dangerId}')),
+                                            DataCell(Text('${e.dangerName}')),
                                             DataCell(Column(
                                               children: e.controls
-                                                  .map((e) => Text(e.text))
+                                                  .map((e) => Text(e.MeasureControlName))
                                                   .toList(),
                                             )),
                                             DataCell(IconButton(

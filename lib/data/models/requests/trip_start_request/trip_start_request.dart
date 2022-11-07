@@ -12,7 +12,6 @@ class TripStartRequest with _$TripStartRequest{
     required int tripId,
     required int jobsiteId,
     required DateTime startingDate,
-
   }) = _TripStartRequest;
 
   factory TripStartRequest.fromJson(Map<String, dynamic> json) => _$TripStartRequestFromJson(json);

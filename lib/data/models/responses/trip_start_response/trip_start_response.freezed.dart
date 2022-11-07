@@ -188,10 +188,8 @@ TakeFiveSurvey _$TakeFiveSurveyFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TakeFiveSurvey {
-  List<SurveyStaticDataModel> get stepOneQuestions =>
-      throw _privateConstructorUsedError;
-  List<SurveyStaticDataModel> get stepTwoQuestions =>
-      throw _privateConstructorUsedError;
+  List<Answer> get stepOneQuestions => throw _privateConstructorUsedError;
+  List<Answer> get stepTwoQuestions => throw _privateConstructorUsedError;
   List<DangerControlsWithCategoryModel> get dangerControlsWithCategoryModels =>
       throw _privateConstructorUsedError;
 
@@ -208,8 +206,8 @@ abstract class $TakeFiveSurveyCopyWith<$Res> {
       _$TakeFiveSurveyCopyWithImpl<$Res, TakeFiveSurvey>;
   @useResult
   $Res call(
-      {List<SurveyStaticDataModel> stepOneQuestions,
-      List<SurveyStaticDataModel> stepTwoQuestions,
+      {List<Answer> stepOneQuestions,
+      List<Answer> stepTwoQuestions,
       List<DangerControlsWithCategoryModel> dangerControlsWithCategoryModels});
 }
 
@@ -234,11 +232,11 @@ class _$TakeFiveSurveyCopyWithImpl<$Res, $Val extends TakeFiveSurvey>
       stepOneQuestions: null == stepOneQuestions
           ? _value.stepOneQuestions
           : stepOneQuestions // ignore: cast_nullable_to_non_nullable
-              as List<SurveyStaticDataModel>,
+              as List<Answer>,
       stepTwoQuestions: null == stepTwoQuestions
           ? _value.stepTwoQuestions
           : stepTwoQuestions // ignore: cast_nullable_to_non_nullable
-              as List<SurveyStaticDataModel>,
+              as List<Answer>,
       dangerControlsWithCategoryModels: null == dangerControlsWithCategoryModels
           ? _value.dangerControlsWithCategoryModels
           : dangerControlsWithCategoryModels // ignore: cast_nullable_to_non_nullable
@@ -256,8 +254,8 @@ abstract class _$$_TakeFiveSurveyCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<SurveyStaticDataModel> stepOneQuestions,
-      List<SurveyStaticDataModel> stepTwoQuestions,
+      {List<Answer> stepOneQuestions,
+      List<Answer> stepTwoQuestions,
       List<DangerControlsWithCategoryModel> dangerControlsWithCategoryModels});
 }
 
@@ -280,11 +278,11 @@ class __$$_TakeFiveSurveyCopyWithImpl<$Res>
       stepOneQuestions: null == stepOneQuestions
           ? _value._stepOneQuestions
           : stepOneQuestions // ignore: cast_nullable_to_non_nullable
-              as List<SurveyStaticDataModel>,
+              as List<Answer>,
       stepTwoQuestions: null == stepTwoQuestions
           ? _value._stepTwoQuestions
           : stepTwoQuestions // ignore: cast_nullable_to_non_nullable
-              as List<SurveyStaticDataModel>,
+              as List<Answer>,
       dangerControlsWithCategoryModels: null == dangerControlsWithCategoryModels
           ? _value._dangerControlsWithCategoryModels
           : dangerControlsWithCategoryModels // ignore: cast_nullable_to_non_nullable
@@ -297,8 +295,8 @@ class __$$_TakeFiveSurveyCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TakeFiveSurvey implements _TakeFiveSurvey {
   const _$_TakeFiveSurvey(
-      {required final List<SurveyStaticDataModel> stepOneQuestions,
-      required final List<SurveyStaticDataModel> stepTwoQuestions,
+      {required final List<Answer> stepOneQuestions,
+      required final List<Answer> stepTwoQuestions,
       required final List<DangerControlsWithCategoryModel>
           dangerControlsWithCategoryModels})
       : _stepOneQuestions = stepOneQuestions,
@@ -308,16 +306,16 @@ class _$_TakeFiveSurvey implements _TakeFiveSurvey {
   factory _$_TakeFiveSurvey.fromJson(Map<String, dynamic> json) =>
       _$$_TakeFiveSurveyFromJson(json);
 
-  final List<SurveyStaticDataModel> _stepOneQuestions;
+  final List<Answer> _stepOneQuestions;
   @override
-  List<SurveyStaticDataModel> get stepOneQuestions {
+  List<Answer> get stepOneQuestions {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_stepOneQuestions);
   }
 
-  final List<SurveyStaticDataModel> _stepTwoQuestions;
+  final List<Answer> _stepTwoQuestions;
   @override
-  List<SurveyStaticDataModel> get stepTwoQuestions {
+  List<Answer> get stepTwoQuestions {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_stepTwoQuestions);
   }
@@ -372,8 +370,8 @@ class _$_TakeFiveSurvey implements _TakeFiveSurvey {
 
 abstract class _TakeFiveSurvey implements TakeFiveSurvey {
   const factory _TakeFiveSurvey(
-      {required final List<SurveyStaticDataModel> stepOneQuestions,
-      required final List<SurveyStaticDataModel> stepTwoQuestions,
+      {required final List<Answer> stepOneQuestions,
+      required final List<Answer> stepTwoQuestions,
       required final List<DangerControlsWithCategoryModel>
           dangerControlsWithCategoryModels}) = _$_TakeFiveSurvey;
 
@@ -381,9 +379,9 @@ abstract class _TakeFiveSurvey implements TakeFiveSurvey {
       _$_TakeFiveSurvey.fromJson;
 
   @override
-  List<SurveyStaticDataModel> get stepOneQuestions;
+  List<Answer> get stepOneQuestions;
   @override
-  List<SurveyStaticDataModel> get stepTwoQuestions;
+  List<Answer> get stepTwoQuestions;
   @override
   List<DangerControlsWithCategoryModel> get dangerControlsWithCategoryModels;
   @override
@@ -601,10 +599,9 @@ DangerModel _$DangerModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DangerModel {
-  int get id => throw _privateConstructorUsedError;
-  String get text => throw _privateConstructorUsedError;
-  List<SurveyStaticDataModel> get controls =>
-      throw _privateConstructorUsedError;
+  int get dangerId => throw _privateConstructorUsedError;
+  String get dangerName => throw _privateConstructorUsedError;
+  List<MeasureControlApi> get controls => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -618,7 +615,8 @@ abstract class $DangerModelCopyWith<$Res> {
           DangerModel value, $Res Function(DangerModel) then) =
       _$DangerModelCopyWithImpl<$Res, DangerModel>;
   @useResult
-  $Res call({int id, String text, List<SurveyStaticDataModel> controls});
+  $Res call(
+      {int dangerId, String dangerName, List<MeasureControlApi> controls});
 }
 
 /// @nodoc
@@ -634,23 +632,23 @@ class _$DangerModelCopyWithImpl<$Res, $Val extends DangerModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? text = null,
+    Object? dangerId = null,
+    Object? dangerName = null,
     Object? controls = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dangerId: null == dangerId
+          ? _value.dangerId
+          : dangerId // ignore: cast_nullable_to_non_nullable
               as int,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      dangerName: null == dangerName
+          ? _value.dangerName
+          : dangerName // ignore: cast_nullable_to_non_nullable
               as String,
       controls: null == controls
           ? _value.controls
           : controls // ignore: cast_nullable_to_non_nullable
-              as List<SurveyStaticDataModel>,
+              as List<MeasureControlApi>,
     ) as $Val);
   }
 }
@@ -663,7 +661,8 @@ abstract class _$$_DangerModelCopyWith<$Res>
       __$$_DangerModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String text, List<SurveyStaticDataModel> controls});
+  $Res call(
+      {int dangerId, String dangerName, List<MeasureControlApi> controls});
 }
 
 /// @nodoc
@@ -677,23 +676,23 @@ class __$$_DangerModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? text = null,
+    Object? dangerId = null,
+    Object? dangerName = null,
     Object? controls = null,
   }) {
     return _then(_$_DangerModel(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dangerId: null == dangerId
+          ? _value.dangerId
+          : dangerId // ignore: cast_nullable_to_non_nullable
               as int,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      dangerName: null == dangerName
+          ? _value.dangerName
+          : dangerName // ignore: cast_nullable_to_non_nullable
               as String,
       controls: null == controls
           ? _value._controls
           : controls // ignore: cast_nullable_to_non_nullable
-              as List<SurveyStaticDataModel>,
+              as List<MeasureControlApi>,
     ));
   }
 }
@@ -702,28 +701,28 @@ class __$$_DangerModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_DangerModel implements _DangerModel {
   const _$_DangerModel(
-      {required this.id,
-      required this.text,
-      required final List<SurveyStaticDataModel> controls})
+      {required this.dangerId,
+      required this.dangerName,
+      required final List<MeasureControlApi> controls})
       : _controls = controls;
 
   factory _$_DangerModel.fromJson(Map<String, dynamic> json) =>
       _$$_DangerModelFromJson(json);
 
   @override
-  final int id;
+  final int dangerId;
   @override
-  final String text;
-  final List<SurveyStaticDataModel> _controls;
+  final String dangerName;
+  final List<MeasureControlApi> _controls;
   @override
-  List<SurveyStaticDataModel> get controls {
+  List<MeasureControlApi> get controls {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_controls);
   }
 
   @override
   String toString() {
-    return 'DangerModel(id: $id, text: $text, controls: $controls)';
+    return 'DangerModel(dangerId: $dangerId, dangerName: $dangerName, controls: $controls)';
   }
 
   @override
@@ -731,15 +730,17 @@ class _$_DangerModel implements _DangerModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DangerModel &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.text, text) || other.text == text) &&
+            (identical(other.dangerId, dangerId) ||
+                other.dangerId == dangerId) &&
+            (identical(other.dangerName, dangerName) ||
+                other.dangerName == dangerName) &&
             const DeepCollectionEquality().equals(other._controls, _controls));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, text, const DeepCollectionEquality().hash(_controls));
+  int get hashCode => Object.hash(runtimeType, dangerId, dangerName,
+      const DeepCollectionEquality().hash(_controls));
 
   @JsonKey(ignore: true)
   @override
@@ -757,55 +758,53 @@ class _$_DangerModel implements _DangerModel {
 
 abstract class _DangerModel implements DangerModel {
   const factory _DangerModel(
-      {required final int id,
-      required final String text,
-      required final List<SurveyStaticDataModel> controls}) = _$_DangerModel;
+      {required final int dangerId,
+      required final String dangerName,
+      required final List<MeasureControlApi> controls}) = _$_DangerModel;
 
   factory _DangerModel.fromJson(Map<String, dynamic> json) =
       _$_DangerModel.fromJson;
 
   @override
-  int get id;
+  int get dangerId;
   @override
-  String get text;
+  String get dangerName;
   @override
-  List<SurveyStaticDataModel> get controls;
+  List<MeasureControlApi> get controls;
   @override
   @JsonKey(ignore: true)
   _$$_DangerModelCopyWith<_$_DangerModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-SurveyStaticDataModel _$SurveyStaticDataModelFromJson(
-    Map<String, dynamic> json) {
-  return _SurveyStaticDataModel.fromJson(json);
+MeasureControlApi _$MeasureControlApiFromJson(Map<String, dynamic> json) {
+  return _MeasureControlApi.fromJson(json);
 }
 
 /// @nodoc
-mixin _$SurveyStaticDataModel {
-  int get id => throw _privateConstructorUsedError;
-  String get text => throw _privateConstructorUsedError;
+mixin _$MeasureControlApi {
+  int get MeasureControlId => throw _privateConstructorUsedError;
+  String get MeasureControlName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SurveyStaticDataModelCopyWith<SurveyStaticDataModel> get copyWith =>
+  $MeasureControlApiCopyWith<MeasureControlApi> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SurveyStaticDataModelCopyWith<$Res> {
-  factory $SurveyStaticDataModelCopyWith(SurveyStaticDataModel value,
-          $Res Function(SurveyStaticDataModel) then) =
-      _$SurveyStaticDataModelCopyWithImpl<$Res, SurveyStaticDataModel>;
+abstract class $MeasureControlApiCopyWith<$Res> {
+  factory $MeasureControlApiCopyWith(
+          MeasureControlApi value, $Res Function(MeasureControlApi) then) =
+      _$MeasureControlApiCopyWithImpl<$Res, MeasureControlApi>;
   @useResult
-  $Res call({int id, String text});
+  $Res call({int MeasureControlId, String MeasureControlName});
 }
 
 /// @nodoc
-class _$SurveyStaticDataModelCopyWithImpl<$Res,
-        $Val extends SurveyStaticDataModel>
-    implements $SurveyStaticDataModelCopyWith<$Res> {
-  _$SurveyStaticDataModelCopyWithImpl(this._value, this._then);
+class _$MeasureControlApiCopyWithImpl<$Res, $Val extends MeasureControlApi>
+    implements $MeasureControlApiCopyWith<$Res> {
+  _$MeasureControlApiCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -815,55 +814,55 @@ class _$SurveyStaticDataModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? text = null,
+    Object? MeasureControlId = null,
+    Object? MeasureControlName = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      MeasureControlId: null == MeasureControlId
+          ? _value.MeasureControlId
+          : MeasureControlId // ignore: cast_nullable_to_non_nullable
               as int,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      MeasureControlName: null == MeasureControlName
+          ? _value.MeasureControlName
+          : MeasureControlName // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_SurveyStaticDataModelCopyWith<$Res>
-    implements $SurveyStaticDataModelCopyWith<$Res> {
-  factory _$$_SurveyStaticDataModelCopyWith(_$_SurveyStaticDataModel value,
-          $Res Function(_$_SurveyStaticDataModel) then) =
-      __$$_SurveyStaticDataModelCopyWithImpl<$Res>;
+abstract class _$$_MeasureControlApiCopyWith<$Res>
+    implements $MeasureControlApiCopyWith<$Res> {
+  factory _$$_MeasureControlApiCopyWith(_$_MeasureControlApi value,
+          $Res Function(_$_MeasureControlApi) then) =
+      __$$_MeasureControlApiCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String text});
+  $Res call({int MeasureControlId, String MeasureControlName});
 }
 
 /// @nodoc
-class __$$_SurveyStaticDataModelCopyWithImpl<$Res>
-    extends _$SurveyStaticDataModelCopyWithImpl<$Res, _$_SurveyStaticDataModel>
-    implements _$$_SurveyStaticDataModelCopyWith<$Res> {
-  __$$_SurveyStaticDataModelCopyWithImpl(_$_SurveyStaticDataModel _value,
-      $Res Function(_$_SurveyStaticDataModel) _then)
+class __$$_MeasureControlApiCopyWithImpl<$Res>
+    extends _$MeasureControlApiCopyWithImpl<$Res, _$_MeasureControlApi>
+    implements _$$_MeasureControlApiCopyWith<$Res> {
+  __$$_MeasureControlApiCopyWithImpl(
+      _$_MeasureControlApi _value, $Res Function(_$_MeasureControlApi) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? text = null,
+    Object? MeasureControlId = null,
+    Object? MeasureControlName = null,
   }) {
-    return _then(_$_SurveyStaticDataModel(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+    return _then(_$_MeasureControlApi(
+      MeasureControlId: null == MeasureControlId
+          ? _value.MeasureControlId
+          : MeasureControlId // ignore: cast_nullable_to_non_nullable
               as int,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      MeasureControlName: null == MeasureControlName
+          ? _value.MeasureControlName
+          : MeasureControlName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -871,64 +870,68 @@ class __$$_SurveyStaticDataModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SurveyStaticDataModel implements _SurveyStaticDataModel {
-  const _$_SurveyStaticDataModel({required this.id, required this.text});
+class _$_MeasureControlApi implements _MeasureControlApi {
+  const _$_MeasureControlApi(
+      {required this.MeasureControlId, required this.MeasureControlName});
 
-  factory _$_SurveyStaticDataModel.fromJson(Map<String, dynamic> json) =>
-      _$$_SurveyStaticDataModelFromJson(json);
+  factory _$_MeasureControlApi.fromJson(Map<String, dynamic> json) =>
+      _$$_MeasureControlApiFromJson(json);
 
   @override
-  final int id;
+  final int MeasureControlId;
   @override
-  final String text;
+  final String MeasureControlName;
 
   @override
   String toString() {
-    return 'SurveyStaticDataModel(id: $id, text: $text)';
+    return 'MeasureControlApi(MeasureControlId: $MeasureControlId, MeasureControlName: $MeasureControlName)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SurveyStaticDataModel &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.text, text) || other.text == text));
+            other is _$_MeasureControlApi &&
+            (identical(other.MeasureControlId, MeasureControlId) ||
+                other.MeasureControlId == MeasureControlId) &&
+            (identical(other.MeasureControlName, MeasureControlName) ||
+                other.MeasureControlName == MeasureControlName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, text);
+  int get hashCode =>
+      Object.hash(runtimeType, MeasureControlId, MeasureControlName);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SurveyStaticDataModelCopyWith<_$_SurveyStaticDataModel> get copyWith =>
-      __$$_SurveyStaticDataModelCopyWithImpl<_$_SurveyStaticDataModel>(
+  _$$_MeasureControlApiCopyWith<_$_MeasureControlApi> get copyWith =>
+      __$$_MeasureControlApiCopyWithImpl<_$_MeasureControlApi>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SurveyStaticDataModelToJson(
+    return _$$_MeasureControlApiToJson(
       this,
     );
   }
 }
 
-abstract class _SurveyStaticDataModel implements SurveyStaticDataModel {
-  const factory _SurveyStaticDataModel(
-      {required final int id,
-      required final String text}) = _$_SurveyStaticDataModel;
+abstract class _MeasureControlApi implements MeasureControlApi {
+  const factory _MeasureControlApi(
+      {required final int MeasureControlId,
+      required final String MeasureControlName}) = _$_MeasureControlApi;
 
-  factory _SurveyStaticDataModel.fromJson(Map<String, dynamic> json) =
-      _$_SurveyStaticDataModel.fromJson;
+  factory _MeasureControlApi.fromJson(Map<String, dynamic> json) =
+      _$_MeasureControlApi.fromJson;
 
   @override
-  int get id;
+  int get MeasureControlId;
   @override
-  String get text;
+  String get MeasureControlName;
   @override
   @JsonKey(ignore: true)
-  _$$_SurveyStaticDataModelCopyWith<_$_SurveyStaticDataModel> get copyWith =>
+  _$$_MeasureControlApiCopyWith<_$_MeasureControlApi> get copyWith =>
       throw _privateConstructorUsedError;
 }

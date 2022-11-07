@@ -22,12 +22,10 @@ Map<String, dynamic> _$$_TripStartResponseToJson(
 
 _$_TakeFiveSurvey _$$_TakeFiveSurveyFromJson(Map json) => _$_TakeFiveSurvey(
       stepOneQuestions: (json['stepOneQuestions'] as List<dynamic>)
-          .map((e) => SurveyStaticDataModel.fromJson(
-              Map<String, dynamic>.from(e as Map)))
+          .map((e) => Answer.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
       stepTwoQuestions: (json['stepTwoQuestions'] as List<dynamic>)
-          .map((e) => SurveyStaticDataModel.fromJson(
-              Map<String, dynamic>.from(e as Map)))
+          .map((e) => Answer.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
       dangerControlsWithCategoryModels:
           (json['dangerControlsWithCategoryModels'] as List<dynamic>)
@@ -67,30 +65,30 @@ Map<String, dynamic> _$$_DangerControlsWithCategoryModelToJson(
     };
 
 _$_DangerModel _$$_DangerModelFromJson(Map json) => _$_DangerModel(
-      id: json['id'] as int,
-      text: json['text'] as String,
+      dangerId: json['dangerId'] as int,
+      dangerName: json['dangerName'] as String,
       controls: (json['controls'] as List<dynamic>)
-          .map((e) => SurveyStaticDataModel.fromJson(
-              Map<String, dynamic>.from(e as Map)))
+          .map((e) =>
+              MeasureControlApi.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
     );
 
 Map<String, dynamic> _$$_DangerModelToJson(_$_DangerModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'text': instance.text,
+      'dangerId': instance.dangerId,
+      'dangerName': instance.dangerName,
       'controls': instance.controls.map((e) => e.toJson()).toList(),
     };
 
-_$_SurveyStaticDataModel _$$_SurveyStaticDataModelFromJson(Map json) =>
-    _$_SurveyStaticDataModel(
-      id: json['id'] as int,
-      text: json['text'] as String,
+_$_MeasureControlApi _$$_MeasureControlApiFromJson(Map json) =>
+    _$_MeasureControlApi(
+      MeasureControlId: json['MeasureControlId'] as int,
+      MeasureControlName: json['MeasureControlName'] as String,
     );
 
-Map<String, dynamic> _$$_SurveyStaticDataModelToJson(
-        _$_SurveyStaticDataModel instance) =>
+Map<String, dynamic> _$$_MeasureControlApiToJson(
+        _$_MeasureControlApi instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'text': instance.text,
+      'MeasureControlId': instance.MeasureControlId,
+      'MeasureControlName': instance.MeasureControlName,
     };

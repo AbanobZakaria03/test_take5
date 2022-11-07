@@ -11,6 +11,7 @@ class StepTwoCompleteRequest with _$StepTwoCompleteRequest {
   const factory StepTwoCompleteRequest({
    required String userId,
    required int tripId,
+    required int jobSiteId,
    required List<Answer> answers,
    required DateTime createdDate,
   }) = _StepTwoCompleteRequest;

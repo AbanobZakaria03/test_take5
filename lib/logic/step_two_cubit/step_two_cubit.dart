@@ -29,7 +29,7 @@ class StepTwoCubit extends Cubit<StepTwoState> {
     }, (takeFiveSurvey) {
       if (takeFiveSurvey != null) {
         for (var question in takeFiveSurvey.stepTwoQuestions) {
-          step2Answers.add(Answer(id: question.id, question: question.text));
+          step2Answers.add(Answer(id: question.id, question: question.question));
         }
       }
       print(takeFiveSurvey?.stepTwoQuestions.length);

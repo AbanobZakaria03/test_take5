@@ -21,33 +21,11 @@ class TripScreen extends StatefulWidget {
 }
 
 class _TripScreenState extends State<TripScreen> {
-  Position? p;
-  double? d;
 
-  start() async {
-    var loc = LocationService();
-    p = await loc.getCurrentLocation();
-    print(p);
-
-    Position pp =
-        Position.fromMap({'latitude': 27.1790981, 'longitude': 31.0220375});
-    d = loc.getDistance(p!, pp);
-    print(d);
-    setState(() {});
-    loc.subscribeEvent((p) {
-      this.p = p;
-      Position pp =
-          Position.fromMap({'latitude': 27.1790981, 'longitude': 31.0220375});
-      d = loc.getDistance(p, pp);
-      print(d);
-      setState(() {});
-    }, 100);
-  }
 
   @override
   void initState() {
     saveLastRoute(TripScreen.routeName);
-    start();
     super.initState();
   }
 
@@ -55,7 +33,7 @@ class _TripScreenState extends State<TripScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<TripCubit>(),
+      create: (context) => sl<TripCubit>()..start(),
       child: BlocConsumer<TripCubit, TripStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -65,9 +43,9 @@ class _TripScreenState extends State<TripScreen> {
             body: Center(
               child: Column(
                 children: [
-                  Text(p.toString() ?? ''),
-                  Text('${d?.toInt()} m' ?? ''),
-                  if (d != null && d! < 1000)
+                  Text(cubit.p.toString() ?? ''),
+                  Text('${cubit.d?.toInt()} m' ?? ''),
+                  if (cubit.d != null && cubit.d! < 1000)
                     ElevatedButton(
                       onPressed: () {
                         Navigator.pushNamedAndRemoveUntil(

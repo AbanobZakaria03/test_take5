@@ -23,6 +23,7 @@ StepTwoCompleteRequest _$StepTwoCompleteRequestFromJson(
 mixin _$StepTwoCompleteRequest {
   String get userId => throw _privateConstructorUsedError;
   int get tripId => throw _privateConstructorUsedError;
+  int get jobSiteId => throw _privateConstructorUsedError;
   List<Answer> get answers => throw _privateConstructorUsedError;
   DateTime get createdDate => throw _privateConstructorUsedError;
 
@@ -39,7 +40,11 @@ abstract class $StepTwoCompleteRequestCopyWith<$Res> {
       _$StepTwoCompleteRequestCopyWithImpl<$Res, StepTwoCompleteRequest>;
   @useResult
   $Res call(
-      {String userId, int tripId, List<Answer> answers, DateTime createdDate});
+      {String userId,
+      int tripId,
+      int jobSiteId,
+      List<Answer> answers,
+      DateTime createdDate});
 }
 
 /// @nodoc
@@ -58,6 +63,7 @@ class _$StepTwoCompleteRequestCopyWithImpl<$Res,
   $Res call({
     Object? userId = null,
     Object? tripId = null,
+    Object? jobSiteId = null,
     Object? answers = null,
     Object? createdDate = null,
   }) {
@@ -69,6 +75,10 @@ class _$StepTwoCompleteRequestCopyWithImpl<$Res,
       tripId: null == tripId
           ? _value.tripId
           : tripId // ignore: cast_nullable_to_non_nullable
+              as int,
+      jobSiteId: null == jobSiteId
+          ? _value.jobSiteId
+          : jobSiteId // ignore: cast_nullable_to_non_nullable
               as int,
       answers: null == answers
           ? _value.answers
@@ -91,7 +101,11 @@ abstract class _$$_StepTwoCompleteRequestCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String userId, int tripId, List<Answer> answers, DateTime createdDate});
+      {String userId,
+      int tripId,
+      int jobSiteId,
+      List<Answer> answers,
+      DateTime createdDate});
 }
 
 /// @nodoc
@@ -108,6 +122,7 @@ class __$$_StepTwoCompleteRequestCopyWithImpl<$Res>
   $Res call({
     Object? userId = null,
     Object? tripId = null,
+    Object? jobSiteId = null,
     Object? answers = null,
     Object? createdDate = null,
   }) {
@@ -119,6 +134,10 @@ class __$$_StepTwoCompleteRequestCopyWithImpl<$Res>
       tripId: null == tripId
           ? _value.tripId
           : tripId // ignore: cast_nullable_to_non_nullable
+              as int,
+      jobSiteId: null == jobSiteId
+          ? _value.jobSiteId
+          : jobSiteId // ignore: cast_nullable_to_non_nullable
               as int,
       answers: null == answers
           ? _value._answers
@@ -138,6 +157,7 @@ class _$_StepTwoCompleteRequest implements _StepTwoCompleteRequest {
   const _$_StepTwoCompleteRequest(
       {required this.userId,
       required this.tripId,
+      required this.jobSiteId,
       required final List<Answer> answers,
       required this.createdDate})
       : _answers = answers;
@@ -149,6 +169,8 @@ class _$_StepTwoCompleteRequest implements _StepTwoCompleteRequest {
   final String userId;
   @override
   final int tripId;
+  @override
+  final int jobSiteId;
   final List<Answer> _answers;
   @override
   List<Answer> get answers {
@@ -161,7 +183,7 @@ class _$_StepTwoCompleteRequest implements _StepTwoCompleteRequest {
 
   @override
   String toString() {
-    return 'StepTwoCompleteRequest(userId: $userId, tripId: $tripId, answers: $answers, createdDate: $createdDate)';
+    return 'StepTwoCompleteRequest(userId: $userId, tripId: $tripId, jobSiteId: $jobSiteId, answers: $answers, createdDate: $createdDate)';
   }
 
   @override
@@ -171,6 +193,8 @@ class _$_StepTwoCompleteRequest implements _StepTwoCompleteRequest {
             other is _$_StepTwoCompleteRequest &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.tripId, tripId) || other.tripId == tripId) &&
+            (identical(other.jobSiteId, jobSiteId) ||
+                other.jobSiteId == jobSiteId) &&
             const DeepCollectionEquality().equals(other._answers, _answers) &&
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate));
@@ -178,7 +202,7 @@ class _$_StepTwoCompleteRequest implements _StepTwoCompleteRequest {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, tripId,
+  int get hashCode => Object.hash(runtimeType, userId, tripId, jobSiteId,
       const DeepCollectionEquality().hash(_answers), createdDate);
 
   @JsonKey(ignore: true)
@@ -200,6 +224,7 @@ abstract class _StepTwoCompleteRequest implements StepTwoCompleteRequest {
   const factory _StepTwoCompleteRequest(
       {required final String userId,
       required final int tripId,
+      required final int jobSiteId,
       required final List<Answer> answers,
       required final DateTime createdDate}) = _$_StepTwoCompleteRequest;
 
@@ -210,6 +235,8 @@ abstract class _StepTwoCompleteRequest implements StepTwoCompleteRequest {
   String get userId;
   @override
   int get tripId;
+  @override
+  int get jobSiteId;
   @override
   List<Answer> get answers;
   @override

@@ -17,6 +17,8 @@ _$_Trip _$$_TripFromJson(Map json) => _$_Trip(
       tripStatus: json['tripStatus'] as String,
       take5Status: json['take5Status'] as String,
       isTripConverted: json['isTripConverted'] as bool,
+      Longitude: (json['Longitude'] as num).toDouble(),
+      Latituide: (json['Latituide'] as num).toDouble(),
       tripDate: DateTime.parse(json['tripDate'] as String),
     );
 
@@ -31,5 +33,7 @@ Map<String, dynamic> _$$_TripToJson(_$_Trip instance) => <String, dynamic>{
       'tripStatus': instance.tripStatus,
       'take5Status': instance.take5Status,
       'isTripConverted': instance.isTripConverted,
+      'Longitude': instance.Longitude,
+      'Latituide': instance.Latituide,
       'tripDate': instance.tripDate.toIso8601String(),
     };

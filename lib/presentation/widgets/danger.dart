@@ -44,7 +44,7 @@ class _DangerState extends State<Danger> {
                       value: cubit.selectedDanger,
                       items: cubit.selectedCategory?.dangerModels
                           .map((d) => DropdownMenuItem<DangerModel>(
-                                child: Text(d.text),
+                                child: Text(d.dangerName),
                                 value: d,
                               ))
                           .toList(),
@@ -52,12 +52,12 @@ class _DangerState extends State<Danger> {
                 ),
               ],
             ),
-            MultiSelectDialogField<SurveyStaticDataModel>(
+            MultiSelectDialogField<MeasureControlApi>(
               key: GlobalKey(),
               items: cubit.selectedDanger == null
                   ? []
                   : cubit.selectedDanger!.controls
-                      .map((e) => MultiSelectItem(e, e.text))
+                      .map((e) => MultiSelectItem(e, e.MeasureControlName))
                       .toList(),
               listType: MultiSelectListType.CHIP,
               initialValue: cubit.selectedControls,

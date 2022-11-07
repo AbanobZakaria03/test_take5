@@ -4,25 +4,30 @@
     "stepOneQuestions": [
       {
         "id": 1,
-        "text": "هل السيارة علي أرض مستوية"
+        "question": "هل السيارة علي أرض مستوية",
+        "answer": null
       },
       {
         "id": 2,
-        "text": "هل جميع المخارج والمداخل أمنة؟"
+        "question": "هل جميع المخارج والمداخل أمنة؟",
+        "answer": null
       },
       {
         "id": 3,
-        "text": "هل جميع المخارج أمنة؟"
+        "question": "هل جميع المخارج أمنة؟",
+        "answer": null
       }
     ],
     "stepTwoQuestions": [
       {
         "id": 4,
-        "text": "هل قابلت صاحب الموقع؟"
+        "question":"هل قابلت صاحب الموقع؟",
+        "answer": null
       },
       {
         "id": 5,
-        "text": "هل جمعت الادوات اللازمة؟"
+        "question":"هل جمعت الادوات اللازمة؟",
+        "answer": null
       }
     ],
     "dangerControlsWithCategoryModels": [
@@ -31,13 +36,13 @@
         "dangerCategoryId": 1,
         "dangerModels": [
           {
-            "id": 1,
-            "text": "الاماكن الضيقة",
+            "dangerId": 1,
+            "dangerName": "الاماكن الضيقة",
             "controls": []
           },
           {
-            "id": 2,
-            "text": "استخدام الالات الحادة",
+            "dangerId": 2,
+            "dangerName": "استخدام الالات الحادة",
             "controls": []
           }
         ]
@@ -47,16 +52,16 @@
         "dangerCategoryId": 2,
         "dangerModels": [
           {
-            "id": 3,
-            "text": "تناول احمال لاسفل",
+            "dangerId": 3,
+            "dangerName": "تناول احمال لاسفل",
             "controls": [
               {
-                "id": 5,
-                "text": "استخدام مهمات الوقاية الشخصية"
+                "MeasureControlId": 5,
+                "MeasureControlName": "استخدام مهمات الوقاية الشخصية"
               },
               {
-                "id": 6,
-                "text": "التعامل مع الخطر "
+                "MeasureControlId": 6,
+                "MeasureControlName": "التعامل مع الخطر "
               }
             ]
           }
@@ -67,35 +72,35 @@
         "dangerCategoryId": 3,
         "dangerModels": [
           {
-            "id": 4,
-            "text": "حمل معلق",
+            "dangerId": 4,
+            "dangerName": "حمل معلق",
             "controls": [
               {
-                "id": 7,
-                "text": "التواصل مع المشرف"
+                "MeasureControlId": 7,
+                "MeasureControlName": "التواصل مع المشرف"
               },
               {
-                "id": 8,
-                "text": "عزل الخطر"
+                "MeasureControlId": 8,
+                "MeasureControlName": "عزل الخطر"
               },
               {
-                "id": 9,
-                "text": "التواصل مع صاحب الموقع"
+                "MeasureControlId": 9,
+                "MeasureControlName": "التواصل مع صاحب الموقع"
               },
               {
-                "id": 10,
-                "text": "تجنب الخطر"
+                "MeasureControlId": 10,
+                "MeasureControlName": "تجنب الخطر"
               }
             ]
           },
           {
-            "id": 5,
-            "text": "حائط منخفض",
+            "dangerId": 5,
+            "dangerName": "حائط منخفض",
             "controls": []
           },
           {
-            "id": 6,
-            "text": "اصطدام",
+            "dangerId": 6,
+            "dangerName": "اصطدام",
             "controls": []
           }
         ]

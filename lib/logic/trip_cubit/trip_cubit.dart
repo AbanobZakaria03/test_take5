@@ -25,13 +25,13 @@ class TripCubit extends Cubit<TripStates> {
     Position pp =
     Position.fromMap({'latitude': 27.1790981, 'longitude': 31.0220375});
     d = loc.getDistance(p!, pp);
-    emit(StartTripSuccessTripState());
+    emit(StartTripSuccessTripState());//setstate
     sub=loc.subscribeEvent((p) {
       this.p = p;
       Position pp =
       Position.fromMap({'latitude': 27.1790981, 'longitude': 31.0220375});
       d = loc.getDistance(p, pp);
-      emit(StartTripSuccessTripState());
+      emit(StartTripSuccessTripState());//setstate
     }, 100);
   }
 

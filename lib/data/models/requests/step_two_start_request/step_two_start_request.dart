@@ -12,7 +12,6 @@ class StepTwoStartRequest with _$StepTwoStartRequest{
     required int tripId,
     required int jobsiteId,
     required DateTime startingDate,
-
   }) = _StepTwoStartRequest;
 
   factory StepTwoStartRequest.fromJson(Map<String, dynamic> json) => _$StepTwoStartRequestFromJson(json);

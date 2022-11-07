@@ -22,6 +22,7 @@ StepOneCompleteRequest _$StepOneCompleteRequestFromJson(
 /// @nodoc
 mixin _$StepOneCompleteRequest {
   String get userId => throw _privateConstructorUsedError;
+  int get jobSiteId => throw _privateConstructorUsedError;
   int get tripId => throw _privateConstructorUsedError;
   List<Answer> get answers => throw _privateConstructorUsedError;
   List<DangerModel> get dangers => throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $StepOneCompleteRequestCopyWith<$Res> {
   @useResult
   $Res call(
       {String userId,
+      int jobSiteId,
       int tripId,
       List<Answer> answers,
       List<DangerModel> dangers,
@@ -62,6 +64,7 @@ class _$StepOneCompleteRequestCopyWithImpl<$Res,
   @override
   $Res call({
     Object? userId = null,
+    Object? jobSiteId = null,
     Object? tripId = null,
     Object? answers = null,
     Object? dangers = null,
@@ -72,6 +75,10 @@ class _$StepOneCompleteRequestCopyWithImpl<$Res,
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      jobSiteId: null == jobSiteId
+          ? _value.jobSiteId
+          : jobSiteId // ignore: cast_nullable_to_non_nullable
+              as int,
       tripId: null == tripId
           ? _value.tripId
           : tripId // ignore: cast_nullable_to_non_nullable
@@ -102,6 +109,7 @@ abstract class _$$_StepOneCompleteRequestCopyWith<$Res>
   @useResult
   $Res call(
       {String userId,
+      int jobSiteId,
       int tripId,
       List<Answer> answers,
       List<DangerModel> dangers,
@@ -121,6 +129,7 @@ class __$$_StepOneCompleteRequestCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = null,
+    Object? jobSiteId = null,
     Object? tripId = null,
     Object? answers = null,
     Object? dangers = null,
@@ -131,6 +140,10 @@ class __$$_StepOneCompleteRequestCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      jobSiteId: null == jobSiteId
+          ? _value.jobSiteId
+          : jobSiteId // ignore: cast_nullable_to_non_nullable
+              as int,
       tripId: null == tripId
           ? _value.tripId
           : tripId // ignore: cast_nullable_to_non_nullable
@@ -156,6 +169,7 @@ class __$$_StepOneCompleteRequestCopyWithImpl<$Res>
 class _$_StepOneCompleteRequest implements _StepOneCompleteRequest {
   const _$_StepOneCompleteRequest(
       {required this.userId,
+      required this.jobSiteId,
       required this.tripId,
       required final List<Answer> answers,
       required final List<DangerModel> dangers,
@@ -168,6 +182,8 @@ class _$_StepOneCompleteRequest implements _StepOneCompleteRequest {
 
   @override
   final String userId;
+  @override
+  final int jobSiteId;
   @override
   final int tripId;
   final List<Answer> _answers;
@@ -189,7 +205,7 @@ class _$_StepOneCompleteRequest implements _StepOneCompleteRequest {
 
   @override
   String toString() {
-    return 'StepOneCompleteRequest(userId: $userId, tripId: $tripId, answers: $answers, dangers: $dangers, createdDate: $createdDate)';
+    return 'StepOneCompleteRequest(userId: $userId, jobSiteId: $jobSiteId, tripId: $tripId, answers: $answers, dangers: $dangers, createdDate: $createdDate)';
   }
 
   @override
@@ -198,6 +214,8 @@ class _$_StepOneCompleteRequest implements _StepOneCompleteRequest {
         (other.runtimeType == runtimeType &&
             other is _$_StepOneCompleteRequest &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.jobSiteId, jobSiteId) ||
+                other.jobSiteId == jobSiteId) &&
             (identical(other.tripId, tripId) || other.tripId == tripId) &&
             const DeepCollectionEquality().equals(other._answers, _answers) &&
             const DeepCollectionEquality().equals(other._dangers, _dangers) &&
@@ -210,6 +228,7 @@ class _$_StepOneCompleteRequest implements _StepOneCompleteRequest {
   int get hashCode => Object.hash(
       runtimeType,
       userId,
+      jobSiteId,
       tripId,
       const DeepCollectionEquality().hash(_answers),
       const DeepCollectionEquality().hash(_dangers),
@@ -233,6 +252,7 @@ class _$_StepOneCompleteRequest implements _StepOneCompleteRequest {
 abstract class _StepOneCompleteRequest implements StepOneCompleteRequest {
   const factory _StepOneCompleteRequest(
       {required final String userId,
+      required final int jobSiteId,
       required final int tripId,
       required final List<Answer> answers,
       required final List<DangerModel> dangers,
@@ -243,6 +263,8 @@ abstract class _StepOneCompleteRequest implements StepOneCompleteRequest {
 
   @override
   String get userId;
+  @override
+  int get jobSiteId;
   @override
   int get tripId;
   @override

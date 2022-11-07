@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:test_take5/data/models/answer/answer.dart';
 
 
 part 'trip_start_response.freezed.dart';
@@ -17,8 +18,8 @@ class TripStartResponse with _$TripStartResponse {
 @freezed
 class TakeFiveSurvey with _$TakeFiveSurvey {
   const factory TakeFiveSurvey({
-   required List<SurveyStaticDataModel> stepOneQuestions,
-   required List<SurveyStaticDataModel> stepTwoQuestions,
+   required List<Answer> stepOneQuestions,
+   required List<Answer> stepTwoQuestions,
    required List<DangerControlsWithCategoryModel> dangerControlsWithCategoryModels,
   }) = _TakeFiveSurvey;
 
@@ -39,20 +40,19 @@ class DangerControlsWithCategoryModel with _$DangerControlsWithCategoryModel {
 @freezed
 class DangerModel with _$DangerModel {
   const factory DangerModel({
-   required int id,
-   required String text,
-   required List<SurveyStaticDataModel> controls,
+   required int dangerId,
+   required String dangerName,
+   required List<MeasureControlApi> controls,
   }) = _DangerModel;
 
   factory DangerModel.fromJson(Map<String, dynamic> json) => _$DangerModelFromJson(json);
 }
-
 @freezed
-class SurveyStaticDataModel with _$SurveyStaticDataModel {
-  const factory SurveyStaticDataModel({
-    required int id,
-    required String text,
-  }) = _SurveyStaticDataModel;
+class MeasureControlApi with _$MeasureControlApi{
+  const factory MeasureControlApi({
+    required int MeasureControlId,
+    required String MeasureControlName,
+  }) = _MeasureControlApi;
 
-  factory SurveyStaticDataModel.fromJson(Map<String, dynamic> json) => _$SurveyStaticDataModelFromJson(json);
+  factory MeasureControlApi.fromJson(Map<String, dynamic> json) => _$MeasureControlApiFromJson(json);
 }

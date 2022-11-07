@@ -30,6 +30,8 @@ mixin _$Trip {
   String get tripStatus => throw _privateConstructorUsedError;
   String get take5Status => throw _privateConstructorUsedError;
   bool get isTripConverted => throw _privateConstructorUsedError;
+  double get Longitude => throw _privateConstructorUsedError;
+  double get Latituide => throw _privateConstructorUsedError;
   DateTime get tripDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,6 +55,8 @@ abstract class $TripCopyWith<$Res> {
       String tripStatus,
       String take5Status,
       bool isTripConverted,
+      double Longitude,
+      double Latituide,
       DateTime tripDate});
 }
 
@@ -79,6 +83,8 @@ class _$TripCopyWithImpl<$Res, $Val extends Trip>
     Object? tripStatus = null,
     Object? take5Status = null,
     Object? isTripConverted = null,
+    Object? Longitude = null,
+    Object? Latituide = null,
     Object? tripDate = null,
   }) {
     return _then(_value.copyWith(
@@ -122,6 +128,14 @@ class _$TripCopyWithImpl<$Res, $Val extends Trip>
           ? _value.isTripConverted
           : isTripConverted // ignore: cast_nullable_to_non_nullable
               as bool,
+      Longitude: null == Longitude
+          ? _value.Longitude
+          : Longitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      Latituide: null == Latituide
+          ? _value.Latituide
+          : Latituide // ignore: cast_nullable_to_non_nullable
+              as double,
       tripDate: null == tripDate
           ? _value.tripDate
           : tripDate // ignore: cast_nullable_to_non_nullable
@@ -147,6 +161,8 @@ abstract class _$$_TripCopyWith<$Res> implements $TripCopyWith<$Res> {
       String tripStatus,
       String take5Status,
       bool isTripConverted,
+      double Longitude,
+      double Latituide,
       DateTime tripDate});
 }
 
@@ -169,6 +185,8 @@ class __$$_TripCopyWithImpl<$Res> extends _$TripCopyWithImpl<$Res, _$_Trip>
     Object? tripStatus = null,
     Object? take5Status = null,
     Object? isTripConverted = null,
+    Object? Longitude = null,
+    Object? Latituide = null,
     Object? tripDate = null,
   }) {
     return _then(_$_Trip(
@@ -212,6 +230,14 @@ class __$$_TripCopyWithImpl<$Res> extends _$TripCopyWithImpl<$Res, _$_Trip>
           ? _value.isTripConverted
           : isTripConverted // ignore: cast_nullable_to_non_nullable
               as bool,
+      Longitude: null == Longitude
+          ? _value.Longitude
+          : Longitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      Latituide: null == Latituide
+          ? _value.Latituide
+          : Latituide // ignore: cast_nullable_to_non_nullable
+              as double,
       tripDate: null == tripDate
           ? _value.tripDate
           : tripDate // ignore: cast_nullable_to_non_nullable
@@ -234,6 +260,8 @@ class _$_Trip implements _Trip {
       required this.tripStatus,
       required this.take5Status,
       required this.isTripConverted,
+      required this.Longitude,
+      required this.Latituide,
       required this.tripDate});
 
   factory _$_Trip.fromJson(Map<String, dynamic> json) => _$$_TripFromJson(json);
@@ -259,11 +287,15 @@ class _$_Trip implements _Trip {
   @override
   final bool isTripConverted;
   @override
+  final double Longitude;
+  @override
+  final double Latituide;
+  @override
   final DateTime tripDate;
 
   @override
   String toString() {
-    return 'Trip(tripNumber: $tripNumber, jobsiteName: $jobsiteName, jobsiteNumber: $jobsiteNumber, jobsiteHasNetworkCoverage: $jobsiteHasNetworkCoverage, driverName: $driverName, driverNumber: $driverNumber, truckNumber: $truckNumber, tripStatus: $tripStatus, take5Status: $take5Status, isTripConverted: $isTripConverted, tripDate: $tripDate)';
+    return 'Trip(tripNumber: $tripNumber, jobsiteName: $jobsiteName, jobsiteNumber: $jobsiteNumber, jobsiteHasNetworkCoverage: $jobsiteHasNetworkCoverage, driverName: $driverName, driverNumber: $driverNumber, truckNumber: $truckNumber, tripStatus: $tripStatus, take5Status: $take5Status, isTripConverted: $isTripConverted, Longitude: $Longitude, Latituide: $Latituide, tripDate: $tripDate)';
   }
 
   @override
@@ -292,6 +324,10 @@ class _$_Trip implements _Trip {
                 other.take5Status == take5Status) &&
             (identical(other.isTripConverted, isTripConverted) ||
                 other.isTripConverted == isTripConverted) &&
+            (identical(other.Longitude, Longitude) ||
+                other.Longitude == Longitude) &&
+            (identical(other.Latituide, Latituide) ||
+                other.Latituide == Latituide) &&
             (identical(other.tripDate, tripDate) ||
                 other.tripDate == tripDate));
   }
@@ -310,6 +346,8 @@ class _$_Trip implements _Trip {
       tripStatus,
       take5Status,
       isTripConverted,
+      Longitude,
+      Latituide,
       tripDate);
 
   @JsonKey(ignore: true)
@@ -338,6 +376,8 @@ abstract class _Trip implements Trip {
       required final String tripStatus,
       required final String take5Status,
       required final bool isTripConverted,
+      required final double Longitude,
+      required final double Latituide,
       required final DateTime tripDate}) = _$_Trip;
 
   factory _Trip.fromJson(Map<String, dynamic> json) = _$_Trip.fromJson;
@@ -362,6 +402,10 @@ abstract class _Trip implements Trip {
   String get take5Status;
   @override
   bool get isTripConverted;
+  @override
+  double get Longitude;
+  @override
+  double get Latituide;
   @override
   DateTime get tripDate;
   @override
