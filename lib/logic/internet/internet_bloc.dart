@@ -31,11 +31,9 @@ class InternetBloc extends Bloc<InternetEvent, InternetState> {
         emit(IsConnectedState(isDeviceConnected, isNetworkAvailable));
       }
     });
-    _subscription = InternetConnectionChecker()
-        .onStatusChange
-        .listen((InternetConnectionStatus result) {
+    _subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
       print(result);
-      if (result == InternetConnectionStatus.connected) {
+      if (result == ConnectivityResult.mobile ||result == ConnectivityResult.wifi) {
         add(ConnectedEvent());
       } else {
         add(NotConnectedEvent());

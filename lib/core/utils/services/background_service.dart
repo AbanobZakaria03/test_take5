@@ -5,6 +5,8 @@ import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:test_take5/core/constants/app_constants.dart';
+import 'package:test_take5/data/models/requests/destination_arrived_request/destination_arrived_request.dart';
 
 import 'loaction_service.dart';
 
@@ -84,8 +86,8 @@ class BackgroundService{
       service.stopSelf();
     });
 
-    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+    // final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    // FlutterLocalNotificationsPlugin();
 
     // bring to foreground
     Timer.periodic(const Duration(seconds: 1), (timer) async {
@@ -111,6 +113,20 @@ class BackgroundService{
           Position pp = Position.fromMap(
               {'latitude': 27.1790981, 'longitude': 31.0220375});
          double d=loc.getDistance(p, pp);
+
+         if(d<1000){
+           //todo save local
+           DestinationArrivedRequest destinationArrivedRequest = DestinationArrivedRequest(userId: "5", tripId: 5, jobsiteId: 5, destinationArrivedDate: DateTime.now());
+           AppConstants.dar = destinationArrivedRequest;
+           final service = FlutterBackgroundService();
+           var isRunning = await service.isRunning();
+           if (isRunning == true) {
+             service.invoke("stopService");
+           }
+           //todo stop timer or service
+         }
+
+
           service.setForegroundNotificationInfo(
             title: "My App Service",
             content: "distance: ${d.toInt()} m",

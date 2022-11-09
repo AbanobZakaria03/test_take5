@@ -4,6 +4,7 @@ import '../../../presentation/screens/home/home.dart';
 import '../../../presentation/screens/login/login_screen.dart';
 import '../../../presentation/screens/step_one/step_one.dart';
 import '../../../presentation/screens/step_two/step_two.dart';
+import '../../../presentation/screens/step_two_waiting/step_two_waiting_screen.dart';
 import '../../../presentation/screens/trip/trip.dart';
 
 class AppRoutes {
@@ -12,6 +13,9 @@ class AppRoutes {
 
       case LoginScreen.routeName:
         return _materialRoute(const LoginScreen(), LoginScreen.routeName);
+
+      case StepTwoWaitingScreen.routeName:
+        return _materialRoute(const StepTwoWaitingScreen(), StepTwoWaitingScreen.routeName);
 
       case HomeScreen.routeName:
         return _materialRoute(const HomeScreen(), HomeScreen.routeName);

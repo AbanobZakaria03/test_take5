@@ -13,6 +13,7 @@ import 'core/bloc_observer.dart';
 import 'core/config/routes/routes.dart';
 import 'core/constants/app_assets.dart';
 import 'core/constants/app_colors.dart';
+import 'core/constants/app_constants.dart';
 import 'core/utils/services/background_service.dart';
 import 'core/utils/services/loaction_service.dart';
 import 'data/models/user/user.dart';
@@ -24,6 +25,7 @@ import 'presentation/screens/home/home.dart';
 import 'presentation/screens/login/login_screen.dart';
 import 'presentation/screens/step_one/step_one.dart';
 import 'presentation/screens/step_two/step_two.dart';
+import 'presentation/screens/step_two_waiting/step_two_waiting_screen.dart';
 import 'presentation/screens/trip/trip.dart';
 
 Future<void> main() async {
@@ -38,6 +40,14 @@ Future<void> main() async {
 
   await Hive.openBox('takeFiveSurvey');
   await BackgroundService.initializeService();
+
+  print(AppConstants.dar);
+  final service = FlutterBackgroundService();
+  var isRunning = await service.isRunning();
+  if (isRunning == true) {
+    service.invoke("stopService");
+  }
+
 
   BlocOverrides.runZoned(
     () {
@@ -136,8 +146,9 @@ class MyApp extends StatelessWidget {
                 ),
             onGenerateRoute: AppRoutes.onGenerateRoutes,
             //initialRoute: getLastRoute(),
-            //initialRoute: LoginScreen.routeName,
-            initialRoute: StepOneScreen.routeName,
+            initialRoute: LoginScreen.routeName,
+            // initialRoute: StepTwoWaitingScreen.routeName,
+            // initialRoute: StepOneScreen.routeName,
             // initialRoute: HomeScreen.routeName,
             //initialRoute: StepTwoScreen.routeName,
             // initialRoute: TripScreen.routeName,
