@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:test_take5/data/datasources/local_data_source.dart';
 
+import '../../../core/constants/app_constants.dart';
 import '../../../core/utils/services/loaction_service.dart';
 import '../../../injection_container.dart';
 
@@ -26,6 +27,7 @@ class _TripScreenState extends State<TripScreen> {
   @override
   void initState() {
     saveLastRoute(TripScreen.routeName);
+
     super.initState();
   }
 
@@ -55,8 +57,10 @@ class _TripScreenState extends State<TripScreen> {
                     ),
                   ElevatedButton(
                     onPressed: () {
-                      LocalDataSource localDataSource = sl<LocalDataSource>();
-                     print( localDataSource.getCachedTakeFiveSurvey()?.stepTwoQuestions.length);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, StepOneScreen.routeName, (route) => false);
+                      //LocalDataSource localDataSource = sl<LocalDataSource>();
+                    // print( localDataSource.getCachedTakeFiveSurvey()?.stepTwoQuestions.length);
                     },
                     child: Text('printSurvey'),
                   ),

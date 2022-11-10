@@ -37,16 +37,7 @@ Future<void> main() async {
   Hive.registerAdapter(UserAdapter());
   await Hive.openBox<User>('user');
   await Hive.openBox('route');
-
   await Hive.openBox('takeFiveSurvey');
-  await BackgroundService.initializeService();
-
-  print(AppConstants.dar);
-  final service = FlutterBackgroundService();
-  var isRunning = await service.isRunning();
-  if (isRunning == true) {
-    service.invoke("stopService");
-  }
 
 
   BlocOverrides.runZoned(
@@ -148,7 +139,7 @@ class MyApp extends StatelessWidget {
             //initialRoute: getLastRoute(),
             initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
-            // initialRoute: StepOneScreen.routeName,
+           //initialRoute: StepOneScreen.routeName,
             // initialRoute: HomeScreen.routeName,
             //initialRoute: StepTwoScreen.routeName,
             // initialRoute: TripScreen.routeName,

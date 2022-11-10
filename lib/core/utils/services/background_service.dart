@@ -5,9 +5,11 @@ import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:hive/hive.dart';
 import 'package:test_take5/core/constants/app_constants.dart';
 import 'package:test_take5/data/models/requests/destination_arrived_request/destination_arrived_request.dart';
 
+import '../../../data/datasources/boxes.dart';
 import 'loaction_service.dart';
 
 class BackgroundService{
@@ -42,11 +44,9 @@ class BackgroundService{
       androidConfiguration: AndroidConfiguration(
         // this will be executed when app is in foreground or background in separated isolate
         onStart: onStart,
-
         // auto start service
         autoStart: false,
         isForegroundMode: true,
-
         notificationChannelId: notificationChannelId,
         initialNotificationTitle: 'AWESOME SERVICE',
         initialNotificationContent: 'Initializing',
@@ -67,7 +67,6 @@ class BackgroundService{
 
     // service.startService();
   }
-
   static Future<void> onStart(ServiceInstance service) async {
     // Only available for flutter 3.0.0 and later
     DartPluginRegistrant.ensureInitialized();
@@ -88,7 +87,6 @@ class BackgroundService{
 
     // final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     // FlutterLocalNotificationsPlugin();
-
     // bring to foreground
     Timer.periodic(const Duration(seconds: 1), (timer) async {
       if (service is AndroidServiceInstance) {
@@ -113,16 +111,14 @@ class BackgroundService{
           Position pp = Position.fromMap(
               {'latitude': 27.1790981, 'longitude': 31.0220375});
          double d=loc.getDistance(p, pp);
-
+         d=900;
          if(d<1000){
            //todo save local
            DestinationArrivedRequest destinationArrivedRequest = DestinationArrivedRequest(userId: "5", tripId: 5, jobsiteId: 5, destinationArrivedDate: DateTime.now());
-           AppConstants.dar = destinationArrivedRequest;
-           final service = FlutterBackgroundService();
-           var isRunning = await service.isRunning();
-           if (isRunning == true) {
-             service.invoke("stopService");
-           }
+          // AppConstants.dar = destinationArrivedRequest;
+          // print(AppConstants.dar);
+          // timer.cancel();
+
            //todo stop timer or service
          }
 
