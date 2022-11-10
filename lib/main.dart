@@ -41,7 +41,6 @@ Future<void> main() async {
   await Hive.openBox('takeFiveSurvey');
   await BackgroundService.initializeService();
 
-  print(AppConstants.dar);
   final service = FlutterBackgroundService();
   var isRunning = await service.isRunning();
   if (isRunning == true) {
@@ -146,12 +145,12 @@ class MyApp extends StatelessWidget {
                 ),
             onGenerateRoute: AppRoutes.onGenerateRoutes,
             //initialRoute: getLastRoute(),
-            initialRoute: LoginScreen.routeName,
+            // initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
             // initialRoute: StepOneScreen.routeName,
             // initialRoute: HomeScreen.routeName,
             //initialRoute: StepTwoScreen.routeName,
-            // initialRoute: TripScreen.routeName,
+            initialRoute: TripScreen.routeName,
           ),
         );
       },

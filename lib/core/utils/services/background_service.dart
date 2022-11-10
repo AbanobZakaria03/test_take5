@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_take5/core/constants/app_constants.dart';
 import 'package:test_take5/data/models/requests/destination_arrived_request/destination_arrived_request.dart';
 
@@ -68,9 +71,13 @@ class BackgroundService{
     // service.startService();
   }
 
+  @pragma('vm:entry-point')
   static Future<void> onStart(ServiceInstance service) async {
     // Only available for flutter 3.0.0 and later
     DartPluginRegistrant.ensureInitialized();
+    if (Platform.isAndroid) FlutterBackgroundServiceAndroid.registerWith();
+
+
 
     if (service is AndroidServiceInstance) {
       service.on('setAsForeground').listen((event) {
@@ -117,13 +124,14 @@ class BackgroundService{
          if(d<1000){
            //todo save local
            DestinationArrivedRequest destinationArrivedRequest = DestinationArrivedRequest(userId: "5", tripId: 5, jobsiteId: 5, destinationArrivedDate: DateTime.now());
-           AppConstants.dar = destinationArrivedRequest;
-           final service = FlutterBackgroundService();
-           var isRunning = await service.isRunning();
-           if (isRunning == true) {
-             service.invoke("stopService");
-           }
+
+           SharedPreferences preferences = await SharedPreferences.getInstance();
+           // await preferences.reload();
+           await preferences.setString("destination", jsonEncode(destinationArrivedRequest.toJson()));
+           print(preferences.get("destination"));
            //todo stop timer or service
+           timer.cancel();
+          service.stopSelf();
          }
 
 
