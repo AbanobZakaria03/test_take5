@@ -61,11 +61,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   TripCard(trip: cubit.trip!),
                 Center(
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: (){
                       cubit.startTrip();
                       final service = FlutterBackgroundService();
                       service.startService();
-
                       Navigator.pushNamed(context, TripScreen.routeName);
                     },
                     child: const Text('start'),

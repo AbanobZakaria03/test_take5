@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:hive/hive.dart';
+import '../../../core/constants/app_constants.dart';
+import '../../../data/datasources/boxes.dart';
+import '../../../data/models/requests/destination_arrived_request/destination_arrived_request.dart';
 import '../../../injection_container.dart';
 import '../../../logic/internet/internet_bloc.dart';
 import '../../../logic/step_one_cubit/step_one_cubit.dart';
@@ -34,9 +39,23 @@ class _StepOneScreenState extends State<StepOneScreen> {
   @override
   void initState() {
     saveLastRoute(StepOneScreen.routeName);
+    stopService();
     super.initState();
   }
 
+  stopService()async
+  {
+    final service = FlutterBackgroundService();
+    var isRunning = await service.isRunning();
+    if (isRunning == true) {
+      service.invoke("stopService");
+    }
+    // await Hive.openBox('destinationArrivedRequest');
+    // final box = Boxes.getDestinationArrivedRequestBox();
+    // Map<String, dynamic> json =
+    // Map<String, dynamic>.from(box.get('destinationArrivedRequest'));
+    // print(DestinationArrivedRequest.fromJson(json));
+  }
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

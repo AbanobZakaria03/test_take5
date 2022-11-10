@@ -10,9 +10,7 @@ import 'app_colors.dart';
 
 class AppConstants {
   AppConstants._();
-
   static var scaffoldKey = GlobalKey<ScaffoldState>();
-
   static late User user;
   static late Trip trip;
   static late DestinationArrivedRequest dar;
