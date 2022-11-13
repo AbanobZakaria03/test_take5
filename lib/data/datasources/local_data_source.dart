@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:test_take5/core/constants/app_constants.dart';
 import 'package:test_take5/data/datasources/boxes.dart';
+import 'package:test_take5/data/models/big_model/bid_model.dart';
 import '../../core/utils/services/local_storage_service.dart';
 import '../models/requests/destination_arrived_request/destination_arrived_request.dart';
 import '../models/requests/step_one_complete_request/step_one_complete_request.dart';
@@ -55,6 +57,12 @@ abstract class LocalDataSource {
   Future<void> cacheTripStartRequest(TripStartRequest tripStartRequest);
 
   TripStartRequest? getCachedTripStartRequest();
+
+  void cacheCollection(CollectionModel bigModel);
+
+  CollectionModel getCachedCollection();
+
+  void clearCollection();
 }
 
 const CACHED_USER = 'CACHED_USER';
@@ -103,14 +111,14 @@ class LocalDataSourceImpl implements LocalDataSource {
     box.put('trip', trip.toJson());
     print(box.get('trip'));
   }
+
   @override
   Trip? getCachedTrip() {
     final box = Boxes.getTakeFiveBox();
     if (box.get('trip') == null) {
       return null;
     } else {
-      Map<String, dynamic> json =
-      Map<String, dynamic>.from(box.get('trip'));
+      Map<String, dynamic> json = Map<String, dynamic>.from(box.get('trip'));
       return Trip.fromJson(json);
     }
   }
@@ -130,7 +138,7 @@ class LocalDataSourceImpl implements LocalDataSource {
       return null;
     } else {
       Map<String, dynamic> json =
-      Map<String, dynamic>.from(box.get('destinationArrivedRequest'));
+          Map<String, dynamic>.from(box.get('destinationArrivedRequest'));
       return DestinationArrivedRequest.fromJson(json);
     }
   }
@@ -150,7 +158,7 @@ class LocalDataSourceImpl implements LocalDataSource {
       return null;
     } else {
       Map<String, dynamic> json =
-      Map<String, dynamic>.from(box.get('stepOneCompleteRequest'));
+          Map<String, dynamic>.from(box.get('stepOneCompleteRequest'));
       return StepOneCompleteRequest.fromJson(json);
     }
   }
@@ -170,7 +178,7 @@ class LocalDataSourceImpl implements LocalDataSource {
       return null;
     } else {
       Map<String, dynamic> json =
-      Map<String, dynamic>.from(box.get('stepTwoCompleteRequest'));
+          Map<String, dynamic>.from(box.get('stepTwoCompleteRequest'));
       return StepTwoCompleteRequest.fromJson(json);
     }
   }
@@ -190,7 +198,7 @@ class LocalDataSourceImpl implements LocalDataSource {
       return null;
     } else {
       Map<String, dynamic> json =
-      Map<String, dynamic>.from(box.get('stepTwoCompleteRequest'));
+          Map<String, dynamic>.from(box.get('stepTwoCompleteRequest'));
       return StepTwoStartRequest.fromJson(json);
     }
   }
@@ -209,8 +217,36 @@ class LocalDataSourceImpl implements LocalDataSource {
       return null;
     } else {
       Map<String, dynamic> json =
-      Map<String, dynamic>.from(box.get('tripStartRequest'));
+          Map<String, dynamic>.from(box.get('tripStartRequest'));
       return TripStartRequest.fromJson(json);
     }
+  }
+
+  @override
+  void cacheCollection(CollectionModel bigModel) {
+    final box = Boxes.getTakeFiveBox();
+    box.put('collection', bigModel.toJson());
+    print(box.get('collection'));
+  }
+
+  @override
+  CollectionModel getCachedCollection() {
+    final box = Boxes.getTakeFiveBox();
+    if (box.get('collection') == null) {
+      return CollectionModel(
+          userId: AppConstants.user.userId,
+          tripId: AppConstants.trip.tripNumber,
+          jobsiteId: AppConstants.trip.jobsiteNumber);
+    } else {
+      Map<String, dynamic> json =
+          Map<String, dynamic>.from(box.get('collection'));
+      return CollectionModel.fromJson(json);
+    }
+  }
+
+  @override
+  void clearCollection() {
+    final box = Boxes.getTakeFiveBox();
+    box.delete('collection');
   }
 }

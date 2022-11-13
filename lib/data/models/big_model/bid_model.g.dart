@@ -6,34 +6,35 @@ part of 'bid_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_BigModel _$$_BigModelFromJson(Map json) => _$_BigModel(
-      userId: json['userId'] as String,
-      tripId: json['tripId'] as int,
-      jobsiteId: json['jobsiteId'] as int,
-      tripStartRequest: TripStartRequest.fromJson(
-          Map<String, dynamic>.from(json['tripStartRequest'] as Map)),
-      destinationArrivedRequest: DestinationArrivedRequest.fromJson(
-          Map<String, dynamic>.from(json['destinationArrivedRequest'] as Map)),
-      stepOneCompleteRequest: StepOneCompleteRequest.fromJson(
-          Map<String, dynamic>.from(json['stepOneCompleteRequest'] as Map)),
-      stepTwoStartRequest: StepTwoStartRequest.fromJson(
-          Map<String, dynamic>.from(json['stepTwoStartRequest'] as Map)),
-      stepTwoCompleteRequest: StepTwoCompleteRequest.fromJson(
-          Map<String, dynamic>.from(json['stepTwoCompleteRequest'] as Map)),
-      CurrentStatus: json['CurrentStatus'] as String,
-      startingDate: DateTime.parse(json['startingDate'] as String),
+_$_CollectionModel _$$_CollectionModelFromJson(Map json) => _$_CollectionModel(
+      userId: json['userId'] as String?,
+      tripId: json['tripId'] as int?,
+      jobsiteId: json['jobsiteId'] as int?,
+      destinationArrivedRequest: json['destinationArrivedRequest'] == null
+          ? null
+          : DestinationArrivedRequest.fromJson(Map<String, dynamic>.from(
+              json['destinationArrivedRequest'] as Map)),
+      stepOneCompleteRequest: json['stepOneCompleteRequest'] == null
+          ? null
+          : StepOneCompleteRequest.fromJson(
+              Map<String, dynamic>.from(json['stepOneCompleteRequest'] as Map)),
+      stepTwoStartRequest: json['stepTwoStartRequest'] == null
+          ? null
+          : StepTwoStartRequest.fromJson(
+              Map<String, dynamic>.from(json['stepTwoStartRequest'] as Map)),
+      stepTwoCompleteRequest: json['stepTwoCompleteRequest'] == null
+          ? null
+          : StepTwoCompleteRequest.fromJson(
+              Map<String, dynamic>.from(json['stepTwoCompleteRequest'] as Map)),
     );
 
-Map<String, dynamic> _$$_BigModelToJson(_$_BigModel instance) =>
+Map<String, dynamic> _$$_CollectionModelToJson(_$_CollectionModel instance) =>
     <String, dynamic>{
       'userId': instance.userId,
       'tripId': instance.tripId,
       'jobsiteId': instance.jobsiteId,
-      'tripStartRequest': instance.tripStartRequest.toJson(),
-      'destinationArrivedRequest': instance.destinationArrivedRequest.toJson(),
-      'stepOneCompleteRequest': instance.stepOneCompleteRequest.toJson(),
-      'stepTwoStartRequest': instance.stepTwoStartRequest.toJson(),
-      'stepTwoCompleteRequest': instance.stepTwoCompleteRequest.toJson(),
-      'CurrentStatus': instance.CurrentStatus,
-      'startingDate': instance.startingDate.toIso8601String(),
+      'destinationArrivedRequest': instance.destinationArrivedRequest?.toJson(),
+      'stepOneCompleteRequest': instance.stepOneCompleteRequest?.toJson(),
+      'stepTwoStartRequest': instance.stepTwoStartRequest?.toJson(),
+      'stepTwoCompleteRequest': instance.stepTwoCompleteRequest?.toJson(),
     };

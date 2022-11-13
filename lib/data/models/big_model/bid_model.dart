@@ -11,19 +11,18 @@ part 'bid_model.freezed.dart';//same name of file
 part 'bid_model.g.dart';
 
 @freezed
-class BigModel with _$BigModel{
-  const factory BigModel({
-    required String userId,
-    required int tripId,
-    required int jobsiteId,
-    required TripStartRequest tripStartRequest,
-    required DestinationArrivedRequest destinationArrivedRequest,
-    required StepOneCompleteRequest stepOneCompleteRequest,
-    required StepTwoStartRequest stepTwoStartRequest,
-    required StepTwoCompleteRequest stepTwoCompleteRequest,
-    required String CurrentStatus,
-    required DateTime startingDate,
-  }) = _BigModel;
+class CollectionModel with _$CollectionModel{
+  const factory CollectionModel({
+    String? userId,
+    int? tripId,
+    int? jobsiteId,
 
-  factory BigModel.fromJson(Map<String, dynamic> json) => _$BigModelFromJson(json);
+    DestinationArrivedRequest? destinationArrivedRequest,
+    StepOneCompleteRequest? stepOneCompleteRequest,
+    StepTwoStartRequest? stepTwoStartRequest,
+    StepTwoCompleteRequest? stepTwoCompleteRequest,
+
+  }) = _CollectionModel;
+
+  factory CollectionModel.fromJson(Map<String, dynamic> json) => _$CollectionModelFromJson(json);
 }
