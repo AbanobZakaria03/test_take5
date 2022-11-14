@@ -14,16 +14,16 @@ import '../../utils/helpers/helpers.dart';
 import '../../widgets/danger.dart';
 import '../../widgets/true_false_question.dart';
 
-class StepOneScreen extends StatefulWidget {
+class StepOneQuestionsScreen extends StatefulWidget {
   static const routeName = 'StepOneScreen';
 
-  const StepOneScreen({Key? key}) : super(key: key);
+  const StepOneQuestionsScreen({Key? key}) : super(key: key);
 
   @override
-  State<StepOneScreen> createState() => _StepOneScreenState();
+  State<StepOneQuestionsScreen> createState() => _StepOneQuestionsScreenState();
 }
 
-class _StepOneScreenState extends State<StepOneScreen> {
+class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
   Map<String, bool> questionAnswer = {};
   Map<String, List<int>> tripDangerMeasureControls = {};
 
@@ -38,7 +38,7 @@ class _StepOneScreenState extends State<StepOneScreen> {
 
   @override
   void initState() {
-    saveLastRoute(StepOneScreen.routeName);
+    saveLastRoute(StepOneQuestionsScreen.routeName);
     stopService();
     super.initState();
   }
@@ -66,7 +66,10 @@ class _StepOneScreenState extends State<StepOneScreen> {
           var cubit = StepOneCubit.get(context);
           final _formKey = GlobalKey<FormBuilderState>();
           return Scaffold(
-              appBar: AppBar(),
+              appBar: AppBar(
+                title:const Text('اسئله المرحله الاولى'),
+                centerTitle: true,
+              ),
               body: SingleChildScrollView(
                 child: FormBuilder(
                   key: _formKey,
@@ -85,7 +88,7 @@ class _StepOneScreenState extends State<StepOneScreen> {
                               ),
                               itemCount: cubit.step1Answers.length,
                             ),
-                      Danger(),
+                     // Danger(),
 
                       // ListView.builder(
                       //   key: GlobalKey(),
@@ -97,54 +100,55 @@ class _StepOneScreenState extends State<StepOneScreen> {
                       //   itemCount: cubit.myDangers.length,
                       // ),
 
-                      Container(
-                        color: Colors.white,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: DataTable(
-                              dataRowHeight: 100,
-                              columns: <DataColumn>[
-                                DataColumn(
-                                  label: Text('danger id'),
-                                ),
-                                DataColumn(
-                                  label: Text('danger name'),
-                                ),
-                                DataColumn(
-                                  label: Text('controls'),
-                                ),
-                                DataColumn(
-                                  label: Text('remove'),
-                                ),
-                              ],
-                              rows: <DataRow>[
-                                ...cubit.dangers
-                                    .map((e) => DataRow(
-                                          cells: <DataCell>[
-                                            DataCell(Text('${e.dangerId}')),
-                                            DataCell(Text('${e.dangerName}')),
-                                            DataCell(Column(
-                                              children: e.controls
-                                                  .map((e) => Text(e.MeasureControlName))
-                                                  .toList(),
-                                            )),
-                                            DataCell(IconButton(
-                                              onPressed: () async {
-                                                cubit.removeDanger(e);
-                                              },
-                                              icon: Icon(Icons.delete_forever),
-                                            )),
-                                          ],
-                                        ))
-                                    .toList(),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                      // Container(
+                      //   color: Colors.white,
+                      //   child: SingleChildScrollView(
+                      //     scrollDirection: Axis.vertical,
+                      //     child: SingleChildScrollView(
+                      //       scrollDirection: Axis.horizontal,
+                      //       child: DataTable(
+                      //         dataRowHeight: 100,
+                      //         columns: <DataColumn>[
+                      //           DataColumn(
+                      //             label: Text('danger id'),
+                      //           ),
+                      //           DataColumn(
+                      //             label: Text('danger name'),
+                      //           ),
+                      //           DataColumn(
+                      //             label: Text('controls'),
+                      //           ),
+                      //           DataColumn(
+                      //             label: Text('remove'),
+                      //           ),
+                      //         ],
+                      //         rows: <DataRow>[
+                      //           ...cubit.dangers
+                      //               .map((e) => DataRow(
+                      //                     cells: <DataCell>[
+                      //                       DataCell(Text('${e.dangerId}')),
+                      //                       DataCell(Text('${e.dangerName}')),
+                      //                       DataCell(Column(
+                      //                         children: e.controls
+                      //                             .map((e) => Text(e.MeasureControlName))
+                      //                             .toList(),
+                      //                       )),
+                      //                       DataCell(IconButton(
+                      //                         onPressed: () async {
+                      //                           cubit.removeDanger(e);
+                      //                         },
+                      //                         icon: Icon(Icons.delete_forever),
+                      //                       )),
+                      //                     ],
+                      //                   ))
+                      //               .toList(),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                       // ...List.generate(c, (index) => const Danger(),)
+
                       BlocListener<InternetBloc, InternetState>(
                         listener: (context, state) {
                           if (state is IsConnectedState) {
@@ -161,7 +165,7 @@ class _StepOneScreenState extends State<StepOneScreen> {
                                     .add(CheckNetworkEvent());
                               }
                             },
-                            child: Text('print')),
+                            child:const Text('Next')),
                       ),
                     ],
                   ),

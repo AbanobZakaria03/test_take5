@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-
 import '../../core/constants/app_constants.dart';
 import '../../core/errors/exceptions.dart';
 import '../datasources/boxes.dart';
@@ -7,6 +6,7 @@ import '../datasources/local_data_source.dart';
 import '../models/big_model/bid_model.dart';
 import '../models/requests/destination_arrived_request/destination_arrived_request.dart';
 import '../models/requests/step_one_complete_request/step_one_complete_request.dart';
+import '../models/requests/step_two_complete_request/step_two_complete_request.dart';
 import '../models/requests/step_two_start_request/step_two_start_request.dart';
 import '../models/requests/trip_start_request/trip_start_request.dart';
 import '../models/responses/trip_pending_response/trip_pending_response.dart';
@@ -28,7 +28,7 @@ abstract class Take5Repository {
       {required StepOneCompleteRequest stepOneCompleteRequest});
 
   Future<Either<Failure, Unit>> completeStepTwo(
-      {required StepOneCompleteRequest stepOneCompleteRequest});
+      {required StepTwoCompleteRequest stepTwoCompleteRequest});
 
   Future<Either<Failure, TripPendingResponse>> getPendingTrip(
       {required String userId});
@@ -74,69 +74,7 @@ class Take5RepositoryImpl extends Take5Repository {
     }
   }
 
-  @override
-  Future<Either<Failure, Unit>> arrivedToDestination(
-      {required DestinationArrivedRequest destinationArrivedRequest}) async {
-    try {
-      // ask abanoub about unit
-      return Right(unit);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
-    }
-  }
-
-  @override
-  Future<Either<Failure, Unit>> completeStepOne(
-      {required StepOneCompleteRequest stepOneCompleteRequest}) async {
-    if (AppConstants.trip.jobsiteHasNetworkCoverage) {
-      //todo call RemoteDataSource
-      //check device connectivity
-      if (await deviceConnectivity.isConnected == false) {
-        return const Left(DeviceConnectivityFailure());
-      }
-      CollectionModel collectionModel = localDataSource.getCachedCollection();
-      collectionModel=collectionModel.copyWith(stepOneCompleteRequest: stepOneCompleteRequest);
-      try {
-        //todo السطر عايز تظبيط
-       // await remoteDataSource.sendRequest(collectionModel:collectionModel);
-        //done
-        localDataSource.clearCollection();
-        return Right(unit);
-      } on ServerException catch (e) {
-        //save local
-        localDataSource.cacheCollection(collectionModel);
-        return Right(unit);
-      }
-    } else {
-      //todo call localDataSource
-      CollectionModel collectionModel = localDataSource.getCachedCollection();
-      collectionModel=collectionModel.copyWith(stepOneCompleteRequest: stepOneCompleteRequest);
-      localDataSource.cacheCollection(collectionModel);
-      return const Right(unit);
-    }
-
-
-    try {
-      // ask abanoub about unit
-      return Right(unit);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
-    }
-  }
-
-
-
-  @override
-  Future<Either<Failure, Unit>> completeStepTwo(
-      {required StepOneCompleteRequest stepOneCompleteRequest}) async {
-    try {
-      // ask abanoub about unit
-      return const Right(unit);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
-    }
-  }
-
+  // already online
   @override
   Future<Either<Failure, TripPendingResponse>> getPendingTrip(
       {required String userId}) async {
@@ -150,16 +88,7 @@ class Take5RepositoryImpl extends Take5Repository {
     }
   }
 
-  @override
-  Future<Either<Failure, Unit>> startStepTwo(
-      {required StepTwoStartRequest stepTwoStartRequest}) async {
-    try {
-      return Right(unit);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
-    }
-  }
-
+  // already online
   @override
   Future<Either<Failure, TripStartResponse>> startTrip(
       {required TripStartRequest tripStartRequest}) async {
@@ -173,6 +102,120 @@ class Take5RepositoryImpl extends Take5Repository {
     }
   }
 
+//done
+  @override
+  Future<Either<Failure, Unit>> arrivedToDestination(
+      {required DestinationArrivedRequest destinationArrivedRequest}) async {
+    if (AppConstants.trip.jobsiteHasNetworkCoverage) {
+      if (await deviceConnectivity.isConnected == false) {
+        return const Left(DeviceConnectivityFailure());
+      }
+      CollectionModel collectionModel = localDataSource.getCachedCollection();
+      collectionModel=collectionModel.copyWith(destinationArrivedRequest: destinationArrivedRequest);
+      try {
+       await remoteDataSource.sendCollection(collectionModel:collectionModel);
+        //done
+        localDataSource.clearCollection();
+        return const Right(unit);
+      } on ServerException catch (e) {
+        //save local
+        localDataSource.cacheCollection(collectionModel);
+        return const Right(unit);
+      }
+    }
+    else
+    {
+      CollectionModel collectionModel = localDataSource.getCachedCollection();
+      collectionModel=collectionModel.copyWith(destinationArrivedRequest: destinationArrivedRequest);
+      localDataSource.cacheCollection(collectionModel);
+      return const Right(unit);
+    }
+  }
+//done
+  @override
+  Future<Either<Failure, Unit>> completeStepOne(
+      {required StepOneCompleteRequest stepOneCompleteRequest}) async {
+    if (AppConstants.trip.jobsiteHasNetworkCoverage) {
+      //check device connectivity
+      if (await deviceConnectivity.isConnected == false) {
+        return const Left(DeviceConnectivityFailure());
+      }
+      CollectionModel collectionModel = localDataSource.getCachedCollection();
+      collectionModel=collectionModel.copyWith(stepOneCompleteRequest: stepOneCompleteRequest);
+      try {
+        await remoteDataSource.sendCollection(collectionModel:collectionModel);
+        //done
+        localDataSource.clearCollection();
+        return const Right(unit);
+      } on ServerException catch (e) {
+        //save local
+        localDataSource.cacheCollection(collectionModel);
+        return const Right(unit);
+      }
+    } else {
+      CollectionModel collectionModel = localDataSource.getCachedCollection();
+      collectionModel=collectionModel.copyWith(stepOneCompleteRequest: stepOneCompleteRequest);
+      localDataSource.cacheCollection(collectionModel);
+      return const Right(unit);
+    }
+  }
+//done
+  @override
+  Future<Either<Failure, Unit>> startStepTwo(
+      {required StepTwoStartRequest stepTwoStartRequest}) async {
+    if (AppConstants.trip.jobsiteHasNetworkCoverage) {
+      //check device connectivity
+      if (await deviceConnectivity.isConnected == false) {
+        return const Left(DeviceConnectivityFailure());
+      }
+      CollectionModel collectionModel = localDataSource.getCachedCollection();
+      collectionModel=collectionModel.copyWith(stepTwoStartRequest: stepTwoStartRequest);
+      try {
+        await remoteDataSource.sendCollection(collectionModel:collectionModel);
+        //done
+        localDataSource.clearCollection();
+        return const Right(unit);
+      } on ServerException catch (e) {
+        //save local
+        localDataSource.cacheCollection(collectionModel);
+        return const Right(unit);
+      }
+    } else {
+      CollectionModel collectionModel = localDataSource.getCachedCollection();
+      collectionModel=collectionModel.copyWith(stepTwoStartRequest: stepTwoStartRequest);      localDataSource.cacheCollection(collectionModel);
+      return const Right(unit);
+    }
+  }
+
+//done
+  @override
+  Future<Either<Failure, Unit>> completeStepTwo(
+      {required StepTwoCompleteRequest stepTwoCompleteRequest}) async {
+    if (AppConstants.trip.jobsiteHasNetworkCoverage) {
+      //check device connectivity
+      if (await deviceConnectivity.isConnected == false) {
+        return const Left(DeviceConnectivityFailure());
+      }
+      CollectionModel collectionModel = localDataSource.getCachedCollection();
+      collectionModel=collectionModel.copyWith(stepTwoCompleteRequest: stepTwoCompleteRequest);
+      try {
+        await remoteDataSource.sendCollection(collectionModel:collectionModel);
+        //done
+        localDataSource.clearCollection();
+        return const Right(unit);
+      } on ServerException catch (e) {
+        //save local
+        localDataSource.cacheCollection(collectionModel);
+        return const Right(unit);
+      }
+    } else {
+      CollectionModel collectionModel = localDataSource.getCachedCollection();
+      collectionModel=collectionModel.copyWith( stepTwoCompleteRequest:  stepTwoCompleteRequest);
+      localDataSource.cacheCollection(collectionModel);
+      return const Right(unit);
+    }
+  }
+
   @override
   Either<Failure, TakeFiveSurvey?> getCachedTakeFiveSurvey() {
     try {
@@ -182,15 +225,4 @@ class Take5RepositoryImpl extends Take5Repository {
       return Left(ServerFailure(e.message));
     }
   }
-//Future<Either<Failure, TripStrartResponse>>startTrip({required TripStartRequest tripStartRequest})
-// @override
-// Future<Either<Failure, NewsResponse>> getAllNews() async {
-//   try {
-//     NewsResponse result = await remoteDataSource.getAllNews();
-//     return Right(result);
-//   } on ServerException catch (e) {
-//     return Left(ServerFailure(e.message));
-//   }
-// }
-
 }

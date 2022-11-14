@@ -39,7 +39,7 @@ class MyTextFormField extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 10.h),
       child: TextFormField(
         style: TextStyle(
-          color: Color(0xff252525),
+          color:const Color(0xff252525),
           fontSize: 16.sp,
         ),
         controller: controller,
@@ -54,13 +54,13 @@ class MyTextFormField extends StatelessWidget {
           errorText:errorText,
           labelText: label.tr(),
           labelStyle:
-              TextStyle(fontWeight: FontWeight.bold, color: Colors.blue,fontSize: 16.sp),
+              TextStyle(fontWeight: FontWeight.bold, color:AppColors.mainColor,fontSize: 16.sp),
           // prefixIconConstraints: BoxConstraints(maxWidth: 50,maxHeight: 50),
           prefixIcon: Padding(
             padding: EdgeInsets.all(8.w),
             child: CircleAvatar(
               radius: 10.r,
-              backgroundColor: Colors.blue,
+              backgroundColor: AppColors.mainColor,
               foregroundColor: Colors.white,
               child: Icon(prefixIcon, size: 25.r),
             ),
@@ -71,7 +71,7 @@ class MyTextFormField extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 10.r,
                     backgroundColor: Colors.transparent,
-                    foregroundColor: Colors.blue,
+                    foregroundColor: AppColors.mainColor,
                     child: Material(
                       color: Colors.transparent,
                       type: MaterialType.circle,
@@ -111,11 +111,11 @@ class MyTextFormField extends StatelessWidget {
           isDense: true,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(50.r),
-            borderSide: BorderSide(color: Colors.blue),
+            borderSide: BorderSide(color: AppColors.greyColor),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(50.r),
-            borderSide: BorderSide(color: Colors.blue),
+            borderSide: BorderSide(color: AppColors.mainColor),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(50.r),

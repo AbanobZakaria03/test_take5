@@ -8,12 +8,13 @@ import 'package:test_take5/data/models/requests/trip_start_request/trip_start_re
 import '../../core/constants/app_constants.dart';
 import '../../core/utils/services/loaction_service.dart';
 import '../../data/repositories/take5_repository.dart';
+import '../internet/internet_bloc.dart';
 import 'trip_states.dart';
 
 class TripCubit extends Cubit<TripStates> {
   static TripCubit get(context) => BlocProvider.of(context);
   final Take5Repository take5Repository;
-
+  //final InternetBloc internetBloc;
   TripCubit({required this.take5Repository}) : super(InitialTripState());
   Position? p;
   double? d;
@@ -31,10 +32,22 @@ class TripCubit extends Cubit<TripStates> {
       Position pp =
       Position.fromMap({'latitude': 27.1790981, 'longitude': 31.0220375});
       d = loc.getDistance(p, pp);
+     d=100;
+      if(d!=null && d!<1000 )
+        {
+          // if(AppConstants.mobileData==true)
+          //   {
+          //     enableButton();
+          //   }
+        }
       emit(StartTripSuccessTripState());//setstate
     }, 100);
   }
-
+  bool isButtonEnabled=false;
+  void enableButton()
+  {
+    isButtonEnabled=true;
+  }
   @override
   Future<void> close() async{
     await sub?.cancel();

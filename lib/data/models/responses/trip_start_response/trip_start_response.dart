@@ -42,6 +42,7 @@ class DangerModel with _$DangerModel {
   const factory DangerModel({
    required int dangerId,
    required String dangerName,
+   //required String dangerImage,
    required List<MeasureControlApi> controls,
   }) = _DangerModel;
 

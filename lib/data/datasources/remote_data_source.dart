@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/services.dart';
+import 'package:test_take5/data/models/big_model/bid_model.dart';
 import 'package:test_take5/data/models/requests/destination_arrived_request/destination_arrived_request.dart';
 import 'package:test_take5/data/models/requests/step_one_complete_request/step_one_complete_request.dart';
 import 'package:test_take5/data/models/requests/step_two_complete_request/step_two_complete_request.dart';
@@ -8,9 +8,6 @@ import 'package:test_take5/data/models/requests/step_two_start_request/step_two_
 import 'package:test_take5/data/models/requests/trip_start_request/trip_start_request.dart';
 import 'package:test_take5/data/models/responses/trip_pending_response/trip_pending_response.dart';
 import 'package:test_take5/data/models/responses/trip_start_response/trip_start_response.dart';
-
-import '../../core/constants/app_endpoints.dart';
-import '../../core/utils/services/dio_client.dart';
 import '../models/responses/user_login_response/user_login_response.dart';
 
 abstract class RemoteDataSource {
@@ -34,6 +31,8 @@ abstract class RemoteDataSource {
 
   Future<void> completeStepTwo(
       {required StepTwoCompleteRequest stepTwoCompleteRequest});
+  Future<void>sendCollection(
+      {required CollectionModel collectionModel});
 
 }
 
@@ -108,5 +107,11 @@ class FakeRemoteDataSourceImpl extends RemoteDataSource {
     // TODO: implement completeStepTwo
     //throw UnimplementedError();
     return ;
+  }
+
+  @override
+  Future<void> sendCollection({required CollectionModel collectionModel}) {
+    // TODO: implement sendCollection
+    throw UnimplementedError();
   }
 }

@@ -1,12 +1,9 @@
 import 'dart:async';
-
-import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-
 import 'package:meta/meta.dart';
-
+import 'package:test_take5/core/constants/app_constants.dart';// for annotations
 part 'internet_event.dart';
 
 part 'internet_state.dart';
@@ -17,12 +14,13 @@ class InternetBloc extends Bloc<InternetEvent, InternetState> {
   StreamSubscription? _subscription;
 
   bool isDeviceConnected = false;
-
   InternetBloc() : super(InternetInitial()) {
     on<InternetEvent>((event, emit) async {
       if (event is ConnectedEvent) {
+        //AppConstants.mobileData=true;
         emit(ConnectedState(message: "Connected"));
       } else if (event is NotConnectedEvent) {
+       // AppConstants.mobileData=false;
         emit(NotConnectedState(message: "Not Connected"));
       } else if (event is CheckNetworkEvent) {
         emit(InternetCheckLoading());

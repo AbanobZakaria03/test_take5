@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:test_take5/presentation/screens/step_one_dangers/step_one_dangers.dart';
 import 'package:test_take5/presentation/utils/dialogs/loading_dialog.dart';
 import 'package:test_take5/presentation/utils/dialogs/message_dialog.dart';
 import 'package:test_take5/presentation/utils/helpers/helpers.dart';
@@ -23,7 +24,7 @@ import 'logic/internet/internet_bloc.dart';
 
 import 'presentation/screens/home/home.dart';
 import 'presentation/screens/login/login_screen.dart';
-import 'presentation/screens/step_one/step_one.dart';
+import 'presentation/screens/step_one_questions/step_one_questions.dart';
 import 'presentation/screens/step_two/step_two.dart';
 import 'presentation/screens/step_two_waiting/step_two_waiting_screen.dart';
 import 'presentation/screens/trip/trip.dart';
@@ -145,12 +146,13 @@ class MyApp extends StatelessWidget {
                 ),
             onGenerateRoute: AppRoutes.onGenerateRoutes,
             //initialRoute: getLastRoute(),
-            // initialRoute: LoginScreen.routeName,
+            initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
-            // initialRoute: StepOneScreen.routeName,
+            // initialRoute: StepOneQuestionsScreen.routeName,
+           //initialRoute: StepOneDangersScreen.routeName,
             // initialRoute: HomeScreen.routeName,
             //initialRoute: StepTwoScreen.routeName,
-            initialRoute: TripScreen.routeName,
+            //initialRoute: TripScreen.routeName,
           ),
         );
       },

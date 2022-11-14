@@ -5,7 +5,9 @@ class AppAssets {
 
   // the properties are static so that we can use them without a class instance
   // e.g. can be retrieved by `LocalStorageKey.saveUserId`.
-  static const String appLogo = 'assets/images/dictionary_logo.png';
+  static const String appLogo = 'assets/images/take5_logo.png';
+  static const String loginIcon = 'assets/icons/sign-in-alt 1.png';
+  static const String cemexLogo = 'assets/images/cemex_logo.png';
   static const String youtubeLogo = 'assets/images/youtube_logo.png';
   static const String appTranslations = 'assets/translations';
   static const String wavingHand = 'assets/images/waving-hand 1.png';

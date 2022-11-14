@@ -14,6 +14,7 @@ class AppConstants {
   static late User user;
   static late Trip trip;
   static late DestinationArrivedRequest dar;
+  //static late bool mobileData;
 
 // text styles
   static final titleTextStyle = TextStyle(

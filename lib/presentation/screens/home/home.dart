@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_take5/core/constants/app_colors.dart';
 import 'package:test_take5/logic/home_cubit/home_cubit.dart';
 import 'package:test_take5/presentation/screens/home/widgets/trip_card.dart';
 import 'package:test_take5/presentation/screens/trip/trip.dart';
 import 'package:test_take5/presentation/utils/helpers/helpers.dart';
-
-import '../../../core/utils/services/background_service.dart';
 import '../../../injection_container.dart';
 import '../../../logic/home_cubit/home_states.dart';
 import '../../utils/dialogs/loading_dialog.dart';
@@ -46,6 +45,9 @@ class _HomeScreenState extends State<HomeScreen> {
           var cubit = HomeCubit.get(context);
           return Scaffold(
             appBar: AppBar(
+              title: Text('الرحلات',style: TextStyle(color: AppColors.redColor),),
+              backgroundColor: Colors.white,
+              centerTitle: true,
               actions: [
                 TextButton(
                     onPressed: () => logOut(context),

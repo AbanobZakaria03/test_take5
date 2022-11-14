@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test_take5/core/constants/app_constants.dart';
 import 'package:test_take5/presentation/screens/home/home.dart';
 
 import '../../../core/constants/app_assets.dart';
@@ -41,13 +42,11 @@ class _LoginScreenState extends State<LoginScreen> {
           if (state is LoginUserLoading) {
             loadingAlertDialog(context);
           }
-
           if (state is LoginUserFail) {
             Navigator.pop(context);
             showMessageDialog(
                 context: context, message: state.message, isSucceeded: false);
           }
-
           if (state is LoginUserSuccess) {
             Navigator.pop(context);
             showMessageDialog(
@@ -75,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 530.h,
                         width: 405.w,
                         child: Image.asset(
-                          AppAssets.questionBackground,
+                          AppAssets.appLogo,
                           fit: BoxFit.contain,
                         )),
                   ),
@@ -96,28 +95,33 @@ class _LoginScreenState extends State<LoginScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
-                                height: 100.h,
+                                height: 50.h,
+                              ),
+                             Center(
+                               child: Container(
+                                      alignment: Alignment.center,
+                                      height: 250.h,
+                                      width: 250.w,
+                                      child: Image.asset(
+                                        AppAssets.appLogo,
+                                        fit: BoxFit.contain,
+                                      )),
+                             ),
+                              SizedBox(
+                                height: 30.h,
                               ),
                               Text(
                                 AppStrings.login.tr(),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  color: Color(0xff5f5f5f),
+                                  color: AppColors.redColor,
                                   fontSize: 30.sp,
                                   fontFamily: "Cairo",
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
-                              Text(
-                                "مرحباً بك فى اسـأل سيميكس",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xff868686),
-                                  fontSize: 20.sp,
-                                ),
-                              ),
                               SizedBox(
-                                height: 60.h,
+                                height: 20.h,
                               ),
                               Form(
                                 key: _formKey,
@@ -176,10 +180,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                       height: 52.h,
                                       width: 334.w,
                                       child: ElevatedButton(
+
                                         style: ElevatedButton.styleFrom(
+                                          backgroundColor: AppColors.mainColor,
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(50.r)),
+                                                  BorderRadius.circular(20.r)),
                                         ),
                                         onPressed: () {
                                           // if (_formKey.currentState!
@@ -188,18 +194,58 @@ class _LoginScreenState extends State<LoginScreen> {
                                           // }
                                           _cubit.loginUser();
                                         },
-                                        child: Text(
-                                          "login".tr(),
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 22.sp,
-                                            fontFamily: "Cairo",
-                                            fontWeight: FontWeight.w700,
-                                          ),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'دخول',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 22.sp,
+                                                fontFamily: "Cairo",
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                            ),
+                                            Container(
+                                                alignment: Alignment.center,
+                                                height: 30.h,
+                                                width:  40.w,
+                                                child: Image.asset(
+                                                  AppAssets.loginIcon,
+                                                  fit: BoxFit.contain,
+                                                )),
+                                          ],
                                         ),
                                       ),
                                     ),
+                                    SizedBox(
+                                      height: 60.h,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                            alignment: Alignment.center,
+                                            height: 60.h,
+                                            width:  60.w,
+                                            child: Image.asset(
+                                              AppAssets.cemexLogo,
+                                              fit: BoxFit.contain,
+                                            )),
+                                        Text(
+                                          'Powered By',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: AppColors.mainColor,
+                                            fontSize: 18.sp,
+                                            fontFamily: "Cairo",
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+
+                                      ],
+                                    )
                                   ],
                                 ),
                               ),

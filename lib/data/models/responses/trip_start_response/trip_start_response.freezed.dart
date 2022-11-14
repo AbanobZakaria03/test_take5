@@ -600,7 +600,8 @@ DangerModel _$DangerModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$DangerModel {
   int get dangerId => throw _privateConstructorUsedError;
-  String get dangerName => throw _privateConstructorUsedError;
+  String get dangerName =>
+      throw _privateConstructorUsedError; //required String dangerImage,
   List<MeasureControlApi> get controls => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -713,7 +714,9 @@ class _$_DangerModel implements _DangerModel {
   final int dangerId;
   @override
   final String dangerName;
+//required String dangerImage,
   final List<MeasureControlApi> _controls;
+//required String dangerImage,
   @override
   List<MeasureControlApi> get controls {
     // ignore: implicit_dynamic_type
@@ -769,7 +772,7 @@ abstract class _DangerModel implements DangerModel {
   int get dangerId;
   @override
   String get dangerName;
-  @override
+  @override //required String dangerImage,
   List<MeasureControlApi> get controls;
   @override
   @JsonKey(ignore: true)
