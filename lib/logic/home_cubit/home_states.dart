@@ -24,3 +24,18 @@ class HomeStartTripFail extends HomeStates {
 
   HomeStartTripFail(this.message);
 }
+
+
+class HomeCheckTripStatusLoading extends HomeStates {}
+
+class HomeCheckTripStatusSuccess extends HomeStates {
+  final String status;
+
+  HomeCheckTripStatusSuccess(this.status);
+}
+
+class HomeCheckTripStatusFail extends HomeStates {
+  final String? message;
+
+  HomeCheckTripStatusFail(this.message);
+}

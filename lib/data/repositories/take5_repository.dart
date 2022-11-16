@@ -41,9 +41,13 @@ abstract class Take5Repository {
   Future<Either<Failure, TripStartResponse>> startTrip(
       {required TripStartRequest tripStartRequest});
 
+  Future<Either<Failure, String>> checkTripStatus();
+
   Either<Failure, TakeFiveSurvey?> getCachedTakeFiveSurvey();
 
   Either<Failure, Unit> sendCollection();
+
+
 }
 
 class Take5RepositoryImpl extends Take5Repository {
@@ -125,7 +129,15 @@ class Take5RepositoryImpl extends Take5Repository {
       if (await deviceConnectivity.isConnected == false) {
         return const Left(DeviceConnectivityFailure());
       }
-      CollectionModel collectionModel = localDataSource.getCachedCollection();
+      CollectionModel collectionModel;
+      if(localDataSource.getCachedCollection()==null){
+        collectionModel = CollectionModel(
+            userId: AppConstants.user.userId,
+            tripId: AppConstants.trip.tripNumber,
+            jobsiteId: AppConstants.trip.jobsiteNumber);
+      } else{
+       collectionModel = localDataSource.getCachedCollection()!;
+      }
       collectionModel=collectionModel.copyWith(destinationArrivedRequest: destinationArrivedRequest);
       try {
        await remoteDataSource.sendCollection(collectionModel:collectionModel);
@@ -140,8 +152,15 @@ class Take5RepositoryImpl extends Take5Repository {
     }
     else
     {
-      CollectionModel collectionModel = localDataSource.getCachedCollection();
-      collectionModel=collectionModel.copyWith(destinationArrivedRequest: destinationArrivedRequest);
+       CollectionModel collectionModel;
+      if(localDataSource.getCachedCollection()==null){
+        collectionModel = CollectionModel(
+            userId: AppConstants.user.userId,
+            tripId: AppConstants.trip.tripNumber,
+            jobsiteId: AppConstants.trip.jobsiteNumber);
+      } else{
+       collectionModel = localDataSource.getCachedCollection()!;
+      }      collectionModel=collectionModel.copyWith(destinationArrivedRequest: destinationArrivedRequest);
       localDataSource.cacheCollection(collectionModel);
       return const Right(unit);
     }
@@ -155,8 +174,15 @@ class Take5RepositoryImpl extends Take5Repository {
       if (await deviceConnectivity.isConnected == false) {
         return const Left(DeviceConnectivityFailure());
       }
-      CollectionModel collectionModel = localDataSource.getCachedCollection();
-      collectionModel=collectionModel.copyWith(stepOneCompleteRequest: stepOneCompleteRequest);
+       CollectionModel collectionModel;
+      if(localDataSource.getCachedCollection()==null){
+        collectionModel = CollectionModel(
+            userId: AppConstants.user.userId,
+            tripId: AppConstants.trip.tripNumber,
+            jobsiteId: AppConstants.trip.jobsiteNumber);
+      } else{
+       collectionModel = localDataSource.getCachedCollection()!;
+      }      collectionModel=collectionModel.copyWith(stepOneCompleteRequest: stepOneCompleteRequest);
       try {
         await remoteDataSource.sendCollection(collectionModel:collectionModel);
         //done
@@ -169,8 +195,15 @@ class Take5RepositoryImpl extends Take5Repository {
       }
     }
     else {
-      CollectionModel collectionModel = localDataSource.getCachedCollection();
-      collectionModel=collectionModel.copyWith(stepOneCompleteRequest: stepOneCompleteRequest);
+       CollectionModel collectionModel;
+      if(localDataSource.getCachedCollection()==null){
+        collectionModel = CollectionModel(
+            userId: AppConstants.user.userId,
+            tripId: AppConstants.trip.tripNumber,
+            jobsiteId: AppConstants.trip.jobsiteNumber);
+      } else{
+       collectionModel = localDataSource.getCachedCollection()!;
+      }      collectionModel=collectionModel.copyWith(stepOneCompleteRequest: stepOneCompleteRequest);
       localDataSource.cacheCollection(collectionModel);
       return const Right(unit);
     }
@@ -184,8 +217,15 @@ class Take5RepositoryImpl extends Take5Repository {
       if (await deviceConnectivity.isConnected == false) {
         return const Left(DeviceConnectivityFailure());
       }
-      CollectionModel collectionModel = localDataSource.getCachedCollection();
-      collectionModel=collectionModel.copyWith(stepTwoStartRequest: stepTwoStartRequest);
+       CollectionModel collectionModel;
+      if(localDataSource.getCachedCollection()==null){
+        collectionModel = CollectionModel(
+            userId: AppConstants.user.userId,
+            tripId: AppConstants.trip.tripNumber,
+            jobsiteId: AppConstants.trip.jobsiteNumber);
+      } else{
+       collectionModel = localDataSource.getCachedCollection()!;
+      }      collectionModel=collectionModel.copyWith(stepTwoStartRequest: stepTwoStartRequest);
       try {
         await remoteDataSource.sendCollection(collectionModel:collectionModel);
         //done
@@ -197,8 +237,15 @@ class Take5RepositoryImpl extends Take5Repository {
         return const Right(unit);
       }
     } else {
-      CollectionModel collectionModel = localDataSource.getCachedCollection();
-      collectionModel=collectionModel.copyWith(stepTwoStartRequest: stepTwoStartRequest);      localDataSource.cacheCollection(collectionModel);
+       CollectionModel collectionModel;
+      if(localDataSource.getCachedCollection()==null){
+        collectionModel = CollectionModel(
+            userId: AppConstants.user.userId,
+            tripId: AppConstants.trip.tripNumber,
+            jobsiteId: AppConstants.trip.jobsiteNumber);
+      } else{
+       collectionModel = localDataSource.getCachedCollection()!;
+      }      collectionModel=collectionModel.copyWith(stepTwoStartRequest: stepTwoStartRequest);      localDataSource.cacheCollection(collectionModel);
       return const Right(unit);
     }
   }
@@ -212,8 +259,15 @@ class Take5RepositoryImpl extends Take5Repository {
       if (await deviceConnectivity.isConnected == false) {
         return const Left(DeviceConnectivityFailure());
       }
-      CollectionModel collectionModel = localDataSource.getCachedCollection();
-      collectionModel=collectionModel.copyWith(stepTwoCompleteRequest: stepTwoCompleteRequest);
+       CollectionModel collectionModel;
+      if(localDataSource.getCachedCollection()==null){
+        collectionModel = CollectionModel(
+            userId: AppConstants.user.userId,
+            tripId: AppConstants.trip.tripNumber,
+            jobsiteId: AppConstants.trip.jobsiteNumber);
+      } else{
+       collectionModel = localDataSource.getCachedCollection()!;
+      }      collectionModel=collectionModel.copyWith(stepTwoCompleteRequest: stepTwoCompleteRequest);
       try {
         await remoteDataSource.sendCollection(collectionModel:collectionModel);
         //done
@@ -225,8 +279,15 @@ class Take5RepositoryImpl extends Take5Repository {
         return const Right(unit);
       }
     } else {
-      CollectionModel collectionModel = localDataSource.getCachedCollection();
-      collectionModel=collectionModel.copyWith( stepTwoCompleteRequest:  stepTwoCompleteRequest);
+       CollectionModel collectionModel;
+      if(localDataSource.getCachedCollection()==null){
+        collectionModel = CollectionModel(
+            userId: AppConstants.user.userId,
+            tripId: AppConstants.trip.tripNumber,
+            jobsiteId: AppConstants.trip.jobsiteNumber);
+      } else{
+       collectionModel = localDataSource.getCachedCollection()!;
+      }      collectionModel=collectionModel.copyWith( stepTwoCompleteRequest:  stepTwoCompleteRequest);
       localDataSource.cacheCollection(collectionModel);
       return const Right(unit);
     }
@@ -246,5 +307,17 @@ class Take5RepositoryImpl extends Take5Repository {
   Either<Failure, Unit> sendCollection() {
 
     return const Right(unit);
+  }
+
+  @override
+  Future<Either<Failure, String>> checkTripStatus() async {
+    try {
+       CollectionModel? collectionModel = localDataSource.getCachedCollection();
+       //todo call remote data source
+       // String result = remoteDataSource.checkTripStatus
+      return const Right("Done");
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    }
   }
 }

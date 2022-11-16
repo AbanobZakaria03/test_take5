@@ -46,5 +46,17 @@ class HomeCubit extends Cubit<HomeStates> {
     });
   }
 
+  Future<void> checkTripStatus() async {
+    emit(HomeCheckTripStatusLoading());
+    final result = await take5Repository.checkTripStatus();
+    result.fold((failure) {
+      emit(HomeCheckTripStatusFail(failure.message));
+    }, (status) {
+      emit(HomeCheckTripStatusSuccess(status));
+    });
+  }
+
+
+
 
 }

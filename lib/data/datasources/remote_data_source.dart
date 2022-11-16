@@ -23,6 +23,9 @@ abstract class RemoteDataSource {
   Future<void>sendCollection(
       {required CollectionModel collectionModel});
 
+  Future<String>checkTripStatus(
+      {CollectionModel? collectionModel});
+
 }
 
 // class RemoteDataSourceImpl extends RemoteDataSource {
@@ -75,6 +78,11 @@ class FakeRemoteDataSourceImpl extends RemoteDataSource {
   @override
   Future<void> sendCollection({required CollectionModel collectionModel}) {
     // TODO: implement sendCollection
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<String> checkTripStatus({CollectionModel? collectionModel}) {
     throw UnimplementedError();
   }
 }

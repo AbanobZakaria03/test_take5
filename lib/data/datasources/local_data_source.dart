@@ -37,7 +37,7 @@ abstract class LocalDataSource {
 
 
   void cacheCollection(CollectionModel bigModel);
-  CollectionModel getCachedCollection();
+  CollectionModel? getCachedCollection();
   void clearCollection();
 }
 
@@ -114,13 +114,10 @@ class LocalDataSourceImpl implements LocalDataSource {
   }
 
   @override
-  CollectionModel getCachedCollection() {
+  CollectionModel? getCachedCollection() {
     final box = Boxes.getTakeFiveBox();
     if (box.get('collection') == null) {
-      return CollectionModel(
-          userId: AppConstants.user.userId,
-          tripId: AppConstants.trip.tripNumber,
-          jobsiteId: AppConstants.trip.jobsiteNumber);
+      return null;
     } else {
       Map<String, dynamic> json =
           Map<String, dynamic>.from(box.get('collection'));

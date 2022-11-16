@@ -5,6 +5,7 @@ import 'package:test_take5/core/constants/app_colors.dart';
 import 'package:test_take5/logic/home_cubit/home_cubit.dart';
 import 'package:test_take5/presentation/screens/home/widgets/trip_card.dart';
 import 'package:test_take5/presentation/screens/trip/trip.dart';
+import 'package:test_take5/presentation/utils/dialogs/message_dialog.dart';
 import 'package:test_take5/presentation/utils/helpers/helpers.dart';
 import '../../../injection_container.dart';
 import '../../../logic/home_cubit/home_states.dart';
@@ -24,59 +25,62 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     saveLastRoute(HomeScreen.routeName);
+    HomeCubit.get(context).getPendingTrip();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<HomeCubit>()..getPendingTrip(),
-      child: BlocConsumer<HomeCubit, HomeStates>(
-        listener: (context, state) {
-          if (state is HomeStartTripLoading) {
-            loadingAlertDialog(context);
-          }
-          if (state is HomeStartTripSuccess) {
-            Navigator.pop(context);
-            // Navigator.pushNamedAndRemoveUntil(
-            //     context, TripScreen.routeName, (route) => false);
-          }
-        },
-        builder: (context, state) {
-          var cubit = HomeCubit.get(context);
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('الرحلات',style: TextStyle(color: AppColors.redColor),),
-              backgroundColor: Colors.white,
-              centerTitle: true,
-              actions: [
-                TextButton(
-                    onPressed: () => logOut(context),
-                    child: Text(
-                      'logout',
-                      style: TextStyle(color: Colors.black),
-                    )),
-              ],
-            ),
-            body: Column(
-              children: [
-                if(state!=HomeGetPendingTripLoading()&&cubit.trip!=null)
-                  TripCard(trip: cubit.trip!),
-                  Center(
-                  child: ElevatedButton(
-                    onPressed: (){
-                      cubit.startTrip();
-                      final service = FlutterBackgroundService();
-                      service.startService();
-                      Navigator.pushNamed(context, TripScreen.routeName);
-                    },
-                    child: const Text('start'),
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
+    return BlocConsumer<HomeCubit, HomeStates>(
+      listener: (context, state) {
+        if (state is HomeStartTripLoading ||
+            state is HomeCheckTripStatusLoading) {
+          loadingAlertDialog(context);
+        }
+        if (state is HomeStartTripSuccess) {
+          Navigator.pop(context);
+          // Navigator.pushNamedAndRemoveUntil(
+          //     context, TripScreen.routeName, (route) => false);
+        }
+        if (state is HomeCheckTripStatusSuccess) {
+          Navigator.pop(context);
+          showMessageDialog(
+              context: context, isSucceeded: true, message: state.status);
+          // Navigator.pushNamedAndRemoveUntil(
+          //     context, TripScreen.routeName, (route) => false);
+        }
+      },
+      builder: (context, state) {
+        var cubit = HomeCubit.get(context);
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              'الرحلات', style: TextStyle(color: AppColors.redColor),),
+            backgroundColor: Colors.white,
+            centerTitle: true,
+            actions: [
+              TextButton(
+                  onPressed: () => logOut(context),
+                  child: Text(
+                    'logout',
+                    style: TextStyle(color: Colors.black),
+                  )),
+              TextButton(
+                  onPressed: () => cubit.checkTripStatus(),
+                  child: Text(
+                    'change',
+                    style: TextStyle(color: Colors.black),
+                  )),
+            ],
+          ),
+          body: Column(
+            children: [
+              if(state != HomeGetPendingTripLoading() && cubit.trip != null)
+                TripCard(trip: cubit.trip!),
+
+            ],
+          ),
+        );
+      },
     );
   }
 }

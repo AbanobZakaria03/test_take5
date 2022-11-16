@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
 
 import '../../../../data/models/trip/trip.dart';
+import '../../../../logic/home_cubit/home_cubit.dart';
+import '../../trip/trip.dart';
 
 class TripCard extends StatelessWidget {
   final Trip trip;
@@ -149,11 +152,22 @@ class TripCard extends StatelessWidget {
                                           fontSize: 11.0,
                                           fontWeight: FontWeight.w600,
                                           color:Colors.black45,)
-                                    )
-                                  ]
+                                    ),
+                                  ],
                               ),
                             ),
                           ],
+                        ),
+                        Center(
+                          child: ElevatedButton(
+                            onPressed: (){
+                              HomeCubit.get(context).startTrip();
+                              final service = FlutterBackgroundService();
+                              service.startService();
+                              Navigator.pushReplacementNamed(context, TripScreen.routeName);
+                            },
+                            child: const Text('start'),
+                          ),
                         ),
                       ],
                     ),

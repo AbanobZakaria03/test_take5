@@ -20,6 +20,8 @@ import 'core/utils/services/loaction_service.dart';
 import 'data/models/user/user.dart';
 import 'injection_container.dart' as di;
 
+import 'injection_container.dart';
+import 'logic/home_cubit/home_cubit.dart';
 import 'logic/internet/internet_bloc.dart';
 
 import 'presentation/screens/home/home.dart';
@@ -85,6 +87,10 @@ class MyApp extends StatelessWidget {
           providers: [
             BlocProvider<InternetBloc>(
               create: (context) => InternetBloc(),
+            ),
+
+            BlocProvider<HomeCubit>(
+                create: (context) => sl<HomeCubit>()
             ),
           ],
           child: MaterialApp(
