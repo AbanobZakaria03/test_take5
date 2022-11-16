@@ -13,6 +13,7 @@ import '../../../logic/step_one_cubit/step_one_cubit.dart';
 import '../../utils/helpers/helpers.dart';
 import '../../widgets/danger.dart';
 import '../../widgets/true_false_question.dart';
+import '../step_one_dangers/step_one_dangers.dart';
 
 class StepOneQuestionsScreen extends StatefulWidget {
   static const routeName = 'StepOneScreen';
@@ -161,8 +162,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                             onPressed: () {
                               //_formKey.currentState?.validate()==true
                               if (true) {
-                                InternetBloc.get(context)
-                                    .add(CheckNetworkEvent());
+                               Navigator.pushReplacementNamed(context, StepOneDangersScreen.routeName);
                               }
                             },
                             child:const Text('Next')),

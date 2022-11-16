@@ -23,76 +23,68 @@ class TripScreen extends StatefulWidget {
 }
 
 class _TripScreenState extends State<TripScreen> {
-
-
   @override
   void initState() {
     saveLastRoute(TripScreen.routeName);
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-      sl<TripCubit>()
-        ..start(),
+      create: (context) => sl<TripCubit>()..start(),
       child: BlocConsumer<TripCubit, TripStates>(
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = TripCubit.get(context);
           return Scaffold(
-              appBar: AppBar(),
-              body: Center(
-                  child: Column(
-                      children: [
-                     // Text(cubit.p.toString() ?? ''),
-              Text('${cubit.d?.toInt()} m' ?? ''),
-          ElevatedButton(
-             onPressed:cubit.isButtonEnabled?
-    () {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, StepOneQuestionsScreen.routeName, (route) => false);
-            }:null,
-            child:const Text('Next'),
-          )
-          ,
-          // ElevatedButton(
-          // onPressed: () {
-          // LocalDataSource localDataSource = sl<LocalDataSource>();
-          // print( localDataSource.getCachedTakeFiveSurvey()?.stepTwoQuestions.length);
-          // },
-          // child: Text('printSurvey'),
-          // ),
-          // ElevatedButton(
-          // onPressed: () async {
-          // final service = FlutterBackgroundService();
-          // var isRunning = await service.isRunning();
-          // if (isRunning == true) {
-          // service.invoke("stopService");
-          // } },
-          // child: Text('stop service'),
-          // ),
-      //     ElevatedButton(
-      //     onPressed: () async {
-      //       SharedPreferences preferences = await SharedPreferences.getInstance();
-      //       await preferences.reload();
-      //       print(preferences.get("destination"));
-      //      },
-      //   child:const Text('continue'),
-      // ),
-      ],
-    ),)
-    ,
+            appBar: AppBar(),
+            body: Center(
+              child: Column(
+                children: [
+                  // Text(cubit.p.toString() ?? ''),
+                  Text('${cubit.d?.toInt()} m' ?? ''),
+                  ElevatedButton(
+                    onPressed: cubit.isButtonEnabled
+                        ? () {
+                            Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                StepOneQuestionsScreen.routeName,
+                                (route) => false);
+                          }
+                        : null,
+                    child: const Text('Next'),
+                  ),
+                  // ElevatedButton(
+                  // onPressed: () {
+                  // LocalDataSource localDataSource = sl<LocalDataSource>();
+                  // print( localDataSource.getCachedTakeFiveSurvey()?.stepTwoQuestions.length);
+                  // },
+                  // child: Text('printSurvey'),
+                  // ),
+                  // ElevatedButton(
+                  // onPressed: () async {
+                  // final service = FlutterBackgroundService();
+                  // var isRunning = await service.isRunning();
+                  // if (isRunning == true) {
+                  // service.invoke("stopService");
+                  // } },
+                  // child: Text('stop service'),
+                  // ),
+                  //     ElevatedButton(
+                  //     onPressed: () async {
+                  //       SharedPreferences preferences = await SharedPreferences.getInstance();
+                  //       await preferences.reload();
+                  //       print(preferences.get("destination"));
+                  //      },
+                  //   child:const Text('continue'),
+                  // ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
-
-  ,
-
-  )
-
-  ,
-
-  );
-}}
+}
