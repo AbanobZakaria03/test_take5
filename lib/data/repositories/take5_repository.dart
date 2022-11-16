@@ -21,6 +21,8 @@ abstract class Take5Repository {
   Future<Either<Failure, UserLoginResponse>> loginUser(
       {required String mobileNo, required String password});
 
+  Either<Failure, Unit> clearUser();
+
   Future<Either<Failure, Unit>> arrivedToDestination(
       {required DestinationArrivedRequest destinationArrivedRequest});
 
@@ -40,6 +42,8 @@ abstract class Take5Repository {
       {required TripStartRequest tripStartRequest});
 
   Either<Failure, TakeFiveSurvey?> getCachedTakeFiveSurvey();
+
+  Either<Failure, Unit> sendCollection();
 }
 
 class Take5RepositoryImpl extends Take5Repository {
@@ -71,6 +75,17 @@ class Take5RepositoryImpl extends Take5Repository {
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
+    }
+  }
+  @override
+  Either<Failure, Unit> clearUser(){
+    //todo ask Islam
+    // sendCollection();
+    try{
+      localDataSource.clearCachedUser();
+      return const Right(unit);
+    } catch(e){
+      return const Left(StorageFailure("Error"));
     }
   }
 
@@ -152,7 +167,8 @@ class Take5RepositoryImpl extends Take5Repository {
         localDataSource.cacheCollection(collectionModel);
         return const Right(unit);
       }
-    } else {
+    }
+    else {
       CollectionModel collectionModel = localDataSource.getCachedCollection();
       collectionModel=collectionModel.copyWith(stepOneCompleteRequest: stepOneCompleteRequest);
       localDataSource.cacheCollection(collectionModel);
@@ -224,5 +240,11 @@ class Take5RepositoryImpl extends Take5Repository {
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     }
+  }
+
+  @override
+  Either<Failure, Unit> sendCollection() {
+
+    return const Right(unit);
   }
 }

@@ -20,17 +20,6 @@ abstract class RemoteDataSource {
   Future<TripStartResponse> startTrip(
       {required TripStartRequest tripStartRequest});
 
-    Future<void> arrivedToDestination(
-      {required DestinationArrivedRequest destinationArrivedRequest});
-
-  Future<void> completeStepOne(
-      {required StepOneCompleteRequest stepOneCompleteRequest});
-
-  Future<void> startStepTwo(
-      {required StepTwoStartRequest stepTwoStartRequest});
-
-  Future<void> completeStepTwo(
-      {required StepTwoCompleteRequest stepTwoCompleteRequest});
   Future<void>sendCollection(
       {required CollectionModel collectionModel});
 
@@ -81,32 +70,6 @@ class FakeRemoteDataSourceImpl extends RemoteDataSource {
     String response =
     await rootBundle.loadString('assets/endpoints/trip_start_response.json');
     return TripStartResponse.fromJson(jsonDecode(response));
-  }
-
-  @override
-  Future<void> arrivedToDestination({required DestinationArrivedRequest destinationArrivedRequest})async {
-    // TODO: implement arriveToDestination
-    //throw UnimplementedError();
-    return ;
-  }
-
-  @override
-  Future<void> completeStepOne({required StepOneCompleteRequest stepOneCompleteRequest})async {
-    // TODO: implement completeStepOne
-    //throw UnimplementedError();
-    return ;
-  }
-  @override
-  Future<void> startStepTwo({required StepTwoStartRequest stepTwoStartRequest}) async{
-    // TODO: implement startStepTwo
-    //throw UnimplementedError();
-    return ;
-  }
-  @override
-  Future<void> completeStepTwo({required StepTwoCompleteRequest stepTwoCompleteRequest}) async{
-    // TODO: implement completeStepTwo
-    //throw UnimplementedError();
-    return ;
   }
 
   @override

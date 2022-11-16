@@ -22,46 +22,22 @@ import '../models/user/user.dart';
 abstract class LocalDataSource {
   // responses
   Future<void> cacheUser(User user);
-
   User? getCachedUser();
-
-  Future<void> cacheTakeFiveSurvey(TakeFiveSurvey takeFiveSurvey);
-
-  TakeFiveSurvey? getCachedTakeFiveSurvey();
+  void clearCachedUser();
 
   Future<void> cacheTrip(Trip trip);
-
   Trip? getCachedTrip();
 
-// requests
-  Future<void> cacheDestinationArrivedRequest(
-      DestinationArrivedRequest destinationArrivedRequest);
+  Future<void> cacheTakeFiveSurvey(TakeFiveSurvey takeFiveSurvey);
+  TakeFiveSurvey? getCachedTakeFiveSurvey();
 
-  DestinationArrivedRequest? getCachedDestinationArrivedRequest();
 
-  Future<void> cacheStepOneCompleteRequest(
-      StepOneCompleteRequest stepOneCompleteRequest);
+  // Future<void> cacheTripStartRequest(TripStartRequest tripStartRequest);
+  // TripStartRequest? getCachedTripStartRequest();
 
-  StepOneCompleteRequest? getCachedStepOneCompleteRequest();
-
-  Future<void> cacheStepTwoCompleteRequest(
-      StepTwoCompleteRequest stepTwoCompleteRequest);
-
-  StepTwoCompleteRequest? getCachedStepTwoCompleteRequest();
-
-  Future<void> cacheStepTwoStartRequest(
-      StepTwoStartRequest stepTwoStartRequest);
-
-  StepTwoStartRequest? getCachedStepTwoStartRequest();
-
-  Future<void> cacheTripStartRequest(TripStartRequest tripStartRequest);
-
-  TripStartRequest? getCachedTripStartRequest();
 
   void cacheCollection(CollectionModel bigModel);
-
   CollectionModel getCachedCollection();
-
   void clearCollection();
 }
 
@@ -84,6 +60,13 @@ class LocalDataSourceImpl implements LocalDataSource {
     final box = Boxes.getUser();
     print(box.get('user'));
     return box.get('user');
+  }
+
+
+  @override
+  void clearCachedUser(){
+    final box = Boxes.getUser();
+    box.clear();
   }
 
   @override
@@ -120,105 +103,6 @@ class LocalDataSourceImpl implements LocalDataSource {
     } else {
       Map<String, dynamic> json = Map<String, dynamic>.from(box.get('trip'));
       return Trip.fromJson(json);
-    }
-  }
-
-  @override
-  Future<void> cacheDestinationArrivedRequest(
-      DestinationArrivedRequest destinationArrivedRequest) async {
-    final box = Boxes.getTakeFiveBox();
-    box.put('destinationArrivedRequest', destinationArrivedRequest.toJson());
-    print(box.get('destinationArrivedRequest'));
-  }
-
-  @override
-  DestinationArrivedRequest? getCachedDestinationArrivedRequest() {
-    final box = Boxes.getTakeFiveBox();
-    if (box.get('destinationArrivedRequest') == null) {
-      return null;
-    } else {
-      Map<String, dynamic> json =
-          Map<String, dynamic>.from(box.get('destinationArrivedRequest'));
-      return DestinationArrivedRequest.fromJson(json);
-    }
-  }
-
-  @override
-  Future<void> cacheStepOneCompleteRequest(
-      StepOneCompleteRequest stepOneCompleteRequest) async {
-    final box = Boxes.getTakeFiveBox();
-    box.put('stepOneCompleteRequest', stepOneCompleteRequest.toJson());
-    print(box.get('stepOneCompleteRequest'));
-  }
-
-  @override
-  StepOneCompleteRequest? getCachedStepOneCompleteRequest() {
-    final box = Boxes.getTakeFiveBox();
-    if (box.get('stepOneCompleteRequest') == null) {
-      return null;
-    } else {
-      Map<String, dynamic> json =
-          Map<String, dynamic>.from(box.get('stepOneCompleteRequest'));
-      return StepOneCompleteRequest.fromJson(json);
-    }
-  }
-
-  @override
-  Future<void> cacheStepTwoCompleteRequest(
-      StepTwoCompleteRequest stepTwoCompleteRequest) async {
-    final box = Boxes.getTakeFiveBox();
-    box.put('stepTwoCompleteRequest', stepTwoCompleteRequest.toJson());
-    print(box.get('stepTwoCompleteRequest'));
-  }
-
-  @override
-  StepTwoCompleteRequest? getCachedStepTwoCompleteRequest() {
-    final box = Boxes.getTakeFiveBox();
-    if (box.get('stepTwoCompleteRequest') == null) {
-      return null;
-    } else {
-      Map<String, dynamic> json =
-          Map<String, dynamic>.from(box.get('stepTwoCompleteRequest'));
-      return StepTwoCompleteRequest.fromJson(json);
-    }
-  }
-
-  @override
-  Future<void> cacheStepTwoStartRequest(
-      StepTwoStartRequest stepTwoStartRequest) async {
-    final box = Boxes.getTakeFiveBox();
-    box.put('stepTwoStartRequest', stepTwoStartRequest.toJson());
-    print(box.get('stepTwoStartRequest'));
-  }
-
-  @override
-  StepTwoStartRequest? getCachedStepTwoStartRequest() {
-    final box = Boxes.getTakeFiveBox();
-    if (box.get('stepTwoStartRequest') == null) {
-      return null;
-    } else {
-      Map<String, dynamic> json =
-          Map<String, dynamic>.from(box.get('stepTwoCompleteRequest'));
-      return StepTwoStartRequest.fromJson(json);
-    }
-  }
-
-  @override
-  Future<void> cacheTripStartRequest(TripStartRequest tripStartRequest) async {
-    final box = Boxes.getTakeFiveBox();
-    box.put('tripStartRequest', tripStartRequest.toJson());
-    print(box.get('tripStartRequest'));
-  }
-
-  @override
-  TripStartRequest? getCachedTripStartRequest() {
-    final box = Boxes.getTakeFiveBox();
-    if (box.get('tripStartRequest') == null) {
-      return null;
-    } else {
-      Map<String, dynamic> json =
-          Map<String, dynamic>.from(box.get('tripStartRequest'));
-      return TripStartRequest.fromJson(json);
     }
   }
 

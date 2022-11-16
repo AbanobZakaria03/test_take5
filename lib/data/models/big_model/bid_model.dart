@@ -16,10 +16,13 @@ class CollectionModel with _$CollectionModel{
     String? userId,
     int? tripId,
     int? jobsiteId,
+
+    //todo end
     DestinationArrivedRequest? destinationArrivedRequest,
     StepOneCompleteRequest? stepOneCompleteRequest,
     StepTwoStartRequest? stepTwoStartRequest,
     StepTwoCompleteRequest? stepTwoCompleteRequest,
+
   }) = _CollectionModel;
 
   factory CollectionModel.fromJson(Map<String, dynamic> json) => _$CollectionModelFromJson(json);
